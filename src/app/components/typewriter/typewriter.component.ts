@@ -16,6 +16,7 @@ class TxtType {
     this.period = parseInt(period, 10) || 2000;
     this.txt = '';
     this.isDeleting = false;
+    this.tick();
   }
 
   tick() {
@@ -45,11 +46,15 @@ class TxtType {
     }
 
     setTimeout(function () {
-      that.tick();
+      this.tick();
     }, delta);
   };
 }
-
+@Component({
+  selector: 'app-typewriter',
+  templateUrl: './typewriter.component.html',
+  styleUrls: ['./typewriter.component.scss']
+})
 export class TypewriterComponent implements OnInit {
 
   constructor() { }
@@ -57,10 +62,10 @@ export class TypewriterComponent implements OnInit {
   ngOnInit() {
     var elements = document.getElementsByClassName('typewrite');
     for (var i = 0; i < elements.length; i++) {
-      var toRotate = elements[i].getAttribute('data-type');
+      var whatToType = ["E Fournier"];
       var period = elements[i].getAttribute('data-period');
-      if (toRotate) {
-        new TxtType(elements[i], JSON.parse(toRotate), period);
+      if (whatToType) {
+        new TxtType(elements[i], whatToType.value, period);
       }
     }
     // INJECT CSS
