@@ -8,16 +8,18 @@ import Typed from 'typed.js';
 })
 export class AppComponent implements OnInit {
   title = 'app';
+  isGifHidden = true;
 
   constructor() {
 
   }
 
   ngOnInit() {
-    var typed = new Typed('.type-my-name', {
-      strings: ["E Fournier"],
-      typeSpeed: 90,
-    });
-    typed.start();
+    // var typed = new Typed('.type-my-name', {
+    //   strings: ["E Fournier"],
+    //   typeSpeed: 90,
+    // });
+    // typed.start();
+    // typed.stop();
   }
 }
