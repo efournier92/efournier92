@@ -1,148 +1,69 @@
 import { Component, OnInit } from '@angular/core';
 
-class TxtType {
-  toRotate: Array<string>;
-  el: Element;
-  loopNum: number;
-  period: number;
-  txt: string;
-  isDeleting: boolean;
-
-
-  constructor(el: Element, toRotate: string[], period: string) {
-    this.toRotate = toRotate;
-    this.el = el;
-    this.loopNum = 0;
-    this.period = parseInt(period, 10) || 2000;
-    this.txt = '';
-    this.isDeleting = false;
-    this.tick();
-  }
-
-  tick() {
-    var i = this.loopNum % this.toRotate.length;
-    var fullTxt = this.toRotate[i];
-
-    if (this.isDeleting) {
-      this.txt = fullTxt.substring(0, this.txt.length - 1);
-    } else {
-      this.txt = fullTxt.substring(0, this.txt.length + 1);
-    }
-
-    this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
-
-    var that = this;
-    var delta = 200 - Math.random() * 100;
-
-    if (this.isDeleting) { delta /= 2; }
-
-    if (!this.isDeleting && this.txt === fullTxt) {
-      delta = this.period;
-      this.isDeleting = true;
-    } else if (this.isDeleting && this.txt === '') {
-      this.isDeleting = false;
-      this.loopNum++;
-      delta = 500;
-    }
-
-    setTimeout(function () {
-      this.tick();
-    }, delta);
-  };
-}
 @Component({
   selector: 'app-typewriter',
   templateUrl: './typewriter.component.html',
   styleUrls: ['./typewriter.component.scss']
 })
 export class TypewriterComponent implements OnInit {
+  stringsToType: Array<string>;
+  loopNum: number = 0;
+  typedText: string = '';
 
   constructor() { }
 
   ngOnInit() {
-    var elements = document.getElementsByClassName('typewrite');
-    for (var i = 0; i < elements.length; i++) {
-      var whatToType = ["E Fournier"];
-      var period = elements[i].getAttribute('data-period');
-      if (whatToType) {
-        new TxtType(elements[i], whatToType.value, period);
-      }
+    this.stringsToType = ["E Fournier"];
+    this.typeNextKeystroke();
+  }
+
+  typeNextKeystroke() {
+    var i = this.loopNum % this.stringsToType.length;
+    var fullTxt = this.stringsToType[i];
+
+    this.typedText = fullTxt.substring(0, this.typedText.length + 1);
+
+    if (this.typedText === fullTxt) {
+      // this.eraseTypedText();
+      return;
+    } else if (this.typedText === '') {
+      this.loopNum++;
     }
-    // INJECT CSS
-    var css = document.createElement("style");
-    css.type = "text/css";
-    css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
-    document.body.appendChild(css);
+
+    this.awaitNextKeystroke().then(() => this.typeNextKeystroke());
+  };
+
+  eraseTypedText() {
+    this.awaitNextKeystroke(3000).then(
+      () => {
+        this.eraseKeystroke();
+      }
+    )
+  }
+
+  eraseKeystroke() {
+    let fullTxt = this.stringsToType[0];
+    let stringLength = this.typedText.length;
+    if (stringLength === 0) return;
+    this.awaitNextKeystroke(100).then(
+      () => {
+        this.typedText = fullTxt.substring(0, stringLength - 1);
+        if (this.typedText.length > 0) {
+          this.eraseKeystroke();
+        } else {
+          this.awaitNextKeystroke(2000).then(
+            () => {
+              // this.typeNextKeystroke();
+            }
+          )
+        }
+      }
+    );
+  }
+
+  async awaitNextKeystroke(nextKeystrokeInterval?: number) {
+    if (!nextKeystrokeInterval)
+      var nextKeystrokeInterval = 200 - Math.random() * 100;
+    await new Promise(resolve => setTimeout(resolve, nextKeystrokeInterval));
   }
 };
-
-// @Component({
-//   selector: 'app-typewriter',
-//   templateUrl: './typewriter.component.html',
-//   styleUrls: ['./typewriter.component.scss']
-// })
-// export class TypewriterComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//     var TxtType = function (el, toRotate, period) {
-//       this.toRotate = toRotate;
-//       this.el = el;
-//       this.loopNum = 0;
-//       this.period = parseInt(period, 10) || 2000;
-//       this.txt = '';
-//       this.tick();
-//       this.isDeleting = false;
-//     };
-
-//     TxtType.prototype.tick = function () {
-//       var i = this.loopNum % this.toRotate.length;
-//       var fullTxt = this.toRotate[i];
-
-//       if (this.isDeleting) {
-//         this.txt = fullTxt.substring(0, this.txt.length - 1);
-//       } else {
-//         this.txt = fullTxt.substring(0, this.txt.length + 1);
-//       }
-
-//       this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
-
-//       var that = this;
-//       var delta = 200 - Math.random() * 100;
-
-//       if (this.isDeleting) { delta /= 2; }
-
-//       if (!this.isDeleting && this.txt === fullTxt) {
-//         delta = this.period;
-//         this.isDeleting = true;
-//       } else if (this.isDeleting && this.txt === '') {
-//         this.isDeleting = false;
-//         this.loopNum++;
-//         delta = 500;
-//       }
-
-//       setTimeout(function () {
-//         that.tick();
-//       }, delta);
-//     };
-
-//     // window.onload = function () {
-//     var elements = document.getElementsByClassName('typewrite');
-//     for (var i = 0; i < elements.length; i++) {
-//       var toRotate = elements[i].getAttribute('data-type');
-//       var period = elements[i].getAttribute('data-period');
-//       if (toRotate) {
-//         new TxtType(elements[i], JSON.parse(toRotate), period);
-//       }
-//     }
-//     // INJECT CSS
-//     var css = document.createElement("style");
-//     css.type = "text/css";
-//     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
-//     document.body.appendChild(css);
-//     // };
-//   }
-// };
-
-
