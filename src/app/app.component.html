@@ -3,5 +3,30 @@
   <div class="type-my-name" style="color:white; text-align: center"></div>
 </h1> -->
 
-<app-typewriter></app-typewriter>
-<router-outlet></router-outlet>
+<div class="app-container">
+  <div style="">
+    <img src="../assets/EF_Logo.png" width="120" class="animated flipInY delay-4s">
+  </div>
+  <div style="height: 30vh"></div>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <div>
+      <div style="margin-bottom: -27px; margin-left: 2px;">
+        <app-typewriter style="font-size: 2em; font-weight: lighter;" [stringsToType]="['E Fournier']"
+          [shouldLoop]="false" [delay]="0"></app-typewriter>
+      </div>
+      <div>
+        <app-typewriter style="font-size: 4em; font-weight: bolder" [stringsToType]="['Developer.']"
+          [shouldLoop]="false" [delay]="2500"></app-typewriter>
+      </div>
+    </div>
+    <div class="animated bounceInRight delay-4s">
+      <button type="button" class="btn btn-outline-light">Tech Tips</button>
+      <button type="button" class="btn btn-outline-light ml-4" style="animation-delay: 6s">Projects</button>
+      <button type="button" class="btn btn-outline-light ml-4" style="animation-delay: 8s">About E</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <router-outlet></router-outlet> -->

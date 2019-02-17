@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AnimationsService } from 'src/app/animations.service';
 
 @Component({
   selector: 'app-typewriter',
@@ -6,15 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./typewriter.component.scss']
 })
 export class TypewriterComponent implements OnInit {
+  @Input()
   stringsToType: Array<string>;
-  loopNum: number = 0;
   typedText: string = '';
+  loopNum: number = 0;
+  @Input()
+  shouldLoop: boolean;
+  @Input()
+  delay: number;
 
-  constructor() { }
+  constructor(
+    private animations: AnimationsService,
+  ) { }
 
   ngOnInit() {
-    this.stringsToType = ["E Fournier"];
-    this.typeNextKeystroke();
+    this.animations.awaitNextKeystroke(this.delay).then(
+      () => {
+        this.typeNextKeystroke();
+      }
+    );
   }
 
   typeNextKeystroke() {
@@ -23,18 +34,18 @@ export class TypewriterComponent implements OnInit {
 
     this.typedText = fullTxt.substring(0, this.typedText.length + 1);
 
-    if (this.typedText === fullTxt) {
-      // this.eraseTypedText();
+    if (this.shouldLoop && this.typedText === fullTxt) {
+      this.eraseTypedText();
       return;
     } else if (this.typedText === '') {
       this.loopNum++;
     }
 
-    this.awaitNextKeystroke().then(() => this.typeNextKeystroke());
+    this.animations.awaitNextKeystroke().then(() => this.typeNextKeystroke());
   };
 
   eraseTypedText() {
-    this.awaitNextKeystroke(3000).then(
+    this.animations.awaitNextKeystroke(3000).then(
       () => {
         this.eraseKeystroke();
       }
@@ -45,13 +56,13 @@ export class TypewriterComponent implements OnInit {
     let fullTxt = this.stringsToType[0];
     let stringLength = this.typedText.length;
     if (stringLength === 0) return;
-    this.awaitNextKeystroke(100).then(
+    this.animations.awaitNextKeystroke(100).then(
       () => {
         this.typedText = fullTxt.substring(0, stringLength - 1);
         if (this.typedText.length > 0) {
           this.eraseKeystroke();
         } else {
-          this.awaitNextKeystroke(2000).then(
+          this.animations.awaitNextKeystroke(2000).then(
             () => {
               // this.typeNextKeystroke();
             }
@@ -59,11 +70,5 @@ export class TypewriterComponent implements OnInit {
         }
       }
     );
-  }
-
-  async awaitNextKeystroke(nextKeystrokeInterval?: number) {
-    if (!nextKeystrokeInterval)
-      var nextKeystrokeInterval = 200 - Math.random() * 100;
-    await new Promise(resolve => setTimeout(resolve, nextKeystrokeInterval));
   }
 };
