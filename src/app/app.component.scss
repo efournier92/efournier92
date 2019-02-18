@@ -1,8 +1,9 @@
 .app-container {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   // font-family: "Open Sans";
-  background-image: url(../assets/IDE_BW9.jpg);
+  background-image: url(../assets/background.gif);
   background-size: cover;
   color: white;
 }
