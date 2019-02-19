@@ -1,20 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Typed from 'typed.js';
 import { AnimationsService } from './animations.service';
-
-class showButtons {
-  tips: boolean;
-  projects: boolean;
-  about: boolean;
-  order: string[];
-
-  constructor() {
-    this.tips = false;
-    this.projects = false;
-    this.about = false;
-    this.order = ['tips', 'projects', 'about'];
-  }
-}
 
 @Component({
   selector: 'app-root',
@@ -28,9 +13,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private animations: AnimationsService,
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     this.showButtonsAnimation();
