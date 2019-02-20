@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Project } from './project';
 
 @Injectable({
   providedIn: 'root'

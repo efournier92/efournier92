@@ -1,3 +1,4 @@
+import { secrets } from 'src/environments/secrets';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +15,6 @@ import { RouteButtonsComponent } from './components/route-buttons/route-buttons.
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { secrets } from 'src/environments/secrets';
 
 @NgModule({
   declarations: [
