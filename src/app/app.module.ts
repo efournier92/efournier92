@@ -11,6 +11,10 @@ import { GuidesComponent } from './components/guides/guides.component';
 import { AboutComponent } from './components/about/about.component';
 import { RouteButtonsComponent } from './components/route-buttons/route-buttons.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +29,13 @@ import { RouteButtonsComponent } from './components/route-buttons/route-buttons.
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyAKTnSL74ZjnI01PvP4foF244JzuEYyBvU",
+      databaseURL: "https://efournier92-1992.firebaseio.com/",
+      projectId: "efournier92-1992",
+    }),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
