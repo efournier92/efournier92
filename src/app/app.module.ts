@@ -15,6 +15,8 @@ import { RouteButtonsComponent } from './components/route-buttons/route-buttons.
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { ProjectEditComponent } from './components/projects/project-edit/project-edit.component';
+import { ProjectViewComponent } from './components/projects/project-view/project-view.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     ProjectsComponent,
     GuidesComponent,
     AboutComponent,
-    RouteButtonsComponent
+    RouteButtonsComponent,
+    ProjectEditComponent,
+    ProjectViewComponent
   ],
   imports: [
     BrowserModule,

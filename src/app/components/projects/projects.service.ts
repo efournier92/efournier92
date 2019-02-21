@@ -11,13 +11,19 @@ export class ProjectsService {
 
   constructor(
     private db: AngularFireDatabase,
-  ) { }
+  ) {
+    this.getProjects().valueChanges().subscribe(
+      (projects: Project[]) => {
+        this.updateProjectsEvent(projects);
+      }
+    );
+  }
 
   private projectsSource: BehaviorSubject<Project[]> = new BehaviorSubject([]);
   projectsObservable: Observable<Project[]> = this.projectsSource.asObservable();
 
-  updateProjectsEvent(messages: Project[]): void {
-    this.projectsSource.next(messages);
+  updateProjectsEvent(projects: Project[]): void {
+    this.projectsSource.next(projects);
   }
 
   getProjects(): AngularFireList<Project> {

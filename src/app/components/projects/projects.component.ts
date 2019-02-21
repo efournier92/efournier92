@@ -8,14 +8,23 @@ import { Project } from './project';
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
+  allProjects: Project[];
 
   constructor(
-    private projects: ProjectsService,
+    private projectsService: ProjectsService,
   ) { }
 
   ngOnInit() {
+    this.projectsService.projectsObservable.subscribe(
+      (projects) => {
+        this.allProjects = projects;
+      }
+    );
+  }
+
+  onCreateProject() {
     let project = new Project();
-    this.projects.createProject(project);
+    this.projectsService.createProject(project);
   }
 
 }

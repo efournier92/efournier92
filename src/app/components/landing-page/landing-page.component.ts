@@ -22,7 +22,7 @@ export class LandingPageComponent implements OnInit {
       () => {
         const numberOfButtons = this.shownButtons.length;
         for (let i = 0; i <= numberOfButtons; i++) {
-          this.showNextButton(i).then;
+          // this.showNextButton(i).then;
         }
       }
     );
