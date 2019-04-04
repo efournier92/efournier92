@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Project } from '../project';
+import { ProjectsService } from '../projects.service';
 
 @Component({
   selector: 'app-project-edit',
@@ -6,10 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project-edit.component.scss']
 })
 export class ProjectEditComponent implements OnInit {
+  @Input()
+  project: Project;
 
-  constructor() { }
+  constructor(
+    private projectsService: ProjectsService,
+  ) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  saveProject(project: Project): void {
+    project.isEditing = false;
+    this.projectsService.updateProject(project);
   }
 
+  deleteProject(project: Project): void {
+    project.isEditing = false;
+    this.projectsService.deleteProject(project);
+  }
+
+  cancelEdit(project: Project): void {
+    project.isEditing = false;
+  }
 }

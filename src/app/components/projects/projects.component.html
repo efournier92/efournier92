@@ -1,27 +1,25 @@
-<div class="animated bounceInRight d-flex justify-content-end" style="margin-right:20px;">
-  <app-route-buttons></app-route-buttons>
-  <button type="button" class="btn btn-outline-light ml-4" (click)="onCreateProject()" style="animation-delay: 6s">
-    Add Project
-  </button>
-</div>
+<div class="projects-container">
+  <div class="animated bounceInRight d-flex justify-content-end mt-1 mb-2" style="margin-right:20px;">
+    <app-route-buttons></app-route-buttons>
+  </div>
+  <div class="animated bounceInRight d-flex justify-content-end" style="margin-right:20px;">
+    <button type="button" class="btn btn-outline-light ml-4" (click)="onCreateProject()" style="animation-delay: 6s">
+      Add Project
+    </button>
+  </div>
 
-<div class="animated bounceInRight d-flex justify-content-end" style="margin-right:20px;">
+  <div class="animated bounceInRight d-flex justify-content-end" style="margin-right:20px;">
 
-</div>
+  </div>
 
-<div class="row m-3">
-  <div class="col-lg-4 col-sm-6" *ngFor="let project of allProjects">
-    <div class="my-card">
-      <h5 class="card-title">{{ project.title }}</h5>
-      <p class="card-text">{{ project.languge }}</p>
-      <p class="card-text">{{ project.stack }}</p>
-      <p class="card-text">{{ project.description }}</p>
-      <div class="d-flex justify-content-around" style="margin-right:20px;">
-        <a href="#" class="btn btn-primary">{{ project.githubUrl }}</a>
-        <a href="#" class="btn btn-primary">{{ project.demoUrl }}</a>
-      </div>
+  <div class="row m-3">
+    <div class="col-lg-4 col-sm-6" *ngFor="let project of allProjects">
+      <!-- <app-project-view *ngIf="!project.isEditable" [project]="project"></app-project-view> -->
+      <app-project-edit *ngIf="!project.isEditable" [project]="project"></app-project-edit>
     </div>
-    <!-- <div class="col-sm-4">
+  </div>
+</div>
+<!-- <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Special title treatment</h5>

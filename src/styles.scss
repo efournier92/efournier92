@@ -1,3 +1,36 @@
+@import '~@angular/material/theming';
+@import "~font-awesome/css/font-awesome.css";
+// @import '~firebaseui/dist/firebaseui.css';
+// @import "../node_modules/angular-calendar/css/angular-calendar.css";
+// @import "~bootstrap/dist/css/bootstrap.css";
+// @import "~font-awesome/css/font-awesome.css";
+// @import "~lightgallery.js/dist/css/lightgallery.css";
+
+@include mat-core();
+
+$efournier-theme-primary: mat-palette($mat-blue-grey, 400);
+$efournier-theme-accent: mat-palette($mat-green, 500);
+$efournier-theme-warn: mat-palette($mat-green, A400);
+
+$efournier-theme: mat-dark-theme(
+  $efournier-theme-primary,
+  $efournier-theme-accent,
+  $efournier-theme-warn,
+);
+
+html, body {
+  @include angular-material-theme($efournier-theme);
+  margin: 0;
+  height: 100%;
+  background-color: #fafafa;
+}
+
+
 body {
   font-family: "Open Sans";
 }
+
+html {
+  background-color: #2d2d2d;
+}
+

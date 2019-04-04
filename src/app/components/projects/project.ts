@@ -1,10 +1,11 @@
 export class Project {
   id: string;
   title: string;
-  description: string;
   stack: string;
+  description: string;
   githubUrl: string;
   demoUrl: string;
+  isEditing: boolean;
 
   constructor(title: string, description: string, stack: string, githubUrl: string, demoUrl: string) {
     this.id = title;
@@ -13,5 +14,6 @@ export class Project {
     this.stack = stack;
     this.githubUrl = githubUrl;
     this.demoUrl = demoUrl;
+    this.isEditing = false;
   }
 }
