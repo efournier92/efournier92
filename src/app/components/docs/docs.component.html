@@ -25,6 +25,9 @@
         <input matInput value="" style="width:80%">
       </span>
     </mat-form-field>
+    <app-file-input [matIcon]="'file_upload'" [inputMessage]="'Upload Photos'" [multipleFiles]="true"
+      (onInputFileChange)="uploadDoc($event)">
+    </app-file-input>
     <mat-list style="color:black">
       <mat-list-item>Item 1</mat-list-item>
       <mat-divider></mat-divider>
@@ -33,6 +36,9 @@
       <mat-list-item>Item 3</mat-list-item>
     </mat-list>
   </mat-drawer>
-  <mat-drawer-content>Main content</mat-drawer-content>
-
+  <mat-drawer-content>
+    <div class="m-4">
+      <markdown [src]="'assets/README.md'"></markdown>
+    </div>
+  </mat-drawer-content>
 </mat-drawer-container>

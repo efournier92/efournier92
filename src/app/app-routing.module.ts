@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { GuidesComponent } from './components/guides/guides.component';
+import { DocsComponent } from './components/docs/docs.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 
@@ -12,8 +12,8 @@ const routes: Routes =
       component: LandingPageComponent,
     },
     {
-      path: 'guides',
-      component: GuidesComponent,
+      path: 'docs',
+      component: DocsComponent,
     },
     {
       path: 'projects',

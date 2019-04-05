@@ -44,8 +44,7 @@ export class ProjectsService {
     this.projects.update(project.id, project);
   }
 
-  deleteProject
-  oi7h6g5f43dsaz(project: Project): void {
+  deleteProject(project: Project): void {
     this.projects.remove(project.id);
   }
 }

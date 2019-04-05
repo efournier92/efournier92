@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { TypewriterComponent } from './components/typewriter/typewriter.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { GuidesComponent } from './components/guides/guides.component';
+import { DocsComponent } from './components/docs/docs.component';
 import { AboutComponent } from './components/about/about.component';
 import { RouteButtonsComponent } from './components/route-buttons/route-buttons.component';
 
@@ -20,6 +20,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { ProjectEditComponent } from './components/projects/project-edit/project-edit.component';
 import { ProjectViewComponent } from './components/projects/project-view/project-view.component';
 
+import { MarkdownModule } from 'ngx-markdown';
+
 import {
   MatButtonModule,
   MatCardModule,
@@ -27,7 +29,10 @@ import {
   MatListModule,
   MatSidenavModule,
   MatInputModule,
+  MatIconModule,
 } from '@angular/material';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FileInputComponent } from './components/file-input/file-input.component';
 
 @NgModule({
   declarations: [
@@ -35,26 +40,30 @@ import {
     TypewriterComponent,
     LandingPageComponent,
     ProjectsComponent,
-    GuidesComponent,
+    DocsComponent,
     AboutComponent,
     RouteButtonsComponent,
     ProjectEditComponent,
     ProjectViewComponent,
+    FileInputComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     AngularFireModule.initializeApp(secrets.angularFire),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    MarkdownModule.forRoot({ 'loader': HttpClient }),
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
     MatListModule,
     MatSidenavModule,
     MatInputModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
