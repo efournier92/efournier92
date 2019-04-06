@@ -72,7 +72,7 @@ export class DocsService {
     doc.path = `docs/${doc.fileName}`;
 
     const fileRef: AngularFireStorageReference = this.storage.ref(doc.path);
-    const task: AngularFireUploadTask = this.storage.upload(doc.path, file);
+    const task: AngularFireUploadTask = this.storage.upload(doc.path, file[0]);
     task.snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe(
