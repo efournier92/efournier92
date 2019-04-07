@@ -8,17 +8,7 @@ export class Doc {
   dateAdded: Date;
   path: string = '';
   url: string = '';
-  tags: Tag[] = new Array<Tag>();
-}
-
-export class Tag {
-  id: string;
-  name: string;
-
-  constructor(name: string) {
-    this.id;
-    this.name = name;
-  }
+  tags: string[] = ['all'];
 }
 
 export interface DocUpload {

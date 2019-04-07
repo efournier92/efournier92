@@ -18,7 +18,7 @@
     <mat-form-field class="example-full-width" style="width: 100%;">
       <span>
         <i class="fa fa-search mr-2" aria-hidden="true"></i>
-        <input matInput [(ngModel)]="searchQuery" (change)="filterDocsList()" style="width:80%">
+        <input matInput [(ngModel)]="searchQuery" (change)="searchDocsByName(searchQuery)" style="width:80%">
       </span>
     </mat-form-field>
     <!-- <app-file-input [matIcon]="'file_upload'" [inputMessage]="'Upload Photos'" [multipleFiles]="true"
