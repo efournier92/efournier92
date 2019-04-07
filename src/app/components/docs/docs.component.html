@@ -1,48 +1,52 @@
-<!-- <mat-sidenav-container style="height:100%">
-  <mat-sidenav opened style="width:250px;">
-    <mat-form-field class="example-full-width" style="width: 100%;">
-      <span>
-        <i class="fa fa-search mr-2" aria-hidden="true"></i>
-        <input matInput value="" style="width:80%">
-      </span>
-    </mat-form-field>
-    <mat-list style="color:black">
-      <mat-list-item>Item 1</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 2</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 3</mat-list-item>
-    </mat-list>
-  </mat-sidenav>
-  <mat-sidenav-content>Main</mat-sidenav-content>
-</mat-sidenav-container> -->
+<mat-toolbar class="d-flex justify-content-end">
+  <button mat-mini-fab class="mr-2" (click)="openEditDialog()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-mini-fab (click)="openUploadDialog()">
+    <mat-icon>file_upload</mat-icon>
+  </button>
+  <button mat-mini-fab (click)="openUploadDialog()">
+    <mat-icon>note_add</mat-icon>
+  </button>
+  <button mat-mini-fab (click)="openUploadDialog()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</mat-toolbar>
 
 <mat-drawer-container class="example-container" style="height:100%;">
   <mat-drawer mode="side" opened style="width:228px;">
     <mat-form-field class="example-full-width" style="width: 100%;">
       <span>
         <i class="fa fa-search mr-2" aria-hidden="true"></i>
-        <input matInput value="" style="width:80%">
+        <input matInput [(ngModel)]="searchQuery" (change)="filterDocsList()" style="width:80%">
       </span>
     </mat-form-field>
-    <app-file-input [matIcon]="'file_upload'" [inputMessage]="'Upload Photos'" [multipleFiles]="true"
+    <!-- <app-file-input [matIcon]="'file_upload'" [inputMessage]="'Upload Photos'" [multipleFiles]="true"
       (onInputFileChange)="uploadDoc($event)">
-    </app-file-input>
+    </app-file-input> -->
+    <div class="d-flex justify-content-center" (click)="filterDocsByTag(selectedTag)">
+      {{ selectedTag | titlecase }}
+    </div>
+
     <mat-list style="color:black">
-      <mat-list-item>Item 1</mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>Item 2</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 3</mat-list-item>
+      <div *ngFor="let doc of filteredDocs">
+        <mat-list-item (click)="changeSelectedDoc(doc.fileName)">{{ doc.fileName | camelCase }}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
     </mat-list>
+    <!-- <mat-list *ngIf="viewMode === 'tags'" style="color:black">
+      <mat-divider></mat-divider>
+      <div *ngFor="let tag of allTags">
+        <mat-list-item>{{ tag }}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list> -->
   </mat-drawer>
   <mat-drawer-content>
     <div class="m-4">
       <!-- <markdown [src]="'assets/README.md'"></markdown> -->
-      <markdown [src]="'
-        https://firebasestorage.googleapis.com/v0/b/efournier92-1992.appspot.com/o/docs%2FGifCreation.md?alt=media&token=b199c7e5-ad41-4c22-9cd5-a79aeaf69977
-        '">
-      </markdown>
+      <markdown lineNumbers *ngIf="selectedDoc && selectedDoc.url" [src]="selectedDoc.url"></markdown>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>

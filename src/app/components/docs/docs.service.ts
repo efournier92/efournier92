@@ -3,7 +3,7 @@ import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
-import { Doc, DocUpload } from './doc';
+import { Doc, DocUpload, Tag } from './doc';
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +70,9 @@ export class DocsService {
     doc.dateAdded = new Date();
     doc.fileName = file[0].name;
     doc.path = `docs/${doc.fileName}`;
+    let tag = new Tag('Windows');
+    tag.id = this.db.createPushId();
+    doc.tags.push(tag);
 
     const fileRef: AngularFireStorageReference = this.storage.ref(doc.path);
     const task: AngularFireUploadTask = this.storage.upload(doc.path, file[0]);

@@ -1,7 +1,7 @@
 import { secrets } from 'src/environments/secrets';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -22,6 +22,11 @@ import { ProjectViewComponent } from './components/projects/project-view/project
 
 import { MarkdownModule } from 'ngx-markdown';
 
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FileInputComponent } from './components/file-input/file-input.component';
+import { DocsUploadDialogComponent } from './components/docs/docs-upload-dialog/docs-upload-dialog.component';
+import { DocsEditDialogComponent } from './components/docs/docs-edit-dialog/docs-edit-dialog.component';
+
 import {
   MatButtonModule,
   MatCardModule,
@@ -30,9 +35,11 @@ import {
   MatSidenavModule,
   MatInputModule,
   MatIconModule,
+  MatToolbarModule,
+  MatDialogModule,
+  MatAutocompleteModule,
 } from '@angular/material';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { FileInputComponent } from './components/file-input/file-input.component';
+import { CamelCasePipe } from './pipes/camel-case.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +53,9 @@ import { FileInputComponent } from './components/file-input/file-input.component
     ProjectEditComponent,
     ProjectViewComponent,
     FileInputComponent,
+    DocsEditDialogComponent,
+    DocsUploadDialogComponent,
+    CamelCasePipe,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +63,7 @@ import { FileInputComponent } from './components/file-input/file-input.component
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(secrets.angularFire),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
@@ -64,6 +75,13 @@ import { FileInputComponent } from './components/file-input/file-input.component
     MatSidenavModule,
     MatInputModule,
     MatIconModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatAutocompleteModule,
+  ],
+  entryComponents: [
+    DocsUploadDialogComponent,
+    DocsEditDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

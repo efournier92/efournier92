@@ -15,6 +15,18 @@ const routes: Routes =
       path: 'docs',
       component: DocsComponent,
     },
+    // {
+    //   path: 'docs/:fileName',
+    //   component: DocsComponent,
+    // },
+    {
+      path: 'docs/:tagName',
+      component: DocsComponent,
+    },
+    {
+      path: 'docs/:tagName/:fileName',
+      component: DocsComponent,
+    },
     {
       path: 'projects',
       component: ProjectsComponent,

@@ -1,0 +1,12 @@
+<div class="d-flex flex-column align-items-center">
+  <div mat-dialog-content>
+    <form class="example-form">
+      <mat-form-field class="example-full-width" style="width:100%">
+        <input matInput placeholder="Title" value="">
+      </mat-form-field>
+      <app-file-input [matIcon]="'file_upload'" [inputMessage]="'Upload Photos'" [multipleFiles]="true"
+        (onInputFileChange)="uploadDoc($event)">
+      </app-file-input>
+      <button mat-raised-button color="primary" style="width:100%">Upload</button>
+    </form>
+  </div>
