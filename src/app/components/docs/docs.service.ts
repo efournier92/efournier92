@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Doc, DocUpload } from './doc';
+import { TagsService } from './tags.service';
+import { Tag } from './tag';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +15,21 @@ export class DocsService {
   allDocs: AngularFireList<Doc>;
   docCount: number = 0;
   increment: number = 2;
+  allTags: Tag[];
 
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFireDatabase,
+    private tagsService: TagsService,
   ) {
     this.getAllDocs().valueChanges().subscribe(
       (docs: Doc[]) => {
         this.updateAllDocsEvent(docs);
       }
     );
+    this.tagsService.getAllTags().valueChanges().subscribe(
+      tags => this.allTags = tags
+    )
   }
 
   updateDoc(doc: Doc): void {
@@ -64,12 +71,14 @@ export class DocsService {
     return docByIdObservable;
   }
 
-  uploadDoc(file: any): DocUpload {
-    let doc: Doc = new Doc();
+  uploadDoc(file: File, doc: Doc): DocUpload {
     doc.id = this.db.createPushId();
     doc.dateAdded = new Date();
     doc.fileName = file[0].name;
     doc.path = `docs/${doc.fileName}`;
+    doc.tags.forEach(
+      x => 
+    )
     doc.tags.push('windows');
 
     const fileRef: AngularFireStorageReference = this.storage.ref(doc.path);

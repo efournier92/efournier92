@@ -38,8 +38,12 @@ import {
   MatToolbarModule,
   MatDialogModule,
   MatAutocompleteModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 } from '@angular/material';
 import { CamelCasePipe } from './pipes/camel-case.pipe';
+import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +60,7 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
     DocsEditDialogComponent,
     DocsUploadDialogComponent,
     CamelCasePipe,
+    TagsEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +83,9 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
     MatToolbarModule,
     MatDialogModule,
     MatAutocompleteModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   entryComponents: [
     DocsUploadDialogComponent,

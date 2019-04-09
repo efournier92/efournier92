@@ -1,9 +1,9 @@
 import { AngularFireUploadTask } from "@angular/fire/storage";
 import { Observable } from "rxjs";
-import { AngularFireDatabase } from "@angular/fire/database";
 
 export class Doc {
   id: string = '';
+  title: string = '';
   fileName: string = '';
   dateAdded: Date;
   path: string = '';

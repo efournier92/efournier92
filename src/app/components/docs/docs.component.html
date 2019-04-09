@@ -31,7 +31,7 @@
     <mat-list style="color:black">
       <mat-divider></mat-divider>
       <div *ngFor="let doc of filteredDocs">
-        <mat-list-item (click)="changeSelectedDoc(doc.fileName)">{{ doc.fileName | camelCase }}</mat-list-item>
+        <mat-list-item (click)="changeSelectedDoc(doc.fileName)">{{ doc.title }}</mat-list-item>
         <mat-divider></mat-divider>
       </div>
     </mat-list>

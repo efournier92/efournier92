@@ -1,12 +1,18 @@
 <div class="d-flex flex-column align-items-center">
   <div mat-dialog-content>
     <form class="example-form">
-      <mat-form-field class="example-full-width" style="width:100%">
-        <input matInput placeholder="Title" value="">
-      </mat-form-field>
       <app-file-input [matIcon]="'file_upload'" [inputMessage]="'Upload Photos'" [multipleFiles]="true"
-        (onInputFileChange)="uploadDoc($event)">
+        (onInputFileChange)="onInputFileChange($event)">
       </app-file-input>
-      <button mat-raised-button color="primary" style="width:100%">Upload</button>
+      <mat-form-field class="example-full-width" style="width:100%">
+        <input matInput [(ngModel)]="docTitle" name="docTitle">
+      </mat-form-field>
+      <app-tags-edit></app-tags-edit>
+      <mat-form-field style="width:100%">
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="uploadDoc()" style="width:100%">Upload</button>
     </form>
   </div>
