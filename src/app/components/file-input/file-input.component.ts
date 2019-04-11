@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 
 interface HTMLInput extends HTMLElement {
   value: any;
@@ -16,6 +16,8 @@ export class FileInputComponent implements OnInit {
   @Input()
   inputMessage: string;
   @Input()
+  startWithFileSelect: boolean;
+  @Input()
   multipleFiles: boolean;
   @Output()
   onInputFileChange: EventEmitter<HTMLInput> = new EventEmitter();
@@ -27,6 +29,12 @@ export class FileInputComponent implements OnInit {
   ngOnInit() {
     this.fileInput = document.getElementById('file-input-file') as HTMLInput;
     this.inputPlaceholder = this.inputMessage;
+    if (this.startWithFileSelect)
+      this.openFileSelect();
+  }
+
+  openFileSelect(): any {
+    this.fileInput.click();
   }
 
   onInputChange() {

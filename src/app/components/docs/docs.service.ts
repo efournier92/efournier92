@@ -6,6 +6,8 @@ import { finalize } from 'rxjs/operators';
 import { Doc, DocUpload } from './doc';
 import { TagsService } from './tags.service';
 import { Tag } from './tag';
+import { MatDialogModule, MatDialogRef } from '@angular/material';
+import { DocDialogComponent } from './doc-dialog/doc-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,7 @@ import { Tag } from './tag';
 export class DocsService {
   docs: AngularFireList<Doc>;
   allDocs: AngularFireList<Doc>;
+  allDocsArray: Doc[] = new Array<Doc>();
   docCount: number = 0;
   increment: number = 2;
   allTags: Tag[];
@@ -45,8 +48,9 @@ export class DocsService {
   private allDocsSource: BehaviorSubject<Doc[]> = new BehaviorSubject([]);
   allDocsObservable: Observable<Doc[]> = this.allDocsSource.asObservable();
 
-  updateAllDocsEvent(doc: Doc[]): void {
-    this.allDocsSource.next(doc);
+  updateAllDocsEvent(docs: Doc[]): void {
+    this.allDocsSource.next(docs);
+    this.allDocsArray = docs;
   }
 
   getAllDocs(): AngularFireList<Doc> {
@@ -71,16 +75,17 @@ export class DocsService {
     return docByIdObservable;
   }
 
-  uploadDoc(file: File, doc: Doc): DocUpload {
+  uploadDoc(file: File, doc: Doc, dialogRef: MatDialogRef<DocDialogComponent>): DocUpload {
+    if (this.allDocsArray.find(findDoc => findDoc.fileName === doc.fileName)) return;
     doc.id = this.db.createPushId();
-    doc.dateAdded = new Date();
     doc.fileName = file[0].name;
     doc.path = `docs/${doc.fileName}`;
-    doc.tags.forEach(
-      x => 
-    )
-    doc.tags.push('windows');
-
+    for (const tagObj of doc.tags) {
+      if (!this.allTags.find(tag => tag.name === tagObj.name)) {
+        let newTag = this.tagsService.createNewTag(tagObj.name);
+        this.tagsService.saveNewTag(newTag);
+      }
+    }
     const fileRef: AngularFireStorageReference = this.storage.ref(doc.path);
     const task: AngularFireUploadTask = this.storage.upload(doc.path, file[0]);
     task.snapshotChanges().pipe(
@@ -91,6 +96,7 @@ export class DocsService {
             doc.url = url;
             docsDb.update(doc.id, doc);
             docUploadSource.next(url);
+            dialogRef.close()
           }
         )
       })
@@ -105,14 +111,5 @@ export class DocsService {
     upload.onUrlAvailable = onUrlAvailable;
 
     return upload;
-  }
-
-  getYears(): Array<Number> {
-    let thisYear: number = new Date().getFullYear()
-    let years: Array<Number> = Array<Number>();
-    for (let i = 1800; i <= thisYear; i++) {
-      years.push(i);
-    }
-    return years;
   }
 }

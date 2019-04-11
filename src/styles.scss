@@ -1,7 +1,8 @@
 @import '~@angular/material/theming';
-@import "~material-design-lite/dist/material.indigo-pink.min.css";
+@import "~material-design-lite/dist/material.amber-blue.min.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
+@import "./marked-theme.scss";
 // @import '~firebaseui/dist/firebaseui.css';
 // @import "../node_modules/angular-calendar/css/angular-calendar.css";
 // @import "~lightgallery.js/dist/css/lightgallery.css";
@@ -12,7 +13,7 @@ $efournier-theme-primary: mat-palette($mat-blue-grey, 400);
 $efournier-theme-accent: mat-palette($mat-green, 500);
 $efournier-theme-warn: mat-palette($mat-green, A400);
 
-$efournier-theme: mat-dark-theme(
+$efournier-theme: mat-light-theme(
   $efournier-theme-primary,
   $efournier-theme-accent,
   $efournier-theme-warn,
@@ -22,9 +23,7 @@ html, body {
   @include angular-material-theme($efournier-theme);
   margin: 0;
   height: 100%;
-  background-color: #fafafa;
 }
-
 
 body {
   font-family: "Open Sans";
@@ -34,3 +33,14 @@ html {
   background-color: #2d2d2d;
 }
 
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  background-color: rgba(33,33,33,0.8) !important;
+  opacity: 0.5;
+  border-radius: 3px;
+  color: white;
+}

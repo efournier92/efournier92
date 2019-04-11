@@ -24,8 +24,7 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FileInputComponent } from './components/file-input/file-input.component';
-import { DocsUploadDialogComponent } from './components/docs/docs-upload-dialog/docs-upload-dialog.component';
-import { DocsEditDialogComponent } from './components/docs/docs-edit-dialog/docs-edit-dialog.component';
+import { DocDialogComponent } from './components/docs/doc-dialog/doc-dialog.component';
 
 import {
   MatButtonModule,
@@ -57,8 +56,7 @@ import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.compone
     ProjectEditComponent,
     ProjectViewComponent,
     FileInputComponent,
-    DocsEditDialogComponent,
-    DocsUploadDialogComponent,
+    DocDialogComponent,
     CamelCasePipe,
     TagsEditComponent,
   ],
@@ -88,8 +86,7 @@ import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.compone
     MatNativeDateModule,
   ],
   entryComponents: [
-    DocsUploadDialogComponent,
-    DocsEditDialogComponent,
+    DocDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

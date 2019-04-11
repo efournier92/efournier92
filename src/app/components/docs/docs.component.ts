@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DocsService } from './docs.service';
-import { DocsEditDialogService } from './docs-edit-dialog/docs-edit-dialog.service';
-import { DocsUploadDialogService } from './docs-upload-dialog/docs-upload-dialog.service';
+import { DocDialogService } from './doc-dialog/doc-dialog.service';
 import { Doc } from './doc';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { Tag } from './tag';
+import { MarkdownService } from 'ngx-markdown';
 
 @Component({
   selector: 'app-docs',
@@ -13,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DocsComponent implements OnInit {
   allTags: string[] = ["Windows", "Bash"];
-  selectedTag: string = "";
+  selectedTag: Tag = new Tag('');
   allDocs: Doc[];
   filteredDocs: Doc[] = new Array<Doc>();
   selectedDoc: Doc;
@@ -21,14 +22,22 @@ export class DocsComponent implements OnInit {
 
   constructor(
     private docsService: DocsService,
-    private docsEditDialog: DocsEditDialogService,
-    private docsUploadDialog: DocsUploadDialogService,
+    private docsUploadDialog: DocDialogService,
     private router: Router,
     private route: ActivatedRoute,
+    private markdownService: MarkdownService,
   ) { }
 
   ngOnInit() {
     this.subscribeToDocs();
+    // this.markdownService.renderer.code = (text: string, level: string, escaped: boolean) => {
+    //   const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+    //   return '<h' + level + '>' +
+    //     '<a name="' + escapedText + '" class="anchor" href="#' + escapedText + '">' +
+    //     '<span class="header-link"></span>' +
+    //     '</a>' + text +
+    //     '</h' + level + '>';
+    // };
   }
 
   subscribeToDocs() {
@@ -43,10 +52,12 @@ export class DocsComponent implements OnInit {
   getRouteParams(): void {
     this.route.paramMap.subscribe(
       (result: any) => {
-        this.selectedTag = result.params.tagName ? result.params.tagName : 'all';
-        this.selectedDoc = result.params.fileName ? this.allDocs.find(doc => doc.fileName === result.params.fileName) : null;
-        this.setActiveDoc(result.params.fileName);
+        this.selectedTag = new Tag(result.params.tagName);
         this.filterDocsByTag(this.selectedTag);
+        if (result.params.fileName) {
+          this.selectedDoc = this.allDocs.find(doc => doc.fileName === result.params.fileName);
+          this.setActiveDoc(result.params.fileName);
+        }
       }
     )
   }
@@ -61,28 +72,24 @@ export class DocsComponent implements OnInit {
     this.selectedDoc = this.allDocs.find(
       doc => doc.fileName === fileName,
     )
-    this.router.navigateByUrl(`docs/${this.selectedTag}/${fileName}`);
+    this.router.navigateByUrl(`docs/${this.selectedTag.name}/${fileName}`);
   }
 
-  filterDocsByTag(tagName: string) {
-    this.selectedTag = tagName;
+  filterDocsByTag(tagObj: Tag) {
+    this.selectedTag = tagObj;
     this.filteredDocs = [];
-    this.allDocs.forEach(
-      (doc: Doc) => {
-        if (!doc.tags) return;
-        doc.tags.forEach(
-          (tag: any) => {
-            if (tag.toLowerCase() === tagName.toLowerCase()) {
-              this.filteredDocs.push(doc);
-            }
-          }
-        )
+    for (const doc of this.allDocs) {
+      if (!doc.tags) return;
+      for (const tag of doc.tags) {
+        if (tag.name && tagObj.name && tag.name.toLowerCase() === tagObj.name.toLowerCase()) {
+          this.filteredDocs.push(doc);
+        }
       }
-    )
+    }
   }
 
   searchDocsByName(searchQuery: string) {
-    this.selectedTag = 'all';
+    this.selectedTag.name = 'all';
     this.filteredDocs = this.allDocs.filter(
       (doc: Doc) => {
         const fileName: string = doc.fileName.toLowerCase();
@@ -92,25 +99,12 @@ export class DocsComponent implements OnInit {
     )
   }
 
-  openEditDialog() {
-    const dialogRef = this.docsEditDialog.openDialog(
-      "Are You Sure?",
-      "Do you want to sign out of LeCoursville?",
-    );
-    dialogRef.afterClosed().subscribe(
-      (confirmedAction: boolean) => {
-        if (confirmedAction) {
-
-        }
-      }
-    )
+  redirectToTag(): void {
+    this.router.navigateByUrl(`docs/${this.selectedTag.name}`);
   }
 
-  openUploadDialog() {
-    const dialogRef = this.docsUploadDialog.openDialog(
-      "Are You Sure?",
-      "Do you want to sign out of LeCoursville?",
-    );
+  openDocDialog(mode: string) {
+    const dialogRef = this.docsUploadDialog.openDialog(mode, this.selectedDoc);
     dialogRef.afterClosed().subscribe(
       (confirmedAction: boolean) => {
         if (confirmedAction) {

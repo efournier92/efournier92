@@ -1,14 +1,15 @@
 import { AngularFireUploadTask } from "@angular/fire/storage";
 import { Observable } from "rxjs";
+import { Tag } from "./tag";
 
 export class Doc {
   id: string = '';
   title: string = '';
   fileName: string = '';
-  dateAdded: Date;
+  date: Date;
   path: string = '';
   url: string = '';
-  tags: string[] = ['all'];
+  tags: Tag[] = new Array<Tag>();
 }
 
 export interface DocUpload {

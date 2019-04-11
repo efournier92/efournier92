@@ -1,15 +1,9 @@
 <mat-toolbar class="d-flex justify-content-end">
-  <button mat-mini-fab class="mr-2" (click)="openEditDialog()">
-    <mat-icon>edit</mat-icon>
-  </button>
-  <button mat-mini-fab (click)="openUploadDialog()">
+  <button mat-mini-fab (click)="openDocDialog('new')">
     <mat-icon>file_upload</mat-icon>
   </button>
-  <button mat-mini-fab (click)="openUploadDialog()">
-    <mat-icon>note_add</mat-icon>
-  </button>
-  <button mat-mini-fab (click)="openUploadDialog()">
-    <mat-icon>delete</mat-icon>
+  <button mat-mini-fab class="mr-2" (click)="openDocDialog('edit')">
+    <mat-icon>edit</mat-icon>
   </button>
 </mat-toolbar>
 
@@ -24,8 +18,8 @@
     <!-- <app-file-input [matIcon]="'file_upload'" [inputMessage]="'Upload Photos'" [multipleFiles]="true"
       (onInputFileChange)="uploadDoc($event)">
     </app-file-input> -->
-    <div class="d-flex justify-content-center" (click)="filterDocsByTag(selectedTag)">
-      {{ selectedTag | titlecase }}
+    <div class="d-flex justify-content-center" (click)="redirectToTag(selectedTag)">
+      {{ selectedTag.name | titlecase }}
     </div>
 
     <mat-list style="color:black">

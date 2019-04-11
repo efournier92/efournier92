@@ -44,7 +44,7 @@ export class TagsService {
   }
 
   saveNewTag(tag): void {
-    tag.dateAdded = new Date();
+    tag.date = new Date();
     this.allTags.update(tag.id, tag);
   }
 }

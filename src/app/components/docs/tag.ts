@@ -1,7 +1,7 @@
 export class Tag {
   id: string;
   name: string;
-  dateAdded: Date;
+  date: Date;
 
   constructor(name: string) {
     this.id;
