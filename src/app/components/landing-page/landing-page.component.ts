@@ -13,11 +13,11 @@ export class LandingPageComponent implements OnInit {
     private animations: AnimationsService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.showButtonsAnimation();
   }
 
-  showButtonsAnimation() {
+  showButtonsAnimation(): void {
     this.animations.awaitNextKeystroke(5000).then(
       () => {
         const numberOfButtons = this.shownButtons.length;
@@ -28,7 +28,7 @@ export class LandingPageComponent implements OnInit {
     );
   }
 
-  showNextButton(index) {
+  showNextButton(index: number): Promise<void> {
     if (index >= this.shownButtons.length) return;
     return this.animations.awaitNextKeystroke(5000).then(
       () => {
@@ -36,5 +36,4 @@ export class LandingPageComponent implements OnInit {
       }
     )
   }
-
 }

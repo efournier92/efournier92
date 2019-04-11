@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProjectViewComponent } from './project-view.component';
 
 describe('ProjectViewComponent', () => {
@@ -8,9 +7,9 @@ describe('ProjectViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectViewComponent ]
+      declarations: [ProjectViewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -5,7 +5,6 @@ import { Doc } from './doc';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Tag } from './tag';
-import { MarkdownService } from 'ngx-markdown';
 
 @Component({
   selector: 'app-docs',
@@ -25,22 +24,13 @@ export class DocsComponent implements OnInit {
     private docsUploadDialog: DocDialogService,
     private router: Router,
     private route: ActivatedRoute,
-    private markdownService: MarkdownService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.subscribeToDocs();
-    // this.markdownService.renderer.code = (text: string, level: string, escaped: boolean) => {
-    //   const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-    //   return '<h' + level + '>' +
-    //     '<a name="' + escapedText + '" class="anchor" href="#' + escapedText + '">' +
-    //     '<span class="header-link"></span>' +
-    //     '</a>' + text +
-    //     '</h' + level + '>';
-    // };
   }
 
-  subscribeToDocs() {
+  subscribeToDocs(): void {
     this.docsService.getAllDocs().valueChanges().subscribe(
       (docs: Doc[]) => {
         this.allDocs = docs;
@@ -62,7 +52,7 @@ export class DocsComponent implements OnInit {
     )
   }
 
-  setActiveDoc(selectedDoc: string) {
+  setActiveDoc(selectedDoc: string): void {
     this.selectedDoc = this.allDocs.find(
       doc => doc.fileName === selectedDoc,
     )
@@ -75,7 +65,7 @@ export class DocsComponent implements OnInit {
     this.router.navigateByUrl(`docs/${this.selectedTag.name}/${fileName}`);
   }
 
-  filterDocsByTag(tagObj: Tag) {
+  filterDocsByTag(tagObj: Tag): void {
     this.selectedTag = tagObj;
     this.filteredDocs = [];
     for (const doc of this.allDocs) {
@@ -88,7 +78,7 @@ export class DocsComponent implements OnInit {
     }
   }
 
-  searchDocsByName(searchQuery: string) {
+  searchDocsByName(searchQuery: string): void {
     this.selectedTag.name = 'all';
     this.filteredDocs = this.allDocs.filter(
       (doc: Doc) => {
@@ -103,7 +93,7 @@ export class DocsComponent implements OnInit {
     this.router.navigateByUrl(`docs/${this.selectedTag.name}`);
   }
 
-  openDocDialog(mode: string) {
+  openDocDialog(mode: string): void {
     const dialogRef = this.docsUploadDialog.openDialog(mode, this.selectedDoc);
     dialogRef.afterClosed().subscribe(
       (confirmedAction: boolean) => {

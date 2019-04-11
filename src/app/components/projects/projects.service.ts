@@ -31,10 +31,6 @@ export class ProjectsService {
     return this.projects;
   }
 
-  // updateProjects(projects: Array<Project>) {
-  //   this.projects = projects;
-  // }
-
   createProject(project: Project): void {
     project.id = this.db.createPushId();
     this.projects.update(project.id, project);

@@ -64,7 +64,6 @@ export class FileInputComponent implements OnInit {
   }
 
   clearInput() {
-    // document.getElementById('file-input-file').value = ""
     this.fileInput.value = "";
     this.inputPlaceholder = this.inputMessage;
   }

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RouteButtonsComponent } from './route-buttons.component';
 
 describe('RouteButtonsComponent', () => {
@@ -8,9 +7,9 @@ describe('RouteButtonsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RouteButtonsComponent ]
+      declarations: [RouteButtonsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -9,7 +9,6 @@ export class RouteButtonsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

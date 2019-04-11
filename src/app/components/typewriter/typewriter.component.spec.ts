@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TypewriterComponent } from './typewriter.component';
 
 describe('TypewriterComponent', () => {
@@ -8,9 +7,9 @@ describe('TypewriterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TypewriterComponent ]
+      declarations: [TypewriterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

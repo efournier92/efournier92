@@ -6,7 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { Doc, DocUpload } from './doc';
 import { TagsService } from './tags.service';
 import { Tag } from './tag';
-import { MatDialogModule, MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { DocDialogComponent } from './doc-dialog/doc-dialog.component';
 
 @Injectable({

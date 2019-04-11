@@ -1,5 +1,4 @@
 import { TestBed, inject } from '@angular/core/testing';
-
 import { DocDialogService } from './doc-dialog.service';
 
 describe('ConfirmPromptService', () => {

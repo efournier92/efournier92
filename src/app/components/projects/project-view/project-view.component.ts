@@ -13,5 +13,4 @@ export class ProjectViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
-
 }

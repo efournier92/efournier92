@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DocsService } from '../docs.service';
 import { Doc } from '../doc';
@@ -24,15 +24,10 @@ export class DocDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public dialogData: DialogData,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.dialogData.mode === 'edit') {
       this.doc = this.dialogData.doc;
-      // this.doc.date = new Date(this.doc.date);
     }
-  }
-
-  loadDocData(): void {
-
   }
 
   onNoClick(): void {
@@ -40,7 +35,6 @@ export class DocDialogComponent implements OnInit {
   }
 
   onInputFileChange(file: File) {
-    // this.doc.fileName = this.parseFilename(file[0].name);
     this.doc.fileName = file[0].name;
     this.uploadFile = file
     this.doc.title = this.parseFilename(this.doc.fileName);
@@ -56,14 +50,11 @@ export class DocDialogComponent implements OnInit {
     if (filename.includes('.')) {
       returnValue = filename.substring(0, filename.indexOf('.'));
     }
-
     returnValue = returnValue.replace(/([A-Z])/g, ' $1').trim()
-
     return returnValue;
   }
 
   onTagsChanged(docTags: Tag[]) {
     this.doc.tags = docTags;
   }
-
 }

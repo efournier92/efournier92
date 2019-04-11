@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { Tag } from './tag';
 
 @Injectable({
@@ -11,7 +10,6 @@ export class TagsService {
   allTags: AngularFireList<Tag>;
 
   constructor(
-    private storage: AngularFireStorage,
     private db: AngularFireDatabase,
   ) {
     this.getAllTags().valueChanges().subscribe(

@@ -3,7 +3,6 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete } from '@angular/material';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { TagsService } from '../tags.service';
 import { Tag } from '../tag';
 
@@ -35,7 +34,7 @@ export class TagsEditComponent implements OnInit {
     private tagsService: TagsService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.subscribeToTags();
     const tag = new Tag("All");
     if (!this.docTags || this.docTags.length < 1) {
@@ -47,7 +46,7 @@ export class TagsEditComponent implements OnInit {
     }
   }
 
-  subscribeToTags() {
+  subscribeToTags(): void {
     this.tagsService.getAllTags().valueChanges().subscribe(
       (tags: Tag[]) => {
         this.allTags = tags;
@@ -79,12 +78,6 @@ export class TagsEditComponent implements OnInit {
 
   remove(tagName: string): void {
     this.selectedTags = this.selectedTags.filter(tag => tag.name !== tagName);
-    //   (tag: Tag) => {
-    //     if (tag.name === tagName) {
-
-    //     }
-    //   }
-    // )
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -94,13 +87,7 @@ export class TagsEditComponent implements OnInit {
     this.tagCtrl.setValue(null);
   }
 
-  onTagsChanged(selectedTags) {
+  onTagsChanged(selectedTags): void {
     this.onTagsChangedEvent.emit(selectedTags);
-  }
-
-  private _filter(value: string): Tag[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allTags.filter(tag => tag.name.toLowerCase().indexOf(filterValue) === 0);
   }
 }
