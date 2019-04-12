@@ -3,6 +3,9 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
 @import "./marked-theme.scss";
+// @import "prismjs/themes/prism-solarizedlight.css";
+@import "../solarized-dark.css";
+
 // @import '~firebaseui/dist/firebaseui.css';
 // @import "../node_modules/angular-calendar/css/angular-calendar.css";
 // @import "~lightgallery.js/dist/css/lightgallery.css";
@@ -13,14 +16,21 @@ $efournier-theme-primary: mat-palette($mat-blue-grey, 400);
 $efournier-theme-accent: mat-palette($mat-green, 500);
 $efournier-theme-warn: mat-palette($mat-green, A400);
 
-$efournier-theme: mat-light-theme(
+$efournier-light-theme: mat-light-theme(
   $efournier-theme-primary,
   $efournier-theme-accent,
   $efournier-theme-warn,
 );
 
+$efournier-dark-theme: mat-dark-theme(
+  $efournier-theme-primary,
+  $efournier-theme-accent,
+  $efournier-theme-warn,
+);
+
+
 html, body {
-  @include angular-material-theme($efournier-theme);
+  @include angular-material-theme($efournier-dark-theme);
   margin: 0;
   height: 100%;
 }
@@ -43,4 +53,13 @@ h6 code {
   opacity: 0.5;
   border-radius: 3px;
   color: white;
+}
+
+.theme-light {
+  @include angular-material-theme($efournier-light-theme);
+  // @import "prismjs/themes/prism-tomorrow.css";
+}
+
+pre.line-numbers {
+  border-radius: 10px;
 }
