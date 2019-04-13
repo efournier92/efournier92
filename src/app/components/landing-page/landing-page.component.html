@@ -1,16 +1,20 @@
-<div class="d-flex flex-column align-items-center" style="margin-top:8em">
-  <img src="../assets/EF_Logo.png" width="80" class="animated flipInY delay-4s">
-  <div>
-    <div style="margin-bottom: -27px; margin-left: 2px;">
-      <app-typewriter style="font-size: 2em; font-weight: lighter;" [stringsToType]="['E Fournier']"
-        [shouldLoop]="false" [delay]="0"></app-typewriter>
+<mat-drawer-container class="example-container" style="height:100%">
+  <mat-drawer-content>
+    <div class="d-flex flex-column align-items-center" style="padding-top:8em">
+      <img src="../assets/EF_Logo.png" width="80" class="animated flipInY delay-4s">
+      <div>
+        <div style="margin-bottom: -27px; margin-left: 2px;">
+          <app-typewriter style="font-size: 2em; font-weight: lighter;" [stringsToType]="['E Fournier']"
+            [shouldLoop]="false" [delay]="0"></app-typewriter>
+        </div>
+        <div>
+          <app-typewriter style="font-size: 4em; font-weight: bolder" [stringsToType]="['Developer.']"
+            [shouldLoop]="false" [delay]="2500"></app-typewriter>
+        </div>
+      </div>
+      <div class="animated bounceInRight delay-4s">
+        <app-route-buttons></app-route-buttons>
+      </div>
     </div>
-    <div>
-      <app-typewriter style="font-size: 4em; font-weight: bolder" [stringsToType]="['Developer.']" [shouldLoop]="false"
-        [delay]="2500"></app-typewriter>
-    </div>
-  </div>
-  <div class="animated bounceInRight delay-4s">
-    <app-route-buttons></app-route-buttons>
-  </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>

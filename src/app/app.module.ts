@@ -35,6 +35,7 @@ import {
   MatChipsModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatSlideToggleModule
 } from '@angular/material';
 import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.component';
 
@@ -77,6 +78,7 @@ import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.compone
     MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSlideToggleModule,
   ],
   entryComponents: [
     DocDialogComponent,
