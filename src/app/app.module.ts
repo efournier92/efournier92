@@ -12,6 +12,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { DocsComponent } from './components/docs/docs.component';
 import { AboutComponent } from './components/about/about.component';
 import { RouteButtonsComponent } from './components/route-buttons/route-buttons.component';
+import { StorageServiceModule } from 'angular-webstorage-service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -23,6 +24,7 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import {
   MatButtonModule,
+  MatMenuModule,
   MatCardModule,
   MatCheckboxModule,
   MatListModule,
@@ -56,6 +58,7 @@ import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.compone
   ],
   imports: [
     BrowserModule,
+    MatMenuModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -64,6 +67,7 @@ import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.compone
     AngularFireModule.initializeApp(secrets.angularFire),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    StorageServiceModule,
     MarkdownModule.forRoot({ 'loader': HttpClient }),
     MatButtonModule,
     MatCardModule,

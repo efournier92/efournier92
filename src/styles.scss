@@ -1,36 +1,13 @@
 @import '~@angular/material/theming';
-@import "~material-design-lite/dist/material.amber-blue.min.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
-@import "./marked-theme.scss";
-// @import "prismjs/themes/prism-solarizedlight.css";
-@import "../solarized-dark.css";
-
-// @import '~firebaseui/dist/firebaseui.css';
-// @import "../node_modules/angular-calendar/css/angular-calendar.css";
-// @import "~lightgallery.js/dist/css/lightgallery.css";
+@import "~animate.css/animate.css";
+@import "./assets/styles/dark.style.scss";
+@import "./assets/styles/light.style.scss";
 
 @include mat-core();
 
-$efournier-theme-primary: mat-palette($mat-blue-grey, 400);
-$efournier-theme-accent: mat-palette($mat-grey, 100);
-$efournier-theme-warn: mat-palette($mat-green, A400);
-
-$efournier-light-theme: mat-light-theme(
-  $efournier-theme-primary,
-  $efournier-theme-accent,
-  $efournier-theme-warn,
-);
-
-$efournier-dark-theme: mat-dark-theme(
-  $efournier-theme-primary,
-  $efournier-theme-accent,
-  $efournier-theme-warn,
-);
-
-
 html, body {
-  @include angular-material-theme($efournier-dark-theme);
   margin: 0;
   height: 100%;
 }
@@ -39,31 +16,11 @@ body {
   font-family: "Open Sans";
 }
 
-html {
-  background-color: #2d2d2d;
-}
-
 h1 code,
 h2 code,
 h3 code,
 h4 code,
 h5 code,
 h6 code {
-  background-color: rgba(33,33,33,0.8) !important;
-  opacity: 0.5;
-  border-radius: 3px;
-  color: white;
-}
-
-.theme-light {
-  @include angular-material-theme($efournier-light-theme);
-  // @import "prismjs/themes/prism-tomorrow.css";
-}
-
-pre.line-numbers {
-  border-radius: 10px;
-}
-
-.invert-color {
-  filter: invert(100%);
+  color: #b58900 !important;
 }

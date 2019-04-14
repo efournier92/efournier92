@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from './services/theme.service';
+import { SessionService } from './services/session.service';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +8,25 @@ import { ThemeService } from './services/theme.service';
 })
 export class AppComponent implements OnInit {
   isDarkTheme: boolean;
+  hasSeenLandingAnimation: boolean;
 
   constructor(
-    private themeService: ThemeService
+    private sessionService: SessionService,
   ) { }
 
   ngOnInit(): void {
-    this.themeService.isDarkThemeObservable.subscribe(
+    this.sessionService.isDarkThemeObservable.subscribe(
       isDarkTheme => this.isDarkTheme = isDarkTheme
     );
+    this.sessionService.hasSeenLandingAnimationObservable.subscribe(
+      (hasSeenLandingAnimation: boolean) => {
+        this.hasSeenLandingAnimation = hasSeenLandingAnimation
+      }
+    )
   }
 
   toggleTheme(): void {
-    this.themeService.toggleThemeEvent();
+    this.sessionService.toggleDarkTheme();
   }
 
 }

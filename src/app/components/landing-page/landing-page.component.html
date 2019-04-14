@@ -2,8 +2,8 @@
   <mat-drawer-content>
     <div class="d-flex flex-column align-items-center" style="padding-top:8em">
       <img src="../assets/EF_Logo.png" width="80"
-        [ngClass]="{'invert-color': !isDarkTheme, 'animated flipInY delay-4s': true}">
-      <div>
+        [ngClass]="{'invert-color': !isDarkTheme, 'animated fadeInDown delay-4s': !hasSeenLandingAnimation}">
+      <div *ngIf="!hasSeenLandingAnimation">
         <div style="margin-bottom: -27px; margin-left: 2px;">
           <app-typewriter style="font-size: 2em; font-weight: lighter;" [stringsToType]="['E Fournier']"
             [shouldLoop]="false" [delay]="0"></app-typewriter>
@@ -13,7 +13,15 @@
             [shouldLoop]="false" [delay]="2500"></app-typewriter>
         </div>
       </div>
-      <div class="animated bounceInRight delay-4s">
+      <div *ngIf="hasSeenLandingAnimation">
+        <div style="margin-bottom: -27px; margin-left: 2px;">
+          <div style="font-size: 2em; font-weight: lighter;">E Fournier</div>
+        </div>
+        <div>
+          <div style="font-size: 4em; font-weight: bolder">Developer.</div>
+        </div>
+      </div>
+      <div [ngClass]="{'animated fadeInUp delay-4s': !hasSeenLandingAnimation}">
         <app-route-buttons></app-route-buttons>
       </div>
     </div>

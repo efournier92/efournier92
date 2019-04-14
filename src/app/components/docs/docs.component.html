@@ -1,11 +1,3 @@
-<mat-toolbar class="d-flex justify-content-end theme-light">
-  <button mat-mini-fab (click)="openDocDialog('new')">
-    <mat-icon>file_upload</mat-icon>
-  </button>
-  <button mat-mini-fab class="mr-2" (click)="openDocDialog('edit')">
-    <mat-icon>edit</mat-icon>
-  </button>
-</mat-toolbar>
 <mat-drawer-container class="example-container" style="height:100%;">
   <mat-drawer mode="side" opened style="width:228px;">
     <mat-form-field class="example-full-width" style="width: 100%;">
@@ -26,6 +18,14 @@
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>
+    <mat-toolbar class="d-flex justify-content-end" style="position:absolute;background-color:transparent">
+      <button mat-mini-fab class="mr-1" (click)="openDocDialog('new')">
+        <mat-icon>file_upload</mat-icon>
+      </button>
+      <button mat-mini-fab (click)="openDocDialog('edit')">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-toolbar>
     <div class="m-4">
       <markdown lineNumbers *ngIf="selectedDoc && selectedDoc.url" [src]="selectedDoc.url"></markdown>
     </div>

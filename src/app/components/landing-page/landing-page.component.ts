@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { AnimationsService } from 'src/app/animations.service';
-import { ThemeService } from 'src/app/services/theme.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -10,15 +10,22 @@ import { ThemeService } from 'src/app/services/theme.service';
 export class LandingPageComponent implements OnInit {
   shownButtons: Array<boolean> = [false, false, false];
   isDarkTheme: boolean;
+  hasSeenLandingAnimation: boolean;
 
   constructor(
     private animations: AnimationsService,
-    private themeService: ThemeService,
+    private sessionService: SessionService,
   ) { }
 
   ngOnInit(): void {
-    this.showButtonsAnimation();
-    this.themeService.isDarkThemeObservable.subscribe(
+    this.sessionService.hasSeenLandingAnimationObservable.subscribe(
+      (hasSeenLandingAnimation: boolean) => {
+        this.hasSeenLandingAnimation = hasSeenLandingAnimation;
+        if (!this.hasSeenLandingAnimation)
+          this.showButtonsAnimation();
+      }
+    )
+    this.sessionService.isDarkThemeObservable.subscribe(
       isDarkTheme => this.isDarkTheme = isDarkTheme
     )
   }
@@ -27,6 +34,9 @@ export class LandingPageComponent implements OnInit {
     this.animations.awaitNextKeystroke(5000).then(
       () => {
         const numberOfButtons = this.shownButtons.length;
+
+        this.sessionService.justSawLandingAnimation();
+
         for (let i = 0; i <= numberOfButtons; i++) {
           // this.showNextButton(i).then;
         }
