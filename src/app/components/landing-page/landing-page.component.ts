@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimationsService } from 'src/app/animations.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,13 +9,18 @@ import { AnimationsService } from 'src/app/animations.service';
 })
 export class LandingPageComponent implements OnInit {
   shownButtons: Array<boolean> = [false, false, false];
+  isDarkTheme: boolean;
 
   constructor(
     private animations: AnimationsService,
+    private themeService: ThemeService,
   ) { }
 
   ngOnInit(): void {
     this.showButtonsAnimation();
+    this.themeService.isDarkThemeObservable.subscribe(
+      isDarkTheme => this.isDarkTheme = isDarkTheme
+    )
   }
 
   showButtonsAnimation(): void {

@@ -1,11 +1,14 @@
-<div [ngClass]="{'theme-light': isLightTheme}" style="height:100%">
+<div [ngClass]="{'theme-light': !isDarkTheme}" style="height:100%">
   <mat-toolbar class="d-flex justify-content-end">
-    <button mat-button>Docs</button>
-    <button mat-button>Projects</button>
-    <button mat-button>Click me!</button>
     <mat-slide-toggle class="example-margin" (toggleChange)="toggleTheme()" style="font-size:0.65em">
-      {{ isLightTheme ? 'Dark' : 'Light' }}
+      {{ isDarkTheme ? 'Dark' : 'Light' }}
     </mat-slide-toggle>
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Docs</button>
+      <button mat-menu-item>Projects</button>
+      <button mat-menu-item>About</button>
+    </mat-menu>
   </mat-toolbar>
   <router-outlet></router-outlet>
 </div>

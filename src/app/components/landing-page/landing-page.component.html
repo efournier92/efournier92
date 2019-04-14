@@ -1,7 +1,8 @@
 <mat-drawer-container class="example-container" style="height:100%">
   <mat-drawer-content>
     <div class="d-flex flex-column align-items-center" style="padding-top:8em">
-      <img src="../assets/EF_Logo.png" width="80" class="animated flipInY delay-4s">
+      <img src="../assets/EF_Logo.png" width="80"
+        [ngClass]="{'invert-color': !isDarkTheme, 'animated flipInY delay-4s': true}">
       <div>
         <div style="margin-bottom: -27px; margin-left: 2px;">
           <app-typewriter style="font-size: 2em; font-weight: lighter;" [stringsToType]="['E Fournier']"

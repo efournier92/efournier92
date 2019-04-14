@@ -13,7 +13,7 @@
 @include mat-core();
 
 $efournier-theme-primary: mat-palette($mat-blue-grey, 400);
-$efournier-theme-accent: mat-palette($mat-green, 500);
+$efournier-theme-accent: mat-palette($mat-grey, 100);
 $efournier-theme-warn: mat-palette($mat-green, A400);
 
 $efournier-light-theme: mat-light-theme(
@@ -62,4 +62,8 @@ h6 code {
 
 pre.line-numbers {
   border-radius: 10px;
+}
+
+.invert-color {
+  filter: invert(100%);
 }
