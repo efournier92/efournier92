@@ -1,21 +1,17 @@
-<div class="projects-container">
-  <div class="animated bounceInRight d-flex justify-content-end mt-1 mb-2" style="margin-right:20px;">
-    <app-route-buttons></app-route-buttons>
-  </div>
-  <div class="animated bounceInRight d-flex justify-content-end" style="margin-right:20px;">
-    <button type="button" class="btn btn-outline-light ml-4" (click)="onCreateProject()" style="animation-delay: 6s">
-      Add Project
-    </button>
-  </div>
-
-  <div class="animated bounceInRight d-flex justify-content-end" style="margin-right:20px;">
-
-  </div>
-
-  <div class="row m-3">
-    <div class="col-lg-4 col-sm-6" *ngFor="let project of allProjects">
-      <!-- <app-project-view *ngIf="!project.isEditable" [project]="project"></app-project-view> -->
-      <app-project-edit *ngIf="!project.isEditable" [project]="project"></app-project-edit>
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <div class="d-flex justify-content-end">
+      <button mat-mini-fab class="m-2">
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
-  </div>
-</div>
+    <div class="row m-2">
+      <div class="col-lg-4 col-sm-6 mb-3" *ngFor="let project of allProjects">
+        <mat-card>
+          <!-- <app-project-view *ngIf="!project.isEditable" [project]="project"></app-project-view> -->
+          <app-project-edit *ngIf="!project.isEditable" [project]="project"></app-project-edit>
+        </mat-card>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
