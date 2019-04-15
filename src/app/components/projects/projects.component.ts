@@ -23,7 +23,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   onCreateProject() {
-    let project = new Project("title", "description", "stack", "githubUrl", "demoUrl");
-    this.projectsService.createProject(project);
+    // let project = new Project("title", "description", "stack", "githubUrl", "demoUrl");
+    // this.projectsService.createProject(project);
   }
 }

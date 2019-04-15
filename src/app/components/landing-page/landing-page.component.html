@@ -1,7 +1,7 @@
 <mat-drawer-container class="example-container" style="height:100%">
   <mat-drawer-content>
     <div class="d-flex flex-column align-items-center" style="padding-top:8em">
-      <img src="../assets/EF_Logo.png" width="80"
+      <img src="../assets/img/logo/efournier92_Icon.png" width="80"
         [ngClass]="{'invert-color': !isDarkTheme, 'animated fadeInDown delay-4s': !hasSeenLandingAnimation}">
       <div *ngIf="!hasSeenLandingAnimation">
         <div style="margin-bottom: -27px; margin-left: 2px;">
@@ -22,7 +22,9 @@
         </div>
       </div>
       <div [ngClass]="{'animated fadeInUp delay-4s': !hasSeenLandingAnimation}">
-        <app-route-buttons></app-route-buttons>
+        <a mat-stroked-button class="mr-4" [routerLink]="[ '/docs' ]">Docs</a>
+        <a mat-stroked-button class="mr-4" [routerLink]="[ '/projects' ]">Projects</a>
+        <a mat-stroked-button class="mr-4" [routerLink]="[ '/about' ]">About</a>
       </div>
     </div>
   </mat-drawer-content>
