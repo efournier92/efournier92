@@ -1,27 +1,27 @@
-<mat-drawer-container class="example-container" style="height:100%">
+<mat-drawer-container class="component-container">
   <mat-drawer-content>
-    <div class="d-flex flex-column align-items-center" style="padding-top:8em">
+    <div class="landing-page-container d-flex flex-column align-items-center">
       <img src="../assets/img/logo/efournier92_Icon.png" width="80"
-        [ngClass]="{'invert-color': !isDarkTheme, 'animated fadeInDown delay-4s': !hasSeenLandingAnimation}">
-      <div *ngIf="!hasSeenLandingAnimation">
-        <div style="margin-bottom: -27px; margin-left: 2px;">
-          <app-typewriter style="font-size: 2em; font-weight: lighter;" [stringsToType]="['E Fournier']"
-            [shouldLoop]="false" [delay]="0"></app-typewriter>
+        [ngClass]="{'invert-color': !isDarkTheme, 'animated fadeInDown delay-4s': shouldSeeLandingAnimation}">
+      <div *ngIf="shouldSeeLandingAnimation">
+        <div class="typewriter-name-container">
+          <app-typewriter class="typewriter-component-name" [stringsToType]="['E Fournier']" [shouldLoop]="false"
+            [delay]="0"></app-typewriter>
         </div>
         <div>
-          <app-typewriter style="font-size: 4em; font-weight: bolder" [stringsToType]="['Developer.']"
-            [shouldLoop]="false" [delay]="2500"></app-typewriter>
+          <app-typewriter class="typewriter-component-title" [stringsToType]="['Developer.']" [shouldLoop]="false"
+            [delay]="2500"></app-typewriter>
         </div>
       </div>
-      <div *ngIf="hasSeenLandingAnimation">
-        <div style="margin-bottom: -27px; margin-left: 2px;">
-          <div style="font-size: 2em; font-weight: lighter;">E Fournier</div>
+      <div *ngIf="!shouldSeeLandingAnimation">
+        <div class="static-title-container">
+          <div class="static-name-div">E Fournier</div>
         </div>
         <div>
-          <div style="font-size: 4em; font-weight: bolder">Developer.</div>
+          <div class="static-title-div">Developer.</div>
         </div>
       </div>
-      <div [ngClass]="{'animated fadeInUp delay-4s': !hasSeenLandingAnimation}">
+      <div [ngClass]="{'animated fadeInUp delay-4s': shouldSeeLandingAnimation}">
         <a mat-stroked-button class="mr-4" [routerLink]="[ '/docs' ]">Docs</a>
         <a mat-stroked-button class="mr-4" [routerLink]="[ '/projects' ]">Projects</a>
         <a mat-stroked-button class="mr-4" [routerLink]="[ '/about' ]">About</a>

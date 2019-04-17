@@ -1,15 +1,15 @@
-<mat-drawer-container class="example-container" style="height:100%;">
-  <mat-drawer mode="side" opened style="width:228px;">
-    <mat-form-field class="example-full-width" style="width: 100%;">
+<mat-drawer-container class="component-container">
+  <mat-drawer class="docs-drawer" mode="side" opened>
+    <mat-form-field class="w-100">
       <span>
         <i class="fa fa-search mr-2" aria-hidden="true"></i>
-        <input matInput [(ngModel)]="searchQuery" (change)="searchDocsByName(searchQuery)" style="width:80%">
+        <input class="docs-search-input" matInput [(ngModel)]="searchQuery" (change)="searchDocsByName(searchQuery)">
       </span>
     </mat-form-field>
     <div class="d-flex justify-content-center" (click)="redirectToTag(selectedTag)">
       {{ selectedTag.name | titlecase }}
     </div>
-    <mat-list style="color:black">
+    <mat-list>
       <mat-divider></mat-divider>
       <div *ngFor="let doc of filteredDocs">
         <mat-list-item (click)="changeSelectedDoc(doc.fileName)">{{ doc.title }}</mat-list-item>
@@ -18,7 +18,7 @@
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>
-    <mat-toolbar class="d-flex justify-content-end" style="position:absolute;background-color:transparent">
+    <mat-toolbar class="doc-controls-toolbar d-flex justify-content-end">
       <button mat-mini-fab class="mr-1" (click)="openDocDialog('new')">
         <mat-icon>file_upload</mat-icon>
       </button>

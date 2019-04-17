@@ -19,6 +19,8 @@
   green     #859900
 */
 
+@import "./assets/styles/scrollbars.style.scss";
+
 $efournier-theme-light-primary: mat-palette($mat-blue-grey, 400);
 $efournier-theme-light-accent: mat-palette($mat-grey, 600);
 $efournier-theme-light-warn: mat-palette($mat-green, A400);
@@ -30,6 +32,10 @@ $efournier-light-theme: mat-light-theme(
 
 .theme-light {
   @include angular-material-theme($efournier-light-theme);
+  // @include scrollbars(.5em, #9E9E9E, transparent);
+  // scrollbar-color: #9E9E9E transparent;
+  // scrollbar-width: thin;
+
   code[class*="language-"],
   pre[class*="language-"] {
     color: #657b83; /* base00 */

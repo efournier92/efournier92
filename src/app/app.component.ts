@@ -8,7 +8,7 @@ import { SessionService } from './services/session.service';
 })
 export class AppComponent implements OnInit {
   isDarkTheme: boolean;
-  hasSeenLandingAnimation: boolean;
+  shouldSeeLandingAnimation: boolean;
 
   constructor(
     private sessionService: SessionService,
@@ -18,9 +18,9 @@ export class AppComponent implements OnInit {
     this.sessionService.isDarkThemeObservable.subscribe(
       isDarkTheme => this.isDarkTheme = isDarkTheme
     );
-    this.sessionService.hasSeenLandingAnimationObservable.subscribe(
-      (hasSeenLandingAnimation: boolean) => {
-        this.hasSeenLandingAnimation = hasSeenLandingAnimation
+    this.sessionService.shouldSeeLandingAnimationObservable.subscribe(
+      (shouldSeeLandingAnimation: boolean) => {
+        this.shouldSeeLandingAnimation = shouldSeeLandingAnimation
       }
     )
   }

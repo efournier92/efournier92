@@ -19,6 +19,8 @@
   green     #859900
 */
 
+@import "./assets/styles/scrollbars.style.scss";
+
 $efournier-theme-dark-primary: mat-palette($mat-blue-grey, 400);
 $efournier-theme-dark-accent: mat-palette($mat-grey, 100);
 $efournier-theme-dark-warn: mat-palette($mat-green, A400);
@@ -30,6 +32,7 @@ $efournier-dark-theme: mat-dark-theme(
 
 .theme-dark {
   @include angular-material-theme($efournier-dark-theme);
+
   code[class*="language-"],
   pre[class*="language-"] {
     color: #839496; /* base00 */

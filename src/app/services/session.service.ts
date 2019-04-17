@@ -1,4 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
+import { Location } from '@angular/common';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { WebStorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 
@@ -6,29 +7,35 @@ import { WebStorageService, SESSION_STORAGE } from 'angular-webstorage-service';
   providedIn: 'root'
 })
 export class SessionService {
-  hasSeenLandingAnimation: boolean;
-  private seenLandingAnimationSource: BehaviorSubject<boolean>;
-  hasSeenLandingAnimationObservable: Observable<boolean>;
+  shouldSeeLandingAnimation: boolean;
+  private shouldSeeLandingAnimationSource: BehaviorSubject<boolean>;
+  shouldSeeLandingAnimationObservable: Observable<boolean>;
   isDarkTheme: boolean;
 
   constructor(
     @Inject(SESSION_STORAGE)
     private storage: WebStorageService,
+    private location: Location,
   ) {
     this.setLandingAnimationParameters();
     this.initializeDarkTheme();
   }
 
   setLandingAnimationParameters(): void {
-    this.hasSeenLandingAnimation = this.storage.get('hasSeenLandingAnimation');
-    this.seenLandingAnimationSource = new BehaviorSubject(this.hasSeenLandingAnimation);
-    this.hasSeenLandingAnimationObservable = this.seenLandingAnimationSource.asObservable();
+    this.shouldSeeLandingAnimation = this.storage.get('hasSeenLandingAnimation');
+    if (this.location.path() === '' && this.shouldSeeLandingAnimation === null) {
+      this.shouldSeeLandingAnimation = true;
+    } else {
+      this.shouldSeeLandingAnimation = false;
+    }
+    this.shouldSeeLandingAnimationSource = new BehaviorSubject(this.shouldSeeLandingAnimation);
+    this.shouldSeeLandingAnimationObservable = this.shouldSeeLandingAnimationSource.asObservable();
   }
 
   justSawLandingAnimation(): void {
-    this.hasSeenLandingAnimation = true;
-    this.storage.set('hasSeenLandingAnimation', this.hasSeenLandingAnimation);
-    this.seenLandingAnimationSource.next(this.hasSeenLandingAnimation);
+    this.shouldSeeLandingAnimation = true;
+    this.storage.set('hasSeenLandingAnimation', this.shouldSeeLandingAnimation);
+    this.shouldSeeLandingAnimationSource.next(this.shouldSeeLandingAnimation);
   }
 
   initializeDarkTheme() {
@@ -38,8 +45,8 @@ export class SessionService {
     } else {
       this.isDarkTheme = isDarkThemeSession;
     }
-    this.storage.set('isDarkTheme', isDarkThemeSession);
-    this.isDarkThemeSource.next(isDarkThemeSession);
+    this.storage.set('isDarkTheme', this.isDarkTheme);
+    this.isDarkThemeSource.next(this.isDarkTheme);
   }
 
   private isDarkThemeSource: BehaviorSubject<boolean> = new BehaviorSubject(this.isDarkTheme);

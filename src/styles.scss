@@ -4,16 +4,19 @@
 @import "~animate.css/animate.css";
 @import "./assets/styles/dark.style.scss";
 @import "./assets/styles/light.style.scss";
+@import "./assets/styles/scrollbars.style.scss";
 
 @include mat-core();
 
 html, body {
   margin: 0;
+  max-width: 100vw;
   height: 100%;
 }
 
 body {
   font-family: "Open Sans";
+  @include scrollbars(.5em, #9E9E9E, transparent);
 }
 
 h1 code,
@@ -31,4 +34,12 @@ h6 code {
 
 .invert-color {
   filter: invert(100%);
+}
+
+.component-container {
+  height: 90%;
+}
+
+.logo-icon-preload {
+  display: none;
 }

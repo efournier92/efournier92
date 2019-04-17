@@ -1,15 +1,14 @@
-<div [ngClass]="{'theme-light': !isDarkTheme, 'theme-dark': isDarkTheme}" style="height:100%">
-  <mat-toolbar class="d-flex justify-content-end">
+<div [ngClass]="{'theme-light': !isDarkTheme, 'theme-dark': isDarkTheme, 'h-100': true}">
+  <mat-toolbar class="d-flex justify-content-end toolbar-container">
     <img src="../assets/img/logo/efournier92_Icon.png" width="60" [routerLink]="['/']"
-      [ngClass]="{'invert-color': !isDarkTheme, 'animated fadeInLeft delay-4s': !hasSeenLandingAnimation}">
-    <!-- <div [ngClass]="{'animated fadeInRight delay-4s': !hasSeenLandingAnimation}"> -->
-    <mat-slide-toggle [ngClass]="{'ml-2': true, 'animated fadeInLeft delay-4s': !hasSeenLandingAnimation}"
-      (toggleChange)="toggleTheme()" style="font-size:0.65em">
+      [ngClass]="{'invert-color': !isDarkTheme, 'animated fadeInLeft delay-4s': shouldSeeLandingAnimation}">
+    <mat-slide-toggle
+      [ngClass]="{'ml-2 theme-slide-toggle': true, 'animated fadeInLeft delay-4s': shouldSeeLandingAnimation}"
+      (toggleChange)="toggleTheme()">
       {{ isDarkTheme ? 'Light' : 'Dark' }}
     </mat-slide-toggle>
     <div class="spacer"></div>
-    <button mat-button [matMenuTriggerFor]="menu"
-      [ngClass]="{'animated fadeInRight delay-4s': !hasSeenLandingAnimation}">
+    <button mat-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
@@ -17,7 +16,6 @@
       <button mat-menu-item>Projects</button>
       <button mat-menu-item>About</button>
     </mat-menu>
-    <!-- </div> -->
   </mat-toolbar>
   <router-outlet></router-outlet>
 </div>

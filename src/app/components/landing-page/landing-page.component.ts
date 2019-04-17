@@ -10,7 +10,7 @@ import { SessionService } from 'src/app/services/session.service';
 export class LandingPageComponent implements OnInit {
   shownButtons: Array<boolean> = [false, false, false];
   isDarkTheme: boolean;
-  hasSeenLandingAnimation: boolean;
+  shouldSeeLandingAnimation: boolean;
 
   constructor(
     private animations: AnimationsService,
@@ -18,10 +18,10 @@ export class LandingPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.sessionService.hasSeenLandingAnimationObservable.subscribe(
-      (hasSeenLandingAnimation: boolean) => {
-        this.hasSeenLandingAnimation = hasSeenLandingAnimation;
-        if (!this.hasSeenLandingAnimation)
+    this.sessionService.shouldSeeLandingAnimationObservable.subscribe(
+      (shouldSeeLandingAnimation: boolean) => {
+        this.shouldSeeLandingAnimation = shouldSeeLandingAnimation;
+        if (this.shouldSeeLandingAnimation)
           this.showButtonsAnimation();
       }
     )
