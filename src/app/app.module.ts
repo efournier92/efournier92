@@ -18,13 +18,13 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { ProjectEditComponent } from './components/projects/project-edit/project-edit.component';
 import { ProjectViewComponent } from './components/projects/project-view/project-view.component';
+import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.component';
 import { FileInputComponent } from './components/file-input/file-input.component';
 import { DocDialogComponent } from './components/docs/doc-dialog/doc-dialog.component';
 import { MarkdownModule } from 'ngx-markdown';
 
 import {
   MatButtonModule,
-  MatMenuModule,
   MatCardModule,
   MatCheckboxModule,
   MatListModule,
@@ -37,9 +37,9 @@ import {
   MatChipsModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatMenuModule,
 } from '@angular/material';
-import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,6 @@ import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.compone
   ],
   imports: [
     BrowserModule,
-    MatMenuModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -83,6 +82,7 @@ import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.compone
     MatDatepickerModule,
     MatNativeDateModule,
     MatSlideToggleModule,
+    MatMenuModule,
   ],
   entryComponents: [
     DocDialogComponent,
