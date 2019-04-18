@@ -19,8 +19,6 @@
   green     #859900
 */
 
-@import './menu.style.scss';
-
 $efournier-theme-dark-primary: mat-palette($mat-blue-grey, 400);
 $efournier-theme-dark-accent: mat-palette($mat-grey, 100);
 $efournier-theme-dark-warn: mat-palette($mat-green, A400);
@@ -30,23 +28,9 @@ $efournier-dark-theme: mat-dark-theme(
   $efournier-theme-dark-warn,
 );
 
-.mat-menu-item {
-  // color: blue !important;
-}
-
-// @include matmenu(#F5F5F5, #BDBDBD);
-
-
 .theme-dark {
   @include angular-material-theme($efournier-dark-theme);
-  // button.mat-menu-item{
-  //   background-color: #F5F5F5;
-  // }
-  
-  // button.mat-menu-item:hover {
-  //   background-color: #BDBDBD;
-  //   // color: #fff !important;
-  // }
+
   code[class*="language-"],
   pre[class*="language-"] {
     color: #839496; /* base00 */
