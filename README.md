@@ -21,21 +21,15 @@
 ## Development Philosophy
 
 ## Stack
-
-### Server
-- []()
-- []()
-- []()
-
-### Client
-- []()
-- []()
-- []()
-
-### Test
-- []()
-- []()
-- []()
+- [Angular](https://angular.io/)
+- [Angular Material](https://material.angular.io/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Firebase Realtime Database](https://firebase.google.com/products/realtime-database/)
+- [Firebase Hosting](https://firebase.google.com/products/hosting/)
+- [Firebase Authentication](https://firebase.google.com/products/auth/)
+- [SCSS](https://sass-lang.com)
+- [Bootstrap](https://getbootstrap.com/)
+- [RxJS](http://reactivex.io/)
 
 ## Configure
 
