@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from './services/session.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { ResizedEvent } from 'angular-resize-event';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +12,12 @@ export class AppComponent implements OnInit {
   isDarkTheme: boolean;
   shouldSeeLandingAnimation: boolean;
   overlay: HTMLElement;
+  isMobile: boolean;
 
   constructor(
     private sessionService: SessionService,
     private overlayContainer: OverlayContainer,
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     this.sessionService.isDarkThemeObservable.subscribe(
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
     )
     this.overlay = this.overlayContainer.getContainerElement();
     this.applyThemeToOverlayContainer();
+    this.isMobile = this.checkIfMobile(window.innerHeight);
   }
 
   toggleTheme(): void {
@@ -37,12 +39,29 @@ export class AppComponent implements OnInit {
   }
 
   applyThemeToOverlayContainer(): void {
-    for (const className in this.overlay.classList) {
-      if (className.includes('theme')) {
-        this.overlay.classList.remove(className);
+    this.overlay.classList.forEach(
+      (overlayClass: any, index) => {
+        if (overlayClass.includes("theme")) {
+          const className = overlayClass[index];
+          this.overlay.classList.remove(className);
+        }
       }
-    }
-    const themeToAdd = this.isDarkTheme ? 'theme-dark' : 'theme-light'
+    )
+
+    const themeToAdd = this.isDarkTheme ? 'theme-dark' : 'theme-light';
     this.overlay.classList.add(themeToAdd);
+  }
+
+  onResized(event: ResizedEvent): void {
+    let width = event.newWidth;
+    this.isMobile = this.checkIfMobile(width);
+  }
+
+  checkIfMobile(width: number): boolean {
+    if (width < 600) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -22,6 +22,7 @@ import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.compone
 import { FileInputComponent } from './components/file-input/file-input.component';
 import { DocDialogComponent } from './components/docs/doc-dialog/doc-dialog.component';
 import { MarkdownModule } from 'ngx-markdown';
+import { AngularResizedEventModule } from 'angular-resize-event';
 
 import {
   MatButtonModule,
@@ -68,6 +69,7 @@ import {
     AngularFireStorageModule,
     StorageServiceModule,
     MarkdownModule.forRoot({ 'loader': HttpClient }),
+    AngularResizedEventModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
