@@ -39,15 +39,11 @@ export class AppComponent implements OnInit {
   }
 
   applyThemeToOverlayContainer(): void {
-    this.overlay.classList.forEach(
-      (overlayClass: any, index) => {
-        if (overlayClass.includes("theme")) {
-          const className = overlayClass[index];
-          this.overlay.classList.remove(className);
-        }
-      }
-    )
-
+    const classList = this.overlay.classList;
+    if (classList.contains("theme-dark"))
+      classList.remove("theme-dark");
+    if (classList.contains("theme-light"))
+      classList.remove("theme-light");
     const themeToAdd = this.isDarkTheme ? 'theme-dark' : 'theme-light';
     this.overlay.classList.add(themeToAdd);
   }
