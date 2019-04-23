@@ -5,6 +5,7 @@ import { Doc } from './doc';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Tag } from './tag';
+import { TagsService } from './tags.service';
 
 @Component({
   selector: 'app-docs',
@@ -12,8 +13,8 @@ import { Tag } from './tag';
   styleUrls: ['./docs.component.scss']
 })
 export class DocsComponent implements OnInit {
-  allTags: string[] = ["Windows", "Bash"];
-  selectedTag: Tag = new Tag('');
+  allTags: Tag[];
+  selectedTag: Tag;
   allDocs: Doc[];
   filteredDocs: Doc[] = new Array<Doc>();
   selectedDoc: Doc;
@@ -22,12 +23,14 @@ export class DocsComponent implements OnInit {
   constructor(
     private docsService: DocsService,
     private docsUploadDialog: DocDialogService,
+    private tagsService: TagsService,
     private router: Router,
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     this.subscribeToDocs();
+    this.subscribeToTags();
   }
 
   subscribeToDocs(): void {
@@ -39,22 +42,48 @@ export class DocsComponent implements OnInit {
     )
   }
 
+  subscribeToTags(): void {
+    this.tagsService.getAllTags().valueChanges().subscribe(
+      (tags: Tag[]) => {
+        this.allTags = tags;
+      }
+    )
+  }
+
   getRouteParams(): void {
     this.route.paramMap.subscribe(
       (result: any) => {
-        this.selectedTag = new Tag(result.params.tagName);
-        this.filterDocsByTag(this.selectedTag);
-        if (result.params.fileName) {
-          this.selectedDoc = this.allDocs.find(doc => doc.fileName === result.params.fileName);
-          this.setActiveDoc(result.params.fileName);
+        if (!result.params.tagName) {
+          this.redirectTo('all')
+        } else {
+          const selectedTag = this.findSelectedTag(result.params.tagName);
+          this.selectedTag = selectedTag ? selectedTag : this.findSelectedTag('all');
+        }
+        this.filterDocsByTagName(this.selectedTag.name);
+        if (!result.params.fileName) {
+          this.redirectTo(this.selectedTag.name);
+        } else {
+          const selectedDoc = this.findSelectedDoc(result.params.fileName);
+          this.selectedDoc = selectedDoc ? selectedDoc : undefined;
+          if (!this.selectedDoc) {
+            this.redirectTo(this.selectedTag.name);
+          } else {
+            this.changeSelectedDoc(this.selectedDoc.fileName);
+          }
         }
       }
     )
   }
 
-  setActiveDoc(selectedDoc: string): void {
-    this.selectedDoc = this.allDocs.find(
-      doc => doc.fileName === selectedDoc,
+  findSelectedTag(tagName: string): Tag {
+    return this.allTags.find(
+      (tag: Tag) => tag.name === tagName,
+    )
+  }
+
+  findSelectedDoc(fileName: string): Doc {
+    return this.allDocs.find(
+      doc => doc.fileName === fileName,
     )
   }
 
@@ -62,35 +91,52 @@ export class DocsComponent implements OnInit {
     this.selectedDoc = this.allDocs.find(
       doc => doc.fileName === fileName,
     )
-    this.router.navigateByUrl(`docs/${this.selectedTag.name}/${fileName}`);
+    this.redirectTo(this.selectedTag.name, this.selectedDoc.fileName)
   }
 
-  filterDocsByTag(tagObj: Tag): void {
-    this.selectedTag = tagObj;
-    this.filteredDocs = [];
-    for (const doc of this.allDocs) {
-      if (!doc.tags) return;
-      for (const tag of doc.tags) {
-        if (tag.name && tagObj.name && tag.name.toLowerCase() === tagObj.name.toLowerCase()) {
-          this.filteredDocs.push(doc);
+  filterDocsByTagName(tagName: string): void {
+    this.allTags.filter(
+      (tag: Tag) => {
+        if (tag.name === tagName) {
+          this.selectedTag = tag;
+        }
+      }
+    )
+    if (!this.selectedTag) {
+      this.redirectTo('all');
+    } else {
+      this.filteredDocs = [];
+      for (const doc of this.allDocs) {
+        if (!doc.tags) return;
+        for (const tag of doc.tags) {
+          if (tag.name && tagName && tagName.toLowerCase() === tagName.toLowerCase()) {
+            this.filteredDocs.push(doc);
+          }
         }
       }
     }
   }
 
   searchDocsByName(searchQuery: string): void {
-    this.selectedTag.name = 'all';
-    this.filteredDocs = this.allDocs.filter(
-      (doc: Doc) => {
-        const fileName: string = doc.fileName.toLowerCase();
-        const query: string = searchQuery.toLowerCase();
-        return fileName.includes(query)
-      }
-    )
+    if (!this.selectedTag) {
+      this.redirectTo('all')
+    } else {
+      this.filteredDocs = this.allDocs.filter(
+        (doc: Doc) => {
+          const fileName: string = doc.fileName.toLowerCase();
+          const query: string = searchQuery.toLowerCase();
+          return fileName.includes(query)
+        }
+      )
+    }
   }
 
-  redirectToTag(): void {
-    this.router.navigateByUrl(`docs/${this.selectedTag.name}`);
+  redirectTo(tagName: string, docName?: string): void {
+    if (!docName) {
+      this.router.navigateByUrl(`docs/${tagName}`);
+    } else {
+      this.router.navigateByUrl(`docs/${tagName}/${docName}`);
+    }
   }
 
   openDocDialog(mode: string): void {

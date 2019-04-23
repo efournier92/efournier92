@@ -15,10 +15,6 @@ const routes: Routes =
       path: 'docs',
       component: DocsComponent,
     },
-    // {
-    //   path: 'docs/:fileName',
-    //   component: DocsComponent,
-    // },
     {
       path: 'docs/:tagName',
       component: DocsComponent,
