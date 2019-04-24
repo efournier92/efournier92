@@ -59,7 +59,7 @@ export class DocsComponent implements OnInit {
           const selectedTag = this.findSelectedTag(result.params.tagName);
           this.selectedTag = selectedTag ? selectedTag : this.findSelectedTag('all');
         }
-        this.filterDocsByTagName(this.selectedTag.name);
+        this.filterDocsByTagName(this.selectedTag.name)
         if (!result.params.fileName) {
           this.redirectTo(this.selectedTag.name);
         } else {
