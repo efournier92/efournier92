@@ -53,8 +53,8 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 
 ## Features
 
-###
-![Screen]()
+### Landing Page
+![Landing Page]()
 
 ###
 ![Screen]()
@@ -66,3 +66,4 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 - [ ] Typing animation
   - E does
   - [Example](https://garden-eight.com/)
+
