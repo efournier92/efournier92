@@ -14,7 +14,7 @@ import { TagsService } from './tags.service';
 })
 export class DocsComponent implements OnInit {
   allTags: Tag[];
-  selectedTag: Tag;
+  selectedTag: Tag = new Tag('');
   allDocs: Doc[];
   filteredDocs: Doc[] = new Array<Doc>();
   selectedDoc: Doc;
@@ -30,14 +30,13 @@ export class DocsComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeToDocs();
-    this.subscribeToTags();
   }
 
   subscribeToDocs(): void {
     this.docsService.getAllDocs().valueChanges().subscribe(
       (docs: Doc[]) => {
         this.allDocs = docs;
-        this.getRouteParams();
+        this.subscribeToTags();
       }
     )
   }
@@ -46,6 +45,7 @@ export class DocsComponent implements OnInit {
     this.tagsService.getAllTags().valueChanges().subscribe(
       (tags: Tag[]) => {
         this.allTags = tags;
+        this.getRouteParams();
       }
     )
   }
@@ -53,37 +53,50 @@ export class DocsComponent implements OnInit {
   getRouteParams(): void {
     this.route.paramMap.subscribe(
       (result: any) => {
-        if (!result.params.tagName) {
-          this.redirectTo('all')
-        } else {
+        if (result.params.tagName) {
           const selectedTag = this.findSelectedTag(result.params.tagName);
           this.selectedTag = selectedTag ? selectedTag : this.findSelectedTag('all');
-        }
-        this.filterDocsByTagName(this.selectedTag.name)
-        if (!result.params.fileName) {
-          this.redirectTo(this.selectedTag.name);
+          this.filterDocsByTagName(this.selectedTag.name)
         } else {
+          this.redirectTo('all');
+        }
+        if (result.params.fileName) {
           const selectedDoc = this.findSelectedDoc(result.params.fileName);
           this.selectedDoc = selectedDoc ? selectedDoc : undefined;
-          if (!this.selectedDoc) {
-            this.redirectTo(this.selectedTag.name);
-          } else {
-            this.changeSelectedDoc(this.selectedDoc.fileName);
-          }
         }
       }
     )
   }
+  //       if (!result.params.tagName) {
+  //         this.redirectTo('all')
+  //       } else {
+  //         const selectedTag = this.findSelectedTag(result.params.tagName);
+  //         this.selectedTag = selectedTag ? selectedTag : this.findSelectedTag('all');
+  //       }
+  //       if (!result.params.fileName) {
+  //         this.redirectTo(this.selectedTag.name);
+  //       } else {
+  //         const selectedDoc = this.findSelectedDoc(result.params.fileName);
+  //         this.selectedDoc = selectedDoc ? selectedDoc : undefined;
+  //         if (!this.selectedDoc) {
+  //           this.redirectTo(this.selectedTag.name);
+  //         } else {
+  //           this.changeSelectedDoc(this.selectedDoc.fileName);
+  //         }
+  //       }
+  //     }
+  //   )
+  // }
 
   findSelectedTag(tagName: string): Tag {
     return this.allTags.find(
-      (tag: Tag) => tag.name === tagName,
+      (tag: Tag) => tag.name.toLowerCase() === tagName.toLowerCase(),
     )
   }
 
   findSelectedDoc(fileName: string): Doc {
     return this.allDocs.find(
-      doc => doc.fileName === fileName,
+      doc => doc.fileName.toLowerCase() === fileName.toLowerCase(),
     )
   }
 
@@ -109,7 +122,7 @@ export class DocsComponent implements OnInit {
       for (const doc of this.allDocs) {
         if (!doc.tags) return;
         for (const tag of doc.tags) {
-          if (tag.name && tagName && tagName.toLowerCase() === tagName.toLowerCase()) {
+          if (tag.name && tagName && tagName.toLowerCase() === tagName.toLowerCase() && !this.filteredDocs.find(filterDoc => filterDoc.id === doc.id)) {
             this.filteredDocs.push(doc);
           }
         }
@@ -137,6 +150,10 @@ export class DocsComponent implements OnInit {
     } else {
       this.router.navigateByUrl(`docs/${tagName}/${docName}`);
     }
+  }
+
+  changeTag(tag: Tag) {
+    this.redirectTo(tag.name);
   }
 
   openDocDialog(mode: string): void {

@@ -5,6 +5,9 @@
 @import "./assets/styles/dark.style.scss";
 @import "./assets/styles/light.style.scss";
 @import "./assets/styles/scrollbars.style.scss";
+@import "~material-design-lite/dist/material.amber-blue.min";
+// <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+
 
 @include mat-core();
 

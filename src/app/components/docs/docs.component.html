@@ -7,8 +7,11 @@
       </span>
     </mat-form-field>
     <div class="d-flex justify-content-center" (click)="redirectToTag(selectedTag)">
-      {{ selectedTag.name | titlecase }}
+      <button mat-button [matMenuTriggerFor]="menu">{{ selectedTag.name | titlecase }}</button>
     </div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngFor="let tag of allTags" (click)="changeTag(tag)">{{ tag.name }}</button>
+    </mat-menu>
     <mat-list>
       <mat-divider></mat-divider>
       <div *ngFor="let doc of filteredDocs">
