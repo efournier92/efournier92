@@ -45,6 +45,10 @@ export class DocDialogComponent implements OnInit {
     this.docsService.uploadDoc(this.uploadFile, this.doc, this.dialogRef);
   }
 
+  deleteDoc() {
+    this.docsService.deleteDoc(this.doc);
+  }
+
   parseFilename(filename: string) {
     let returnValue = '';
     if (filename.includes('.')) {

@@ -44,6 +44,10 @@ export class DocsComponent implements OnInit {
   subscribeToTags(): void {
     this.tagsService.getAllTags().valueChanges().subscribe(
       (tags: Tag[]) => {
+        if (tags && tags.length === 0) {
+          const tag = this.tagsService.createNewTag('All')
+          this.tagsService.saveNewTag(tag)
+        }
         this.allTags = tags;
         this.getRouteParams();
       }
@@ -122,7 +126,7 @@ export class DocsComponent implements OnInit {
       for (const doc of this.allDocs) {
         if (!doc.tags) return;
         for (const tag of doc.tags) {
-          if (tag.name && tagName && tagName.toLowerCase() === tagName.toLowerCase() && !this.filteredDocs.find(filterDoc => filterDoc.id === doc.id)) {
+          if (tag.name && tagName && tagName.toLowerCase() === tag.name.toLowerCase() && !this.filteredDocs.find(filterDoc => filterDoc.id === doc.id)) {
             this.filteredDocs.push(doc);
           }
         }

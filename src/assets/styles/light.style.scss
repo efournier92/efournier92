@@ -21,7 +21,7 @@
 
 $efournier-theme-light-primary: mat-palette($mat-blue-grey, 400);
 $efournier-theme-light-accent: mat-palette($mat-grey, 600);
-$efournier-theme-light-warn: mat-palette($mat-green, A400);
+$efournier-theme-light-warn: mat-palette($mat-deep-orange, A400);
 $efournier-light-theme: mat-light-theme(
   $efournier-theme-light-primary,
   $efournier-theme-light-accent,

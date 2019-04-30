@@ -21,7 +21,7 @@
 
 $efournier-theme-dark-primary: mat-palette($mat-blue-grey, 400);
 $efournier-theme-dark-accent: mat-palette($mat-grey, 100);
-$efournier-theme-dark-warn: mat-palette($mat-green, A400);
+$efournier-theme-dark-warn: mat-palette($mat-deep-orange, 600);
 $efournier-dark-theme: mat-dark-theme(
   $efournier-theme-dark-primary,
   $efournier-theme-dark-accent,
