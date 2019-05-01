@@ -1,16 +1,15 @@
 <mat-drawer-container class="component-container">
   <mat-drawer-content>
     <div class="landing-page-container d-flex flex-column align-items-center">
-      <img src="../assets/img/logo/efournier92_Icon.png" width="80"
+      <img src="../assets/img/logo/efournier92_Icon.png" width="80" style=""
         [ngClass]="{'invert-color': !isDarkTheme, 'animated fadeInDown delay-4s': shouldSeeLandingAnimation}">
       <div *ngIf="shouldSeeLandingAnimation">
         <div class="typewriter-name-container">
           <app-typewriter class="typewriter-component-name" [stringsToType]="['E Fournier']" [shouldLoop]="false"
             [delay]="0"></app-typewriter>
         </div>
-        <div>
-          <app-typewriter class="typewriter-component-title" [stringsToType]="['Developer.']" [shouldLoop]="false"
-            [delay]="2500"></app-typewriter>
+        <div class="typewriter-component-title">
+          <app-typewriter [stringsToType]="['Developer.']" [shouldLoop]="false" [delay]="2500"></app-typewriter>
         </div>
       </div>
       <div *ngIf="!shouldSeeLandingAnimation">
@@ -21,7 +20,7 @@
           <div class="static-title-div">Developer.</div>
         </div>
       </div>
-      <div [ngClass]="{'animated fadeInUp delay-4s': shouldSeeLandingAnimation}">
+      <div [ngClass]="{'animated fadeInUp delay-4s': shouldSeeLandingAnimation}" style="margin-top: 32px;">
         <a mat-stroked-button class="mr-4" [routerLink]="[ '/docs/all' ]">Docs</a>
         <a mat-stroked-button class="mr-4" [routerLink]="[ '/projects' ]">Projects</a>
         <a mat-stroked-button class="mr-4" [routerLink]="[ '/about' ]">About</a>

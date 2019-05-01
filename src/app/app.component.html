@@ -10,18 +10,18 @@
     <div class="spacer"></div>
     <div [ngClass]="{'animated fadeInDown delay-4s': shouldSeeLandingAnimation}">
       <div *ngIf="!isMobile">
-        <button mat-button>Docs</button>
-        <button mat-button>Projects</button>
-        <button mat-button>About</button>
+        <button mat-button [routerLink]="[ '/docs/all' ]">Docs</button>
+        <button mat-button [routerLink]="[ '/projects' ]">Projects</button>
+        <button mat-button [routerLink]="[ '/about' ]">About</button>
       </div>
       <div *ngIf="isMobile">
         <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon>menu</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>Docs</button>
-          <button mat-menu-item>Projects</button>
-          <button mat-menu-item>About</button>
+          <button mat-menu-item [routerLink]="[ '/docs/all' ]">Docs</button>
+          <button mat-menu-item [routerLink]="[ '/projects' ]">Projects</button>
+          <button mat-menu-item [routerLink]="[ '/about' ]">About</button>
         </mat-menu>
       </div>
     </div>
