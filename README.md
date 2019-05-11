@@ -63,7 +63,13 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 ![Screen]()
 
 ## Features To Do
-- [ ] Typing animation
-  - E does
+- [ ] Landing Page
+  - [X] Typing animation
+  - [ ] E does
   - [Example](https://garden-eight.com/)
-
+- [ ] Projects
+  - [ ] View Project Styling
+- [ ] Docs
+  - [ ] Edit Markdown File
+  - [ ] Change to Guides Paradigm
+  - [ ] Hunt Bugs
