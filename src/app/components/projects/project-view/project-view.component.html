@@ -1,9 +1,23 @@
 <div class="my-card">
-  <h5 class="card-title">{{ project.title }}</h5>
+  <!-- <h5 class="card-title">{{ project.title }}</h5> -->
+  <div class="d-flex justify-content-end">
+    <button mat-button (click)="toggleProjectEditable()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+  <h5 class="card-title">
+    <img
+      src="https://raw.githubusercontent.com/efournier92/LeCoursville/master/src/assets/img/logo/LeCoursville_Logo_White.png"
+      alt="Logo" width="250">
+    <!-- <img
+      src="https://raw.githubusercontent.com/efournier92/LeCoursville/master/src/assets/img/logo/LeCoursville_Logo_White.png"></i> -->
+  </h5>
   <p class="card-text">{{ project.stack }}</p>
   <p class="card-text">{{ project.description }}</p>
   <div class="project-view-links-container d-flex justify-content-around">
-    <a href="#" class="btn btn-primary">{{ project.githubUrl }}</a>
-    <a href="#" class="btn btn-primary">{{ project.demoUrl }}</a>
+    <a href="#" class="btn btn-primary">Github</a>
+    <!-- <a href="#" class="btn btn-primary">{{ project.githubUrl }}</a> -->
+    <a href="#" class="btn btn-primary">Demo</a>
+    <!-- <a href="#" class="btn btn-primary">{{ project.demoUrl }}</a> -->
   </div>
 </div>

@@ -73,3 +73,5 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
   - [ ] Edit Markdown File
   - [ ] Change to Guides Paradigm
   - [ ] Hunt Bugs
+- [ ] Auth
+  - [ ] Integrate admin authentication

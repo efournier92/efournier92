@@ -13,4 +13,8 @@ export class ProjectViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
+
+  toggleProjectEditable() {
+    this.project.isEditing = !this.project.isEditing;
+  }
 }

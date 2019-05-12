@@ -8,8 +8,8 @@
     <div class="row m-2">
       <div class="col-lg-4 col-sm-6 mb-3" *ngFor="let project of allProjects">
         <mat-card>
-          <!-- <app-project-view *ngIf="!project.isEditable" [project]="project"></app-project-view> -->
-          <app-project-edit *ngIf="!project.isEditable" [project]="project"></app-project-edit>
+          <app-project-view *ngIf="!project.isEditable" [project]="project"></app-project-view>
+          <app-project-edit *ngIf="project.isEditable" [project]="project"></app-project-edit>
         </mat-card>
       </div>
     </div>
