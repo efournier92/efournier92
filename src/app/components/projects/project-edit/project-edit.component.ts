@@ -27,7 +27,7 @@ export class ProjectEditComponent implements OnInit {
     this.projectsService.deleteProject(project);
   }
 
-  cancelEdit(project: Project): void {
+  cancelProjectEdit(project: Project): void {
     project.isEditing = false;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Project } from '../project';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-project-view',
@@ -9,12 +10,20 @@ import { Project } from '../project';
 export class ProjectViewComponent implements OnInit {
   @Input()
   project: Project;
+  isDarkTheme: boolean;
 
-  constructor() { }
+  constructor(
+    private session: SessionService,
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.session.isDarkThemeObservable.subscribe(
+      (isDarkTheme: boolean) => this.isDarkTheme = isDarkTheme
+    )
+  }
 
   toggleProjectEditable() {
     this.project.isEditing = !this.project.isEditing;
+    console.log(this.project);
   }
 }
