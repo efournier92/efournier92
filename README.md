@@ -40,8 +40,15 @@
 ```
 
 ## Build
-1. 
-2. 
+
+### Local
+`ng serve`
+
+### Production
+`ng build --prod`
+
+## Test
+`ng test`
 
 ## Test
 
@@ -75,3 +82,4 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
   - [ ] Hunt Bugs
 - [ ] Auth
   - [ ] Integrate admin authentication
+
