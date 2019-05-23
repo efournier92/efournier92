@@ -1,4 +1,4 @@
-# ![efournier92](https://raw.githubusercontent.com/efournier92/efournier92/master/src/assets/efournier92_Logo.png)
+# ![efournier92](https://raw.githubusercontent.com/efournier92/efournier92/master/src/assets/img/logo/efournier92_Logo.png)
 
 ## Contents
 - [Overview](#overview)
@@ -72,7 +72,7 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 ## Features To Do
 - [ ] Landing Page
   - [X] Typing animation
-  - [-] E does
+  - [ ] E does
   - [Example](https://garden-eight.com/)
 - [ ] Projects
   - [ ] View Project Styling
