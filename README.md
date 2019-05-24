@@ -50,8 +50,6 @@
 ## Test
 `ng test`
 
-## Test
-
 ## Contribute
 If you have feature suggestions, please contact me here or at efournier92@gmail.com. If you'd like to submit a pull request, please feel free to, and I'll review merge it at my earliest convenience!
 
