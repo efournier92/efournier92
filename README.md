@@ -70,8 +70,6 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 ## Features To Do
 - [ ] Landing Page
   - [X] Typing animation
-  - [ ] E does
-  - [Example](https://garden-eight.com/)
 - [ ] Projects
   - [ ] View Project Styling
 - [ ] Docs
