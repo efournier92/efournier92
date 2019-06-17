@@ -71,7 +71,7 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 - [ ] Landing Page
   - [X] Typing animation
 - [ ] Projects
-  - [ ] View Project Styling
+  - [X] View Project Styling
 - [ ] Docs
   - [ ] Edit Markdown File
   - [ ] Change to Guides Paradigm
