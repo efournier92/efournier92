@@ -74,6 +74,7 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
   - [X] View Project Styling
 - [ ] Docs
   - [ ] Edit Markdown File
+  - [ ] Upload All Docs
   - [ ] Change to Guides Paradigm
   - [ ] Hunt Bugs
 - [ ] Auth
