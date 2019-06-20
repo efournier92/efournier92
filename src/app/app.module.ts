@@ -1,4 +1,4 @@
-import { secrets } from 'src/environments/secrets';
+import { FireConfig, FireAuthConfig } from 'src/environments/app-configs.prod';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +16,8 @@ import { StorageServiceModule } from 'angular-webstorage-service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { FirebaseUIModule } from 'firebaseui-angular';
 import { ProjectEditComponent } from './components/projects/project-edit/project-edit.component';
 import { ProjectViewComponent } from './components/projects/project-view/project-view.component';
 import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.component';
@@ -41,6 +43,7 @@ import {
   MatSlideToggleModule,
   MatMenuModule,
 } from '@angular/material';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,7 @@ import {
     FileInputComponent,
     DocDialogComponent,
     TagsEditComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,9 @@ import {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(secrets.angularFire),
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot(FireAuthConfig),
+    AngularFireModule.initializeApp(FireConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     StorageServiceModule,

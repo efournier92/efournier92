@@ -6,7 +6,7 @@
 @import "./assets/styles/light.style.scss";
 @import "./assets/styles/scrollbars.style.scss";
 @import "~material-design-lite/dist/material.amber-blue.min";
-
+@import '~firebaseui/dist/firebaseui.css';
 @include mat-core();
 
 html, body {

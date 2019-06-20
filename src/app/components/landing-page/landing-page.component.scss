@@ -1,11 +1,15 @@
 .landing-page-component-container {
   background-size: auto;
   background-position-x: -300px;
-  height: 92%;
+  height: 90%;
 }
 
-.animated-code-background {
-  background-image: url("/assets/landing-background.gif");  
+.animated-code-background-dark {
+  background-image: url("/assets/landing-background-dark.gif");  
+}
+
+.animated-code-background-light {
+  background-image: url("/assets/landing-background-light.gif");  
 }
 
 .landing-page-container {

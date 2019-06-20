@@ -4,6 +4,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { DocsComponent } from './components/docs/docs.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 const routes: Routes =
   [
@@ -30,6 +31,10 @@ const routes: Routes =
     {
       path: 'about',
       component: AboutComponent,
+    },
+    {
+      path: 'auth',
+      component: AuthComponent,
     },
   ]
 
