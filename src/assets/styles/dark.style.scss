@@ -144,11 +144,16 @@ $efournier-dark-theme: mat-dark-theme(
   .token.bold {
     font-weight: bold;
   }
+  
   .token.italic {
     font-style: italic;
   }
 
   .token.entity {
     cursor: help;
+  }
+
+  .project-property-input {
+    color: white;
   }
 }
