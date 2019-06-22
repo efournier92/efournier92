@@ -1,9 +1,11 @@
 <mat-sidenav-container class="component-container">
   <mat-sidenav-content>
-    <div class="d-flex justify-content-end">
-      <button mat-mini-fab class="m-2">
-        <mat-icon>add</mat-icon>
-      </button>
+    <div *ngIf="user.admin">
+      <div class="d-flex justify-content-end">
+        <button mat-mini-fab class="m-2">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
     </div>
     <div class="row m-2">
       <div class="col-lg-4 col-sm-6 mb-3" *ngFor="let project of allProjects">

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from './projects.service';
 import { Project } from './project';
+import { AuthService } from '../auth/auth.service';
+import { User } from '../auth/user';
 
 @Component({
   selector: 'app-projects',
@@ -9,9 +11,11 @@ import { Project } from './project';
 })
 export class ProjectsComponent implements OnInit {
   allProjects: Project[];
+  user: User;
 
   constructor(
     private projectsService: ProjectsService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -20,6 +24,9 @@ export class ProjectsComponent implements OnInit {
         this.allProjects = projects;
       }
     );
+    this.authService.currentUserObservable.subscribe(
+      (user: User) => this.user = user
+    )
   }
 
   onCreateProject() {

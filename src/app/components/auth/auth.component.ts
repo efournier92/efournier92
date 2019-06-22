@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from './user';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
+  user: User;
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+  ) { }
 
   ngOnInit() {
+    this.authService.currentUserObservable.subscribe(
+      (user: User) => this.user = user
+    )
   }
 
 }
