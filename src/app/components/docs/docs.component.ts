@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Tag } from './tag';
 import { TagsService } from './tags.service';
+import { User } from '../auth/user';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-docs',
@@ -13,6 +15,7 @@ import { TagsService } from './tags.service';
   styleUrls: ['./docs.component.scss']
 })
 export class DocsComponent implements OnInit {
+  user: User;
   allTags: Tag[];
   selectedTag: Tag = new Tag('');
   allDocs: Doc[];
@@ -21,6 +24,7 @@ export class DocsComponent implements OnInit {
   searchQuery: string = "";
 
   constructor(
+    private authService: AuthService,
     private docsService: DocsService,
     private docsUploadDialog: DocDialogService,
     private tagsService: TagsService,
@@ -30,6 +34,9 @@ export class DocsComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeToDocs();
+    this.authService.currentUserObservable.subscribe(
+      (user: User) => this.user = user
+    )
   }
 
   subscribeToDocs(): void {
