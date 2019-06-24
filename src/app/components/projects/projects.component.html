@@ -1,6 +1,6 @@
 <mat-sidenav-container class="component-container">
   <mat-sidenav-content>
-    <div *ngIf="user.admin">
+    <div *ngIf="user && user.admin">
       <div class="d-flex justify-content-end">
         <button mat-mini-fab class="m-2">
           <mat-icon>add</mat-icon>

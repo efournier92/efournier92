@@ -1,6 +1,6 @@
 <div class="my-card">
   <!-- <h5 class="card-title">{{ project.title }}</h5> -->
-  <div class="d-flex justify-content-end">
+  <div class="d-flex justify-content-end" *ngIf="user && user.admin">
     <button mat-button (click)="toggleProjectEditable()">
       <mat-icon>edit</mat-icon>
     </button>
