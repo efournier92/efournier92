@@ -1,10 +1,9 @@
 <mat-sidenav-container class="component-container">
   <mat-sidenav-content>
     <div style="width:60%;margin-left:20%">
-      <img src="../../../assets/img/logo/efournier92_Logo.png" alt="efournier92" class="mb-2"
-        style="width:70%;margin-left:15%;">
-      <!-- <img src="https://raw.githubusercontent.com/efournier92/efournier92/master/src/assets/img/logo/efournier92_Logo.png" -->
-      <!-- alt=""> -->
+      <div class="d-flex justify-content-center">
+        <img src="../../../assets/img/logo/efournier92_Icon.png" alt="efournier92" class="mb-2" width="128px" style="">
+      </div>
       <p style="font-size:1.3em">
         I always liked to build things, so I learned to build software. My business degree never hurts in understanding
         feature initiatives and functionality. Best content as a jack of all trades, I've been a full-stack developer
@@ -18,16 +17,15 @@
       <p style="font-size:1.3em">
         The following are maxims I live by, which characterize my mission and core values.
       </p>
-      <ol style="font-size:1.3em">
-        <li>I'll never know everything. I'll always be acquiring skills. A day I learn nothing is a day I wasted.</li>
-        <li>I learn from those who lived before me. I study their stories. I'm prepared when history repeats itself.
-        </li>
-        <li>I hear jokes every day. I make someone laugh every day. Pleasing others makes life worthwhile.</li>
-        <li>My faith is in the scientific method. I won't believe what can't be proven. I question everything.</li>
-        <li>My greatest virtues are patience and diligence; I exercise them daily.</li>
-        <li>I don't look back: I look ahead. My past is just prologue.</li>
-        <li>In whatever I do, I contribute focus, wit, congeniality, and dedication.</li>
-      </ol>
+      <mat-list>
+        <mat-list-item *ngFor="let maxim of maxims; let i = index" style="padding: 0">
+          <div style="font-weight:bold; height:100%; font-size: 2em; margin-right:12px">{{ i + 1 }}</div>
+          <p><i>{{ maxim }}</i>></p>
+        </mat-list-item>
+      </mat-list>
+      <div class="d-flex justify-content-center">
+        <img src="../../../assets/img/logo/efournier92_Icon.png" alt="efournier92" class="mb-2" width="128px" style="">
+      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
