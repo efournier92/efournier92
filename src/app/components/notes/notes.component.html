@@ -1,0 +1,57 @@
+<mat-drawer-container class="component-container">
+  <mat-drawer #sidenav class="notes-drawer" mode="side" opened>
+    <mat-form-field class="w-100">
+      <span>
+        <i class="fa fa-search mr-2" aria-hidden="true" style="margin-left: 2px"></i>
+        <input class="notes-search-input" matInput [(ngModel)]="searchQuery" (change)="searchNotesByName(searchQuery)">
+      </span>
+    </mat-form-field>
+    <div class="d-flex justify-content-center">
+      <button mat-button (click)="redirectTo(selectedTag.name)"
+        [matMenuTriggerFor]="menu">{{ selectedTag.name | titlecase }}</button>
+    </div>
+    <div class="row">
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item *ngFor="let tag of allTags" (click)="changeTag(tag)">{{ tag.name }}</button>
+      </mat-menu>
+      <!-- <button mat-button class="sidenav-toggle-button" (click)="sidenav.toggle()">
+        <mat-icon>{{ sidenav.opened ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}</mat-icon>
+      </button> -->
+    </div>
+
+    <mat-list>
+      <mat-divider></mat-divider>
+      <div *ngFor="let note of filteredNotes">
+        <mat-list-item (click)="changeSelectedNote(note.fileName)">{{ note.title }}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="note-controls-toolbar d-flex justify-content-end w-100 m-2">
+      <!-- <button mat-button class="sidenav-toggle-button" (click)="sidenav.toggle()">
+        <mat-icon>{{ sidenav.opened ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}</mat-icon>
+      </button> -->
+      <button mat-button class="mr-1" style="" (click)="sidenav.toggle()">
+        <mat-icon>{{ sidenav.opened ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}</mat-icon>
+      </button>
+      <div class="spacer"></div>
+      <div *ngIf="user && user.roles && user.roles.admin">
+        <button mat-mini-fab class="mr-1" (click)="openNoteDialog('new')">
+          <mat-icon>file_upload</mat-icon>
+        </button>
+        <button mat-mini-fab (click)="openNoteDialog('edit')" *ngIf="selectedNote && selectedNote.id">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="ml-md-3 ml-2 ">
+      <mat-chip-list class=" m-1" *ngIf="selectedNote && selectedNote.tags">
+        <mat-chip (click)="redirectTo(tag.name)" *ngFor="let tag of selectedNote.tags">{{ tag.name }}</mat-chip>
+      </mat-chip-list>
+    </div>
+    <div class="ml-3" style="margin-top:-20px">
+      <markdown lineNumbers *ngIf="selectedNote && selectedNote.url" [src]="selectedNote.url"></markdown>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

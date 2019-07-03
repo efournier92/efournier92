@@ -72,9 +72,9 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
   - [X] Typing animation
 - [ ] Projects
   - [X] View Project Styling
-- [ ] Docs
+- [ ] Notes
   - [ ] Edit Markdown File
-  - [ ] Upload All Docs
+  - [ ] Upload All Notes
   - [ ] Change to Guides Paradigm
   - [ ] Hunt Bugs
 - [ ] Auth

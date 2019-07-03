@@ -1,8 +1,8 @@
 <mat-sidenav-container class="component-container">
-  <mat-sidenav-content>
-    <div style="width:60%;margin-left:20%">
+  <mat-sidenav-content class="d-flex justify-content-center">
+    <div class="col-lg-10 col-sm-11">
       <div class="d-flex justify-content-center">
-        <img src="../../../assets/img/logo/efournier92_Icon.png" alt="efournier92" class="mb-2" width="128px" style="">
+        <img src="../../../assets/img/logo/efournier92_Icon.png" alt="efournier92" class="m-3" width="128px" style="">
       </div>
       <p style="font-size:1.3em">
         I always liked to build things, so I learned to build software. My business degree never hurts in understanding
@@ -17,14 +17,16 @@
       <p style="font-size:1.3em">
         The following are maxims I live by, which characterize my mission and core values.
       </p>
-      <mat-list>
-        <mat-list-item *ngFor="let maxim of maxims; let i = index" style="padding: 0">
-          <div style="font-weight:bold; height:100%; font-size: 2em; margin-right:12px">{{ i + 1 }}</div>
-          <p><i>{{ maxim }}</i>></p>
-        </mat-list-item>
-      </mat-list>
-      <div class="d-flex justify-content-center">
-        <img src="../../../assets/img/logo/efournier92_Icon.png" alt="efournier92" class="mb-2" width="128px" style="">
+      <div class="mt-4" style="margin-bottom: 40px">
+        <div class="row d-flex justify-content-center align-items-center mb-4"
+          *ngFor="let maxim of maxims; let i = index" style="padding: 0">
+          <!-- <mat-list-item class="mt-2" *ngFor="let maxim of maxims; let i = index" style="padding: 0"> -->
+          <div class="col-1 d-flex justify-content-end" style="font-weight:bold; font-size: 2em; padding-right: 10px;">
+            {{ i + 1 }}</div>
+          <div class="col-10" style="font-size:1.2em;font-style: italic;">{{ maxim }}</div>
+          <!-- <p><i>{{ maxim }}</i></p> -->
+          <!-- </mat-list-item> -->
+        </div>
       </div>
     </div>
   </mat-sidenav-content>

@@ -26,7 +26,7 @@ export class TagsEditComponent implements OnInit {
   matAutocomplete: MatAutocomplete;
   filteredTags: Observable<Tag[]>;
   @Input()
-  docTags: Tag[];
+  noteTags: Tag[];
   @Output()
   onTagsChangedEvent = new EventEmitter<Tag[]>();
 
@@ -37,10 +37,10 @@ export class TagsEditComponent implements OnInit {
   ngOnInit(): void {
     this.subscribeToTags();
     const tag = new Tag("All");
-    if (!this.docTags || this.docTags.length < 1) {
+    if (!this.noteTags || this.noteTags.length < 1) {
       this.selectedTags.push(tag);
     } else {
-      for (const tag of this.docTags) {
+      for (const tag of this.noteTags) {
         this.selectedTags.push(tag);
       }
     }

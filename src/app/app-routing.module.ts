@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { DocsComponent } from './components/docs/docs.component';
+import { NotesComponent } from './components/notes/notes.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { AuthComponent } from './components/auth/auth.component';
@@ -13,16 +13,16 @@ const routes: Routes =
       component: LandingPageComponent,
     },
     {
-      path: 'docs',
-      component: DocsComponent,
+      path: 'notes',
+      component: NotesComponent,
     },
     {
-      path: 'docs/:tagName',
-      component: DocsComponent,
+      path: 'notes/:tagName',
+      component: NotesComponent,
     },
     {
-      path: 'docs/:tagName/:fileName',
-      component: DocsComponent,
+      path: 'notes/:tagName/:fileName',
+      component: NotesComponent,
     },
     {
       path: 'projects',

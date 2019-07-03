@@ -2,7 +2,7 @@ import { AngularFireUploadTask } from "@angular/fire/storage";
 import { Observable } from "rxjs";
 import { Tag } from "./tag";
 
-export class Doc {
+export class Note {
   id: string = '';
   title: string = '';
   fileName: string = '';
@@ -12,8 +12,8 @@ export class Doc {
   tags: Tag[] = new Array<Tag>();
 }
 
-export interface DocUpload {
-  doc: Doc;
+export interface NoteUpload {
+  note: Note;
   task: AngularFireUploadTask;
   onUrlAvailable: Observable<string>;
 }

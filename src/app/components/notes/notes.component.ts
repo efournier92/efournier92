@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DocsService } from './docs.service';
-import { DocDialogService } from './doc-dialog/doc-dialog.service';
-import { Doc } from './doc';
+import { NotesService } from './notes.service';
+import { NoteDialogService } from './note-dialog/note-dialog.service';
+import { Note } from './note';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Tag } from './tag';
@@ -10,39 +10,39 @@ import { User } from '../auth/user';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
-  selector: 'app-docs',
-  templateUrl: './docs.component.html',
-  styleUrls: ['./docs.component.scss']
+  selector: 'app-notes',
+  templateUrl: './notes.component.html',
+  styleUrls: ['./notes.component.scss']
 })
-export class DocsComponent implements OnInit {
+export class NotesComponent implements OnInit {
   user: User;
   allTags: Tag[];
   selectedTag: Tag = new Tag('');
-  allDocs: Doc[];
-  filteredDocs: Doc[] = new Array<Doc>();
-  selectedDoc: Doc;
+  allNotes: Note[];
+  filteredNotes: Note[] = new Array<Note>();
+  selectedNote: Note;
   searchQuery: string = "";
 
   constructor(
     private authService: AuthService,
-    private docsService: DocsService,
-    private docsUploadDialog: DocDialogService,
+    private notesService: NotesService,
+    private notesUploadDialog: NoteDialogService,
     private tagsService: TagsService,
     private router: Router,
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.subscribeToDocs();
+    this.subscribeToNotes();
     this.authService.currentUserObservable.subscribe(
       (user: User) => this.user = user
     )
   }
 
-  subscribeToDocs(): void {
-    this.docsService.getAllDocs().valueChanges().subscribe(
-      (docs: Doc[]) => {
-        this.allDocs = docs;
+  subscribeToNotes(): void {
+    this.notesService.getAllNotes().valueChanges().subscribe(
+      (notes: Note[]) => {
+        this.allNotes = notes;
         this.subscribeToTags();
       }
     )
@@ -67,17 +67,21 @@ export class DocsComponent implements OnInit {
         if (result.params.tagName) {
           const selectedTag = this.findSelectedTag(result.params.tagName);
           this.selectedTag = selectedTag ? selectedTag : this.findSelectedTag('all');
-          this.filterDocsByTagName(this.selectedTag.name)
+          this.filterNotesByTagName(this.selectedTag.name)
         } else {
           this.redirectTo('all');
         }
         if (result.params.fileName) {
-          const selectedDoc = this.findSelectedDoc(result.params.fileName);
-          this.selectedDoc = selectedDoc ? selectedDoc : undefined;
+          const selectedNote = this.findSelectedNote(result.params.fileName);
+          this.selectedNote = selectedNote ? selectedNote : undefined;
         }
       }
     )
   }
+
+  toggleSidenav() {
+  }
+
   //       if (!result.params.tagName) {
   //         this.redirectTo('all')
   //       } else {
@@ -87,12 +91,12 @@ export class DocsComponent implements OnInit {
   //       if (!result.params.fileName) {
   //         this.redirectTo(this.selectedTag.name);
   //       } else {
-  //         const selectedDoc = this.findSelectedDoc(result.params.fileName);
-  //         this.selectedDoc = selectedDoc ? selectedDoc : undefined;
-  //         if (!this.selectedDoc) {
+  //         const selectedNote = this.findSelectedNote(result.params.fileName);
+  //         this.selectedNote = selectedNote ? selectedNote : undefined;
+  //         if (!this.selectedNote) {
   //           this.redirectTo(this.selectedTag.name);
   //         } else {
-  //           this.changeSelectedDoc(this.selectedDoc.fileName);
+  //           this.changeSelectedNote(this.selectedNote.fileName);
   //         }
   //       }
   //     }
@@ -105,20 +109,20 @@ export class DocsComponent implements OnInit {
     )
   }
 
-  findSelectedDoc(fileName: string): Doc {
-    return this.allDocs.find(
-      doc => doc.fileName.toLowerCase() === fileName.toLowerCase(),
+  findSelectedNote(fileName: string): Note {
+    return this.allNotes.find(
+      note => note.fileName.toLowerCase() === fileName.toLowerCase(),
     )
   }
 
-  changeSelectedDoc(fileName: string): void {
-    this.selectedDoc = this.allDocs.find(
-      doc => doc.fileName === fileName,
+  changeSelectedNote(fileName: string): void {
+    this.selectedNote = this.allNotes.find(
+      note => note.fileName === fileName,
     )
-    this.redirectTo(this.selectedTag.name, this.selectedDoc.fileName)
+    this.redirectTo(this.selectedTag.name, this.selectedNote.fileName)
   }
 
-  filterDocsByTagName(tagName: string): void {
+  filterNotesByTagName(tagName: string): void {
     this.allTags.filter(
       (tag: Tag) => {
         if (tag.name === tagName) {
@@ -129,25 +133,25 @@ export class DocsComponent implements OnInit {
     if (!this.selectedTag) {
       this.redirectTo('all');
     } else {
-      this.filteredDocs = [];
-      for (const doc of this.allDocs) {
-        if (!doc.tags) return;
-        for (const tag of doc.tags) {
-          if (tag.name && tagName && tagName.toLowerCase() === tag.name.toLowerCase() && !this.filteredDocs.find(filterDoc => filterDoc.id === doc.id)) {
-            this.filteredDocs.push(doc);
+      this.filteredNotes = [];
+      for (const note of this.allNotes) {
+        if (!note.tags) return;
+        for (const tag of note.tags) {
+          if (tag.name && tagName && tagName.toLowerCase() === tag.name.toLowerCase() && !this.filteredNotes.find(filterNote => filterNote.id === note.id)) {
+            this.filteredNotes.push(note);
           }
         }
       }
     }
   }
 
-  searchDocsByName(searchQuery: string): void {
+  searchNotesByName(searchQuery: string): void {
     if (!this.selectedTag) {
       this.redirectTo('all')
     } else {
-      this.filteredDocs = this.allDocs.filter(
-        (doc: Doc) => {
-          const fileName: string = doc.fileName.toLowerCase();
+      this.filteredNotes = this.allNotes.filter(
+        (note: Note) => {
+          const fileName: string = note.fileName.toLowerCase();
           const query: string = searchQuery.toLowerCase();
           return fileName.includes(query)
         }
@@ -155,11 +159,11 @@ export class DocsComponent implements OnInit {
     }
   }
 
-  redirectTo(tagName: string, docName?: string): void {
-    if (!docName) {
-      this.router.navigateByUrl(`docs/${tagName}`);
+  redirectTo(tagName: string, noteName?: string): void {
+    if (!noteName) {
+      this.router.navigateByUrl(`notes/${tagName}`);
     } else {
-      this.router.navigateByUrl(`docs/${tagName}/${docName}`);
+      this.router.navigateByUrl(`notes/${tagName}/${noteName}`);
     }
   }
 
@@ -167,8 +171,8 @@ export class DocsComponent implements OnInit {
     this.redirectTo(tag.name);
   }
 
-  openDocDialog(mode: string): void {
-    const dialogRef = this.docsUploadDialog.openDialog(mode, this.selectedDoc);
+  openNoteDialog(mode: string): void {
+    const dialogRef = this.notesUploadDialog.openDialog(mode, this.selectedNote);
     dialogRef.afterClosed().subscribe(
       (confirmedAction: boolean) => {
         if (confirmedAction) {

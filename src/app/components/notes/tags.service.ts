@@ -14,7 +14,7 @@ export class TagsService {
   ) {
     this.getAllTags().valueChanges().subscribe(
       (tags: Tag[]) => {
-        this.updateAllDocsEvent(tags);
+        this.updateAllNotesEvent(tags);
       }
     );
   }
@@ -26,8 +26,8 @@ export class TagsService {
   private allTagsSource: BehaviorSubject<Tag[]> = new BehaviorSubject([]);
   allTagsObservable: Observable<Tag[]> = this.allTagsSource.asObservable();
 
-  updateAllDocsEvent(doc: Tag[]): void {
-    this.allTagsSource.next(doc);
+  updateAllNotesEvent(note: Tag[]): void {
+    this.allTagsSource.next(note);
   }
 
   getAllTags(): AngularFireList<Tag> {

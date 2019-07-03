@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { TypewriterComponent } from './components/typewriter/typewriter.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { DocsComponent } from './components/docs/docs.component';
+import { NotesComponent } from './components/notes/notes.component';
 import { AboutComponent } from './components/about/about.component';
 import { RouteButtonsComponent } from './components/route-buttons/route-buttons.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
@@ -20,9 +20,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FirebaseUIModule } from 'firebaseui-angular';
 import { ProjectEditComponent } from './components/projects/project-edit/project-edit.component';
 import { ProjectViewComponent } from './components/projects/project-view/project-view.component';
-import { TagsEditComponent } from './components/docs/tags-edit/tags-edit.component';
+import { TagsEditComponent } from './components/notes/tags-edit/tags-edit.component';
 import { FileInputComponent } from './components/file-input/file-input.component';
-import { DocDialogComponent } from './components/docs/doc-dialog/doc-dialog.component';
+import { NoteDialogComponent } from './components/notes/note-dialog/note-dialog.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { AngularResizedEventModule } from 'angular-resize-event';
 
@@ -51,13 +51,13 @@ import { AuthComponent } from './components/auth/auth.component';
     TypewriterComponent,
     LandingPageComponent,
     ProjectsComponent,
-    DocsComponent,
+    NotesComponent,
     AboutComponent,
     RouteButtonsComponent,
     ProjectEditComponent,
     ProjectViewComponent,
     FileInputComponent,
-    DocDialogComponent,
+    NoteDialogComponent,
     TagsEditComponent,
     AuthComponent,
   ],
@@ -93,7 +93,7 @@ import { AuthComponent } from './components/auth/auth.component';
     MatMenuModule,
   ],
   entryComponents: [
-    DocDialogComponent,
+    NoteDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

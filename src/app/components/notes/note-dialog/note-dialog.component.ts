@@ -1,32 +1,32 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { DocsService } from '../docs.service';
-import { Doc } from '../doc';
+import { NotesService } from '../notes.service';
+import { Note } from '../note';
 import { Tag } from '../tag';
 
 export interface DialogData {
   mode: string;
-  doc: Doc;
+  note: Note;
 }
 
 @Component({
-  selector: 'app-docs-dialog',
-  templateUrl: './doc-dialog.component.html',
-  styleUrls: ['./doc-dialog.component.scss']
+  selector: 'app-notes-dialog',
+  templateUrl: './note-dialog.component.html',
+  styleUrls: ['./note-dialog.component.scss']
 })
-export class DocDialogComponent implements OnInit {
-  doc: Doc = new Doc();
+export class NoteDialogComponent implements OnInit {
+  note: Note = new Note();
   uploadFile: File;
 
   constructor(
-    public dialogRef: MatDialogRef<DocDialogComponent>,
-    public docsService: DocsService,
+    public dialogRef: MatDialogRef<NoteDialogComponent>,
+    public notesService: NotesService,
     @Inject(MAT_DIALOG_DATA) public dialogData: DialogData,
   ) { }
 
   ngOnInit(): void {
     if (this.dialogData.mode === 'edit') {
-      this.doc = this.dialogData.doc;
+      this.note = this.dialogData.note;
     }
   }
 
@@ -35,18 +35,18 @@ export class DocDialogComponent implements OnInit {
   }
 
   onInputFileChange(file: File) {
-    this.doc.fileName = file[0].name;
+    this.note.fileName = file[0].name;
     this.uploadFile = file
-    this.doc.title = this.parseFilename(this.doc.fileName);
+    this.note.title = this.parseFilename(this.note.fileName);
   }
 
-  uploadDoc() {
-    this.doc.title = this.doc.title;
-    this.docsService.uploadDoc(this.uploadFile, this.doc, this.dialogRef);
+  uploadNote() {
+    this.note.title = this.note.title;
+    this.notesService.uploadNote(this.uploadFile, this.note, this.dialogRef);
   }
 
-  deleteDoc() {
-    this.docsService.deleteDoc(this.doc);
+  deleteNote() {
+    this.notesService.deleteNote(this.note);
   }
 
   parseFilename(filename: string) {
@@ -58,7 +58,7 @@ export class DocDialogComponent implements OnInit {
     return returnValue;
   }
 
-  onTagsChanged(docTags: Tag[]) {
-    this.doc.tags = docTags;
+  onTagsChanged(noteTags: Tag[]) {
+    this.note.tags = noteTags;
   }
 }

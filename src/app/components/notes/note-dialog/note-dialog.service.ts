@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
-import { DocDialogComponent } from './doc-dialog.component';
-import { Doc } from '../doc';
+import { NoteDialogComponent } from './note-dialog.component';
+import { Note } from '../note';
 
 class DialogData extends MatDialogConfig {
   mode: string;
-  doc: Doc;
+  note: Note;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class DocDialogService {
+export class NoteDialogService {
 
   constructor(
     public dialog: MatDialog,
   ) { }
 
-  public openDialog(mode: string, doc: Doc): MatDialogRef<DocDialogComponent, any> {
+  public openDialog(mode: string, note: Note): MatDialogRef<NoteDialogComponent, any> {
     let dialogData: DialogData = new DialogData();
     dialogData.mode = mode;
-    dialogData.doc = doc;
+    dialogData.note = note;
     dialogData.autoFocus = false;
-    const dialogRef = this.dialog.open(DocDialogComponent, {
+    const dialogRef = this.dialog.open(NoteDialogComponent, {
       width: '50%',
       data: dialogData,
     });

@@ -10,7 +10,7 @@
     <div class="spacer"></div>
     <div [ngClass]="{'animated fadeInDown delay-4s': shouldSeeLandingAnimation}">
       <div *ngIf="!isMobile">
-        <button mat-button [routerLink]="[ '/docs/all' ]">Docs</button>
+        <button mat-button [routerLink]="[ '/notes/all' ]">Notes</button>
         <button mat-button [routerLink]="[ '/projects' ]">Projects</button>
         <button mat-button [routerLink]="[ '/about' ]">About</button>
       </div>
@@ -19,7 +19,7 @@
           <mat-icon>menu</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item [routerLink]="[ '/docs/all' ]">Docs</button>
+          <button mat-menu-item [routerLink]="[ '/notes/all' ]">Notes</button>
           <button mat-menu-item [routerLink]="[ '/projects' ]">Projects</button>
           <button mat-menu-item [routerLink]="[ '/about' ]">About</button>
         </mat-menu>
