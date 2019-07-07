@@ -1,21 +1,30 @@
-<div class="my-card">
-  <!-- <h5 class="card-title">{{ project.title }}</h5> -->
-  <div class="d-flex justify-content-end" *ngIf="user && user.admin">
-    <button mat-button (click)="toggleProjectEditable()">
-      <mat-icon>edit</mat-icon>
-    </button>
+<p class="d-flex justify-content-end">
+  <button mat-button (click)="toggleProjectEditable()">
+    <mat-icon>edit</mat-icon>
+  </button>
+</p>
+<p class="ml-3" style="width:95%; margin-left: 2.5%">
+  <img [src]="isDarkTheme ? project.logoUrlLight : project.logoUrlDark" alt="Logo"
+    style="max-width: 100%;max-height: 100%;">
+</p>
+<mat-card-content class="ml-3">
+  <p>
+    <mat-chip-list aria-label="Fish selection">
+      <mat-chip style="font-size: 12px;font-weight: 400;" *ngFor="let tag of project.stack">{{ tag }}</mat-chip>
+    </mat-chip-list>
+  </p>
+  <p>
+    {{ project.description }}
+  </p>
+</mat-card-content>
+<mat-card-actions>
+  <div class="row d-flex justify-content-center">
+    <a mat-button class="col-5" style="background-color: #304FFE;color: white;" [href]="project.demoUrl">
+      Demo</a>
+    <a mat-button class="col-5" style="background-color: #00C853; color: white;" [href]="project.githubUrl">
+      Github</a>
   </div>
-  <h5 class="card-title">
-    <img [src]="isDarkTheme ? project.logoUrlLight : project.logoUrlDark" alt="Logo" width="250">
-    <!-- <img
-      src="https://raw.githubusercontent.com/efournier92/LeCoursville/master/src/assets/img/logo/LeCoursville_Logo_White.png"></i> -->
-  </h5>
-  <p class="card-text">{{ project.stack }}</p>
-  <p class="card-text">{{ project.description }}</p>
-  <div class="project-view-links-container d-flex justify-content-around">
-    <a href="#" class="btn btn-primary">Github</a>
-    <!-- <a href="#" class="btn btn-primary">{{ project.githubUrl }}</a> -->
-    <a href="#" class="btn btn-primary">Demo</a>
-    <!-- <a href="#" class="btn btn-primary">{{ project.demoUrl }}</a> -->
-  </div>
-</div>
+  <!-- <div class="row d-flex justify-content-center mt-2" *ngIf="user && user.roles && user.roles.admin">
+    <button mat-button class="col-5" (click)="toggleProjectEditable()" style="background-color: #FF3D00">Edit</button>
+  </div> -->
+</mat-card-actions>

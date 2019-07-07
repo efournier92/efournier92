@@ -20,8 +20,8 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.projectsService.projectsObservable.subscribe(
-      (projects) => {
-        this.allProjects = projects;
+      (projects: Project[]) => {
+        this.allProjects = projects.sort((a: Project, b: Project) => a.weight > b.weight ? 1 : a.weight === b.weight ? 0 : -1);
       }
     );
     this.authService.currentUserObservable.subscribe(
@@ -30,7 +30,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   onCreateProject() {
-    // let project = new Project("title", "description", "stack", "githubUrl", "demoUrl");
-    // this.projectsService.createProject(project);
+    let project = new Project();
+    this.projectsService.createProject(project);
   }
 }

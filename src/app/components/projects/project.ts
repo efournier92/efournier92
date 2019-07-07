@@ -3,21 +3,23 @@ export class Project {
   title: string;
   logoUrlDark: string;
   logoUrlLight: string;
-  stack: string;
+  stack: Array<string>;
   description: string;
   githubUrl: string;
   demoUrl: string;
+  weight: number;
   isEditing: boolean;
 
-  constructor(title: string, description: string, stack: string, githubUrl: string, logoUrlDark: string, logoUrlLight: string, demoUrl: string) {
-    this.id = title;
-    this.title = title;
-    this.description = description;
-    this.stack = stack;
-    this.githubUrl = githubUrl;
-    this.demoUrl = demoUrl;
-    this.logoUrlDark = logoUrlDark;
-    this.logoUrlLight = logoUrlLight;
+  constructor() {
+    this.id = '';
+    this.title = '';
+    this.description = '';
+    this.stack = new Array<string>();
+    this.githubUrl = '';
+    this.demoUrl = '';
+    this.logoUrlDark = '';
+    this.logoUrlLight = '';
+    this.weight = 0;
     this.isEditing = false;
   }
 }

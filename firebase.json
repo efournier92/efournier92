@@ -1,17 +1,6 @@
 {
   "hosting": {
-    "public": "dist/lecoursville",
-    "headers": [
-      {
-        "source": "**",
-        "headers": [
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "*"
-          }
-        ]
-      }
-    ],
+    "public": "dist/efournier92",
     "ignore": [
       "firebase.json",
       "**/.*",

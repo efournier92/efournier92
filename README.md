@@ -14,11 +14,13 @@
 - [Features To Do](#features-to-do)
 
 ## Overview
+A personal website, built primarily to enable easy sharing of notes written in [Markdown](https://www.markdownguide.org/getting-started). Features include a Landing page, About page, Projects feed, and a portal to upload and read notes. Projects can be created and edited by admin users, as can notes. All Note and Project data is publically readable to unauthenticated users. All notes are sortable by user-configured tags, and sharable via URL, with query params masquerading as routes.
 
 ## Demo
 [efournier92](https://www.efournier92.com)
 
 ## Development Philosophy
+I built this to serve as my own personal website, with the express intent of using it to share notes. Whenever I complete a project, I tend to document it for myself in a [Markdown](https://www.markdownguide.org/getting-started) file. I've amassed a trove of such files over several years, which I've posted here for easy sharing. This marks the third application I've built using Angular and Firebase, and I sought to design it to be as streamlined as possible, while adhering to the framework's best practices. I used [Angular Material](https://material.angular.io/) to develop the look and feel of the site. All components render nicely on mobile, tablet, and desktop. I leverage the [ngx-markdown](https://github.com/jfcere/ngx-markdown) library to render uploaded markdown files, persisted with [Firebase Storage](https://firebase.google.com/products/storage), as `html` in the [Notes Component](https://efournier92.com/notes). I'll continue to add features and content to the site as I create more projects and accumulate more [Markdown](https://www.markdownguide.org/getting-started).
 
 ## Stack
 - [Angular](https://angular.io/)
@@ -26,17 +28,25 @@
 - [TypeScript](https://www.typescriptlang.org/)
 - [Firebase Realtime Database](https://firebase.google.com/products/realtime-database/)
 - [Firebase Hosting](https://firebase.google.com/products/hosting/)
+- [Firebase Storage](https://firebase.google.com/products/storage)
 - [Firebase Authentication](https://firebase.google.com/products/auth/)
 - [SCSS](https://sass-lang.com)
 - [Bootstrap](https://getbootstrap.com/)
 - [RxJS](http://reactivex.io/)
+- [ngx-markdown](http://reactivex.io/)
+- [angular-webstorage-service](https://github.com/dscheerens/ngx-webstorage-service)
 
 ## Configure
 
-### `\`
+### `app-configs.*.ts`
 
-```
-
+```javascript
+export const FireConfig = {
+  apiKey: "API_KEY",
+  databaseURL: "DATABASE_URL",
+  projectId: "PROJECT_ID",
+  storageBucket: "STORAGE_BUCKET",
+};
 ```
 
 ## Build
@@ -61,22 +71,38 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 ### Landing Page
 ![Landing Page]()
 
-###
-![Screen]()
+### About Page
+![About]()
 
-###
-![Screen]()
+### Projects
+
+#### View Project
+![View Project]()
+
+#### Edit Project
+![Edit Project]()
+
+### Notes
+
+#### View Notes
+![View Notes]()
+
+#### Upload Note
+![Upload Note]()
+
+#### Edit Existing Note
+![Edit Existing Note]()
 
 ## Features To Do
 - [ ] Landing Page
+  - 
   - [X] Typing animation
 - [ ] Projects
   - [X] View Project Styling
 - [ ] Notes
-  - [ ] Edit Markdown File
+  - [X] Change from Docs to Notes Paradigm
   - [ ] Upload All Notes
-  - [ ] Change to Guides Paradigm
   - [ ] Hunt Bugs
-- [ ] Auth
-  - [ ] Integrate admin authentication
+- [X] Auth
+  - [X] Integrate admin authentication
 

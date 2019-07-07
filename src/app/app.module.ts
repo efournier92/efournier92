@@ -42,6 +42,7 @@ import {
   MatNativeDateModule,
   MatSlideToggleModule,
   MatMenuModule,
+  MatSelectModule,
 } from '@angular/material';
 import { AuthComponent } from './components/auth/auth.component';
 
@@ -91,6 +92,7 @@ import { AuthComponent } from './components/auth/auth.component';
     MatNativeDateModule,
     MatSlideToggleModule,
     MatMenuModule,
+    MatSelectModule,
   ],
   entryComponents: [
     NoteDialogComponent,

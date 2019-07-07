@@ -1,19 +1,19 @@
 <mat-sidenav-container class="component-container">
   <mat-sidenav-content>
-    <div *ngIf="user && user.admin">
+    <div *ngIf="user && user.roles && user.roles.admin">
       <div class="d-flex justify-content-end">
-        <button mat-mini-fab class="m-2">
+        <button mat-mini-fab class="m-2" (click)="onCreateProject()">
           <mat-icon>add</mat-icon>
         </button>
       </div>
     </div>
-    <div class="row m-2">
-      <div class="col-lg-4 col-sm-6 mb-3" *ngFor="let project of allProjects">
-        <mat-card>
-          <app-project-view *ngIf="!project.isEditing" [project]="project"></app-project-view>
-          <app-project-edit *ngIf="project.isEditing" [project]="project"></app-project-edit>
-        </mat-card>
-      </div>
+    <div class="row m-2 d-flex justify-content-center">
+      <mat-card class="col-md-5 m-3 d-flex flex-column justify-content-between" *ngFor="let project of allProjects">
+        <app-project-view [project]="project" *ngIf="!project.isEditing"
+          class="d-flex flex-column justify-content-between h-100"></app-project-view>
+        <app-project-edit [project]="project" [totalProjects]="allProjects.length" *ngIf="project.isEditing">
+        </app-project-edit>
+      </mat-card>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

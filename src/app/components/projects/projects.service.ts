@@ -15,8 +15,17 @@ export class ProjectsService {
     this.getProjects().valueChanges().subscribe(
       (projects: Project[]) => {
         this.updateProjectsEvent(projects);
+        // this.updateAllProjects(projects);
       }
     );
+  }
+
+  updateAllProjects(projects: any[]) {
+    for (const project of projects) {
+      let tags = project.stack.split(", ")
+      project.stack = tags;
+      this.updateProject(project);
+    }
   }
 
   private projectsSource: BehaviorSubject<Project[]> = new BehaviorSubject([]);
