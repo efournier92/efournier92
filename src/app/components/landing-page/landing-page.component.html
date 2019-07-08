@@ -1,8 +1,9 @@
 <mat-drawer-container
-  [ngClass]="{'animated-code-background-dark': isDarkTheme, 'animated-code-background-light': !isDarkTheme, 'landing-page-component-container': true}">
+  [ngClass]="{'animated-code-background-dark': isDarkTheme, 'animated-code-background-light': !isDarkTheme}"
+  class="landing-page-component-container">
   <mat-drawer-content>
     <div class="landing-page-container d-flex flex-column align-items-center">
-      <img src="../assets/img/logo/efournier92_Icon_White.png" width="80" style=""
+      <img src="../assets/img/logo/efournier92_Icon_White.png" width="80"
         [ngClass]="{'invert-color': !isDarkTheme, 'animated fadeInDown delay-4s': shouldSeeLandingAnimation}">
       <div *ngIf="shouldSeeLandingAnimation">
         <div class="typewriter-name-container">
@@ -21,7 +22,7 @@
           <div class="static-title-div">Developer.</div>
         </div>
       </div>
-      <div [ngClass]="{'animated fadeInUp delay-4s': shouldSeeLandingAnimation}" style="margin-top: 32px;">
+      <div class="route-buttons-container" [ngClass]="{'animated fadeInUp delay-4s': shouldSeeLandingAnimation}">
         <a mat-stroked-button class="mr-4" [routerLink]="[ '/notes/all' ]">Notes</a>
         <a mat-stroked-button class="mr-4" [routerLink]="[ '/projects' ]">Projects</a>
         <a mat-stroked-button class="mr-4" [routerLink]="[ '/about' ]">About</a>

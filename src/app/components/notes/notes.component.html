@@ -2,7 +2,7 @@
   <mat-drawer #sidenav class="notes-drawer" mode="side" opened>
     <mat-form-field class="w-100">
       <span>
-        <i class="fa fa-search mr-2" aria-hidden="true" style="margin-left: 2px"></i>
+        <i class="search-icon fa fa-search mr-2" aria-hidden="true"></i>
         <input class="notes-search-input" matInput [(ngModel)]="searchQuery" (change)="searchNotesByName(searchQuery)">
       </span>
     </mat-form-field>
@@ -27,12 +27,12 @@
       </div>
     </mat-list>
   </mat-drawer>
-  <mat-drawer-content style="overflow-x: hidden">
+  <mat-drawer-content class="overflow-x-hide">
     <div class="note-controls-toolbar d-flex justify-content-end m-2">
       <!-- <button mat-button class="sidenav-toggle-button" (click)="sidenav.toggle()">
         <mat-icon>{{ sidenav.opened ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}</mat-icon>
       </button> -->
-      <button mat-button class="mr-1" style="" (click)="sidenav.toggle()">
+      <button mat-button class="mr-1" (click)="sidenav.toggle()">
         <mat-icon>{{ sidenav.opened ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}</mat-icon>
       </button>
       <div class="spacer"></div>
@@ -50,7 +50,7 @@
         <mat-chip (click)="redirectTo(tag.name)" *ngFor="let tag of selectedNote.tags">{{ tag.name }}</mat-chip>
       </mat-chip-list>
     </div>
-    <div class="ml-3" style="margin-top:-20px">
+    <div class="note-markdown-content ml-3">
       <markdown lineNumbers *ngIf="selectedNote && selectedNote.url" [src]="selectedNote.url"></markdown>
     </div>
   </mat-drawer-content>

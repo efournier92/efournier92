@@ -27,6 +27,12 @@ export class AuthService {
     this.currentUserSource.next(user);
   }
 
+  createUser(authData: any): void {
+    let user: User = new User(authData);
+    this.userObj.update(user)
+    this.updateCurrentUser(user);
+  }
+
   getUserById(authData: any): AngularFireObject<User> {
     if (!authData || !authData.uid) return;
     this.userObj = this.db.object(`users/${authData.uid}`);
@@ -44,11 +50,5 @@ export class AuthService {
       this.currentUser = user;
     }
     this.updateCurrentUser(this.currentUser);
-  }
-
-  createUser(authData: any): void {
-    let user: User = new User(authData);
-    this.userObj.update(user)
-    this.updateCurrentUser(user);
   }
 }

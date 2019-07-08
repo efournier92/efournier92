@@ -21,5 +21,4 @@ export class AboutComponent implements OnInit {
       isDarkTheme => this.isDarkTheme = isDarkTheme
     )
   }
-
 }

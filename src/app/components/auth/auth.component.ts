@@ -14,7 +14,7 @@ export class AuthComponent implements OnInit {
     private authService: AuthService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.authService.currentUserObservable.subscribe(
       (user: User) => this.user = user
     )

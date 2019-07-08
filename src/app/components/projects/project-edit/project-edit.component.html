@@ -37,13 +37,13 @@
   </mat-select>
 </mat-form-field>
 <div class="d-flex justify-content-around">
-  <button mat-button (click)="deleteProject(project)" style="background-color:#FF3D00;">
+  <button mat-button class="action-red" (click)="deleteProject(project)">
     Delete
   </button>
-  <button mat-button (click)="cancelProjectEdit(project)" style="background-color:#2979FF;">
+  <button mat-button class="action-blue" (click)="cancelProjectEdit(project)">
     Cancel
   </button>
-  <button mat-button (click)="saveProject(project)" style="background-color:#00C853;">
+  <button mat-button class="action-green" (click)="saveProject(project)">
     Save
   </button>
 </div>

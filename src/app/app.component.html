@@ -1,10 +1,9 @@
-<div [ngClass]="{'theme-light': !isDarkTheme, 'theme-dark': isDarkTheme, 'h-100': true}" (resized)="onResized($event)">
+<div class="h-100" [ngClass]="{'theme-light': !isDarkTheme, 'theme-dark': isDarkTheme" (resized)="onResized($event)">
   <mat-toolbar class="d-flex justify-content-end toolbar-container">
     <img src="../assets/img/logo/efournier92_Icon_White.png" width="60" [routerLink]="['/']"
       [ngClass]="{'invert-color': !isDarkTheme, 'animated fadeInDown delay-4s': shouldSeeLandingAnimation}">
-    <mat-slide-toggle
-      [ngClass]="{'ml-2 theme-slide-toggle': true, 'animated fadeIn delay-4s': shouldSeeLandingAnimation}"
-      (toggleChange)="toggleTheme()">
+    <mat-slide-toggle class="ml-2 theme-slide-toggle"
+      [ngClass]="{'animated fadeIn delay-4s': shouldSeeLandingAnimation}" (toggleChange)="toggleTheme()">
       {{ isDarkTheme ? 'Light' : 'Dark' }}
     </mat-slide-toggle>
     <div class="spacer"></div>

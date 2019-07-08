@@ -1,4 +1,4 @@
-# ![efournier92](https://raw.githubusercontent.com/efournier92/efournier92/master/src/assets/img/logo/efournier92_Logo.png)
+# ![efournier92](https://raw.githubusercontent.com/efournier92/efournier92/master/src/assets/img/logo/efournier92_Logo_Color.png)
 
 ## Contents
 - [Overview](#overview)

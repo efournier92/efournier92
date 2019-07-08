@@ -4,29 +4,26 @@
       <div class="d-flex justify-content-center">
         <img src="../../../assets/img/logo/efournier92_Icon_Color.png" alt="efournier92" class="m-3" width="128px">
       </div>
-      <p style="font-size:1.3em">
+      <p class="body-font">
         I always liked to build things, so I learned to build software. My business degree never hurts in understanding
         feature initiatives and functionality. Best content as a jack of all trades, I've been a full-stack developer
         since
         2015.
       </p>
-      <p style="font-size:1.3em">
+      <p class="body-font">
         I built this website primarily to render markdown files (<i>my preferred syntax</i>). I created these <a
           href="/notes">notes</a> for
         myself, but I hope someone else finds them useful too.
       </p>
-      <p style="font-size:1.3em">
+      <p class="body-font">
         The following are maxims I live by, which characterize my mission and core values.
       </p>
-      <div class="mt-4" style="margin-bottom: 40px">
+      <div class="mt-4 mb-6">
         <div class="row d-flex justify-content-center align-items-center mb-4"
-          *ngFor="let maxim of maxims; let i = index" style="padding: 0">
-          <!-- <mat-list-item class="mt-2" *ngFor="let maxim of maxims; let i = index" style="padding: 0"> -->
-          <div class="col-1 d-flex justify-content-end" style="font-weight:bold; font-size: 2em; padding-right: 10px;">
+          *ngFor="let maxim of maxims; let i = index">
+          <div class="maxim-number col-1 d-flex justify-content-end">
             {{ i + 1 }}</div>
-          <div class="col-10" style="font-size:1.2em;font-style: italic;">{{ maxim }}</div>
-          <!-- <p><i>{{ maxim }}</i></p> -->
-          <!-- </mat-list-item> -->
+          <div class="maxim-content col-10">{{ maxim }}</div>
         </div>
       </div>
     </div>
