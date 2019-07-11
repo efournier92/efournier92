@@ -95,7 +95,6 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 
 ## Features To Do
 - [ ] Landing Page
-  - 
   - [X] Typing animation
 - [ ] Projects
   - [X] View Project Styling
