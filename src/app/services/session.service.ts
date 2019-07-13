@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { WebStorageService, SESSION_STORAGE } from 'angular-webstorage-service';
+import { WebStorageService, LOCAL_STORAGE } from 'angular-webstorage-service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class SessionService {
   isDarkTheme: boolean;
 
   constructor(
-    @Inject(SESSION_STORAGE)
+    @Inject(LOCAL_STORAGE)
     private storage: WebStorageService,
     private location: Location,
   ) {

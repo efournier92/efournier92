@@ -2,7 +2,9 @@
   <mat-sidenav-content class="d-flex justify-content-center">
     <div class="col-lg-10 col-sm-11">
       <div class="d-flex justify-content-center">
-        <img src="../../../assets/img/logo/efournier92_Icon_Color.png" alt="efournier92" class="m-3" width="128px">
+        <img
+          [src]="isDarkTheme ? '../../../assets/img/logo/efournier92_Icon_White.png' : '../../../assets/img/logo/efournier92_Icon_Black.png'"
+          alt="efournier92" class="m-3" width="128px">
       </div>
       <p class="body-font">
         I always liked to build things, so I learned to build software. My business degree never hurts in understanding

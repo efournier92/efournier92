@@ -105,4 +105,4 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
   - [ ] Hunt Bugs
 - [X] Auth
   - [X] Integrate admin authentication
-
+- [ ] Tags Admin

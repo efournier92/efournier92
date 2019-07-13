@@ -1,4 +1,4 @@
-<div class="h-100" [ngClass]="{'theme-light': !isDarkTheme, 'theme-dark': isDarkTheme" (resized)="onResized($event)">
+<div class="h-100" [ngClass]="{'theme-light': !isDarkTheme, 'theme-dark': isDarkTheme}" (resized)="onResized($event)">
   <mat-toolbar class="d-flex justify-content-end toolbar-container">
     <img src="../assets/img/logo/efournier92_Icon_White.png" width="60" [routerLink]="['/']"
       [ngClass]="{'invert-color': !isDarkTheme, 'animated fadeInDown delay-4s': shouldSeeLandingAnimation}">
