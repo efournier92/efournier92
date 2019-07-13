@@ -101,6 +101,7 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 - [ ] Notes
   - [X] Change from Docs to Notes Paradigm
   - [ ] Upload All Notes
+  - [ ] Hidden note feature
   - [ ] Hunt Bugs
 - [X] Auth
   - [X] Integrate admin authentication
