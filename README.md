@@ -69,10 +69,12 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 ## Features
 
 ### Landing Page
+
+#### Dark Theme
 ![Landing Page](https://raw.githubusercontent.com/efournier92/efournier92/master/src/assets/img/screenshots/LandingPage_Dark.png)
 
-### About Page
-![About](https://raw.githubusercontent.com/efournier92/efournier92/master/src/assets/img/screenshots/AboutPage_Dark.png)
+#### Light Theme
+![Landing Page](https://raw.githubusercontent.com/efournier92/efournier92/master/src/assets/img/screenshots/LandingPage_Light.png)
 
 ### Projects
 
@@ -92,6 +94,9 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 
 #### Edit Existing Note
 ![Edit Existing Note](https://raw.githubusercontent.com/efournier92/efournier92/master/src/assets/img/screenshots/Notes_Edit_Dark.png)
+
+### About Page
+![About](https://raw.githubusercontent.com/efournier92/efournier92/master/src/assets/img/screenshots/AboutPage_Dark.png)
 
 ## Features To Do
 - [ ] Landing Page
