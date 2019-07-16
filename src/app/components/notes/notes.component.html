@@ -21,7 +21,7 @@
 
     <mat-list>
       <mat-divider></mat-divider>
-      <div *ngFor="let note of filteredNotes">
+      <div class="sidenav-project-select" *ngFor="let note of filteredNotes">
         <mat-list-item (click)="changeSelectedNote(note.fileName)">{{ note.title }}</mat-list-item>
         <mat-divider></mat-divider>
       </div>

@@ -143,6 +143,7 @@ export class NotesComponent implements OnInit {
         }
       }
     }
+    this.filteredNotes.sort((noteA: Note, noteB: Note) => (noteA.title > noteB.title) ? 1 : -1)
   }
 
   searchNotesByName(searchQuery: string): void {
@@ -151,9 +152,18 @@ export class NotesComponent implements OnInit {
     } else {
       this.filteredNotes = this.allNotes.filter(
         (note: Note) => {
+          let isRelevant = false;
           const fileName: string = note.fileName.toLowerCase();
+          const title: string = note.title.toLowerCase();
           const query: string = searchQuery.toLowerCase();
-          return fileName.includes(query)
+          if (fileName.includes(query) || title.includes(query))
+            isRelevant = true;
+          for (const tag of note.tags) {
+            const tagName = tag.name.toLowerCase();
+            if (tagName.includes(query))
+              isRelevant = true;
+          }
+          return isRelevant;
         }
       )
     }
