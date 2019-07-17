@@ -1,26 +1,26 @@
-<p class="d-flex justify-content-end">
-  <button mat-button class="action-red button-project-edit" (click)="toggleProjectEditable()">
-    Edit
-  </button>
-</p>
-<p class="project-logo-container ml-3">
-  <img class="project-logo" [src]="isDarkTheme ? project.logoUrlLight : project.logoUrlDark">
-</p>
-<mat-card-content class="ml-3">
-  <p>
-    <mat-chip-list aria-label="Fish selection">
-      <mat-chip class="tech-chip" *ngFor="let tech of project.stack">{{ tech }}</mat-chip>
-    </mat-chip-list>
+<mat-card class="h-100">
+  <p class="d-flex justify-content-end">
+    <button mat-button class="action-red font-white button-project-edit" (click)="toggleProjectEditable()">
+      Edit
+    </button>
   </p>
-  <p>
-    {{ project.description }}
+  <p class="project-logo-container ml-3">
+    <img class="project-logo" [src]="isDarkTheme ? project.logoUrlLight : project.logoUrlDark">
   </p>
-</mat-card-content>
-<mat-card-actions>
-  <div class="row d-flex justify-content-center">
-    <a mat-button class="action-blue font-white col-5" [href]="project.demoUrl">
-      Demo</a>
-    <a mat-button class="action-green font-white col-5" [href]="project.githubUrl">
-      Github</a>
-  </div>
-</mat-card-actions>
+  <mat-card-content class="ml-3">
+    <p>
+      <mat-chip-list aria-label="Fish selection">
+        <mat-chip class="tech-chip" *ngFor="let tech of project.stack">{{ tech }}</mat-chip>
+      </mat-chip-list>
+    </p>
+    <markdown [data]="project.description"></markdown>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="row d-flex justify-content-center mb-2">
+      <a mat-button class="action-blue font-white col-5" [href]="project.demoUrl">
+        Demo</a>
+      <a mat-button class="action-green font-white col-5" [href]="project.githubUrl">
+        Github</a>
+    </div>
+  </mat-card-actions>
+</mat-card>

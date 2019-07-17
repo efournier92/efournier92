@@ -6,4 +6,10 @@ export const Maxims: string[] = [
   "My greatest virtues are patience and diligence; I exercise them daily.",
   "I don't look back. I look ahead. My past is just prologue.",
   "In whatever I do, I contribute focus, congeniality, dedication, and wit.",
-]
+];
+
+export const AboutMes: string[] = [
+  "I always liked to build things, so I learned to build software. My business degree never hurts in understanding feature initiatives and functionality. Best content as a jack of all trades, I've been a full-stack developer since 2015.",
+  "I built this website primarily to render markdown files (_my favorite syntax_). I created these myself, but I hope someone else finds them useful too.",
+  "The following are maxims I live by, which characterize my mission and core values.",
+];

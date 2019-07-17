@@ -8,26 +8,15 @@
             alt="efournier92" class="m-3" width="128px">
         </div>
       </div>
-      <p class="body-font">
-        I always liked to build things, so I learned to build software. My business degree never hurts in understanding
-        feature initiatives and functionality. Best content as a jack of all trades, I've been a full-stack developer
-        since
-        2015.
-      </p>
-      <p class="body-font">
-        I built this website primarily to render markdown files (<i>my preferred syntax</i>). I created these <a
-          href="/notes">notes</a> for
-        myself, but I hope someone else finds them useful too.
-      </p>
-      <p class="body-font">
-        The following are maxims I live by, which characterize my mission and core values.
+      <p class="body-font" *ngFor="let aboutMe of aboutMes">
+        <markdown>{{ aboutMe }}</markdown>
       </p>
       <div class="mt-4 mb-6">
         <div class="row d-flex justify-content-center align-items-center mb-4"
           *ngFor="let maxim of maxims; let i = index">
           <div class="maxim-number col-1 d-flex justify-content-end">
             {{ i + 1 }}</div>
-          <div class="maxim-content col-10">{{ maxim }}</div>
+          <markdown class="maxim-content col-10" [data]="maxim"></markdown>
         </div>
       </div>
     </div>

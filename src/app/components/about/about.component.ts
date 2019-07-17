@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Maxims } from './maxims';
+import { AboutMes, Maxims } from './AboutMeContent';
 import { SessionService } from 'src/app/services/session.service';
 
 @Component({
@@ -8,7 +8,8 @@ import { SessionService } from 'src/app/services/session.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-  maxims: string[];
+  aboutMes: string[] = AboutMes;
+  maxims: string[] = Maxims;
   isDarkTheme: boolean;
 
   constructor(
@@ -16,7 +17,6 @@ export class AboutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.maxims = Maxims;
     this.sessionService.isDarkThemeObservable.subscribe(
       isDarkTheme => this.isDarkTheme = isDarkTheme
     )
