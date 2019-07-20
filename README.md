@@ -105,6 +105,7 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
   - [X] View Project Styling
 - [ ] Notes
   - [X] Change from Docs to Notes Paradigm
+  - [ ] URL From GitHub
   - [ ] Upload All Notes
   - [ ] Hidden note feature
   - [ ] Hunt Bugs
