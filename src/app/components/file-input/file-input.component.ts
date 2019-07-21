@@ -29,8 +29,6 @@ export class FileInputComponent implements OnInit {
   ngOnInit() {
     this.fileInput = document.getElementById('file-input-file') as HTMLInput;
     this.inputPlaceholder = this.inputMessage;
-    if (this.startWithFileSelect)
-      this.openFileSelect();
   }
 
   openFileSelect(): any {

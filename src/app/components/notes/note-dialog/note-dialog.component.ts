@@ -17,6 +17,7 @@ export interface DialogData {
 export class NoteDialogComponent implements OnInit {
   note: Note = new Note();
   uploadFile: File;
+  isEditingNote: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<NoteDialogComponent>,
@@ -27,6 +28,7 @@ export class NoteDialogComponent implements OnInit {
   ngOnInit(): void {
     if (this.dialogData.mode === 'edit') {
       this.note = this.dialogData.note;
+      this.isEditingNote = true;
     }
   }
 
@@ -36,7 +38,7 @@ export class NoteDialogComponent implements OnInit {
 
   onInputFileChange(file: File) {
     this.note.fileName = file[0].name;
-    this.uploadFile = file
+    this.uploadFile = file;
     this.note.title = this.parseFilename(this.note.fileName);
   }
 

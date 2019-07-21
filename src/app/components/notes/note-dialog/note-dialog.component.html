@@ -1,17 +1,20 @@
 <div class="d-flex flex-column align-items-center">
   <div mat-dialog-content>
     <form>
-      <app-file-input [matIcon]="'file_upload'" [inputMessage]="note && note.fileName ? note.fileName : 'Upload Photos'"
-        [multipleFiles]="true" [startWithFileSelect]="note && note.fileName ? false : true"
-        (onInputFileChange)="onInputFileChange($event)">
+      <app-file-input *ngIf="!isEditingNote && !note.url" [matIcon]="'file_upload'"
+        [inputMessage]="note && note.fileName ? note.fileName : 'Upload Photos'" [multipleFiles]="true"
+        [startWithFileSelect]="note && note.fileName ? false : true" (onInputFileChange)="onInputFileChange($event)">
       </app-file-input>
+      <mat-form-field class="w-100" *ngIf="!uploadFile">
+        <input matInput [(ngModel)]="note.url" [value]="note.url" placeholder="URL" name="note-url">
+      </mat-form-field>
       <mat-form-field class="w-100">
-        <input matInput [(ngModel)]="note.title" [value]="note.title" name="note-title">
+        <input matInput [(ngModel)]="note.title" [value]="note.title" placeholder="Title" name="note-title">
       </mat-form-field>
       <app-tags-edit [noteTags]="note.tags" (onTagsChangedEvent)="onTagsChanged($event)"></app-tags-edit>
       <mat-form-field class="w-100">
         <input matInput [matDatepicker]="picker" [(ngModel)]="note.date" [value]="note.date" name="noteDate"
-          placeholder="Choose a date">
+          placeholder="Date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>

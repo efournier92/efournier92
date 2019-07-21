@@ -94,7 +94,6 @@ export class NotesService {
       this.deleteNote(existingNote);
     }
     note.id = this.db.createPushId();
-    note.fileName = file[0].name;
     note.path = `notes/${note.fileName}`;
     for (const tagObj of note.tags) {
       if (!this.allTags.find(tag => tag.name === tagObj.name)) {
@@ -102,6 +101,12 @@ export class NotesService {
         this.tagsService.saveNewTag(newTag);
       }
     }
+    if (!file) {
+      const notesDb: AngularFireList<Object> = this.db.list('notes');
+      notesDb.update(note.id, note);
+      return;
+    }
+    note.fileName = file[0].name;
     const fileRef: AngularFireStorageReference = this.storage.ref(note.path);
     const task: AngularFireUploadTask = this.storage.upload(note.path, file[0]);
     task.snapshotChanges().pipe(
