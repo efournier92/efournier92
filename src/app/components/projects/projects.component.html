@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-md-5 mb-4" *ngFor="let project of allProjects">
+      <div class="col-lg-8 col-md-10 col-sm-11 mb-4" *ngFor="let project of allProjects">
         <app-project-view [project]="project" *ngIf="!project.isEditing"></app-project-view>
         <app-project-edit [project]="project" [totalProjects]="allProjects.length" *ngIf="project.isEditing">
         </app-project-edit>
