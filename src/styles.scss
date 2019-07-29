@@ -20,15 +20,6 @@ body {
   @include scrollbars(.5em, #9E9E9E, transparent);
 }
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-  color: #b58900 !important;
-}
-
 .spacer {
   flex: 1 1 auto;
 }
