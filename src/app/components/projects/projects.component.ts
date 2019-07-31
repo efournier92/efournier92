@@ -11,7 +11,6 @@ import { AnimationsService } from 'src/app/animations.service';
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
-  isLoading: boolean = true;
   allProjects: Project[];
   user: User;
 
@@ -25,9 +24,6 @@ export class ProjectsComponent implements OnInit {
     this.projectsService.projectsObservable.subscribe(
       (projects: Project[]) => {
         this.allProjects = projects.sort((a: Project, b: Project) => a.weight > b.weight ? 1 : a.weight === b.weight ? 0 : -1);
-        this.animationsService.sleep(500).then(
-          () => this.isLoading = false
-        )
       }
     );
     this.authService.currentUserObservable.subscribe(

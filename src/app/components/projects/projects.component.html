@@ -1,8 +1,5 @@
 <mat-sidenav-container class="component-container">
-  <mat-sidenav-content>
-    <div class="d-flex justify-content-center mt-5" *ngIf="isLoading">
-      <mat-spinner></mat-spinner>
-    </div>
+  <mat-sidenav-content class="projects-container">
     <div *ngIf="user && user.roles && user.roles.admin">
       <div class="d-flex justify-content-end">
         <button mat-mini-fab class="m-2" (click)="onCreateProject()">
