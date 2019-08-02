@@ -110,7 +110,7 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
   - [ ] Hidden note feature
   - [ ] Hunt Bugs
 - [ ] About
-  - Weeks In Life Visualizer
+  - [ ] Weeks In Life Visualizer
 - [X] Auth
   - [X] Integrate admin authentication
 - [ ] Tags Admin
