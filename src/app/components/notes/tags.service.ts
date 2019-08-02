@@ -45,4 +45,8 @@ export class TagsService {
     tag.date = new Date();
     this.allTags.update(tag.id, tag);
   }
+
+  updateTag(tag: Tag): void {
+    this.allTags.update(tag.id, tag);
+  }
 }

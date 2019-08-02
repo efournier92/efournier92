@@ -23,6 +23,7 @@ import { ProjectViewComponent } from './components/projects/project-view/project
 import { TagsEditComponent } from './components/notes/tags-edit/tags-edit.component';
 import { FileInputComponent } from './components/file-input/file-input.component';
 import { NoteDialogComponent } from './components/notes/note-dialog/note-dialog.component';
+import { TagsDialogComponent } from './components/notes/tags-dialog/tags-dialog.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { AngularResizedEventModule } from 'angular-resize-event';
 
@@ -60,6 +61,7 @@ import { AuthComponent } from './components/auth/auth.component';
     ProjectViewComponent,
     FileInputComponent,
     NoteDialogComponent,
+    TagsDialogComponent,
     TagsEditComponent,
     AuthComponent,
   ],
@@ -98,6 +100,7 @@ import { AuthComponent } from './components/auth/auth.component';
   ],
   entryComponents: [
     NoteDialogComponent,
+    TagsDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
