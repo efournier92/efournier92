@@ -4,9 +4,9 @@ import { TagsService } from '../tags.service';
 import { Tag } from '../tag';
 
 @Component({
-  selector: 'app-notes-dialog',
-  templateUrl: './note-dialog.component.html',
-  styleUrls: ['./note-dialog.component.scss']
+  selector: 'app-tags-dialog',
+  templateUrl: './tags-dialog.component.html',
+  styleUrls: ['./tags-dialog.component.scss']
 })
 export class TagsDialogComponent implements OnInit {
 
