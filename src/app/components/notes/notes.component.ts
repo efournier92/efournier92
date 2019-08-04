@@ -8,6 +8,7 @@ import { Tag } from './tag';
 import { TagsService } from './tags.service';
 import { User } from '../auth/user';
 import { AuthService } from '../auth/auth.service';
+import { TagsDialogService } from './tags-dialog/tags-dialog.service';
 
 @Component({
   selector: 'app-notes',
@@ -27,6 +28,7 @@ export class NotesComponent implements OnInit {
     private authService: AuthService,
     private notesService: NotesService,
     private notesUploadDialog: NoteDialogService,
+    private tagsDialog: TagsDialogService,
     private tagsService: TagsService,
     private router: Router,
     private route: ActivatedRoute,
@@ -190,5 +192,9 @@ export class NotesComponent implements OnInit {
         }
       }
     )
+  }
+
+  openTagsDialog(): void {
+    this.tagsDialog.openDialog();
   }
 }
