@@ -9,13 +9,18 @@ import { Tag } from '../tag';
   styleUrls: ['./tags-dialog.component.scss']
 })
 export class TagsDialogComponent implements OnInit {
+  allTags: Tag[] = new Array<Tag>();
 
   constructor(
     public dialogRef: MatDialogRef<TagsDialogComponent>,
     public tagsService: TagsService,
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.tagsService.allTagsObservable.subscribe(
+      (tags: Tag[]) => this.allTags = tags
+    )
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

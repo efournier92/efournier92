@@ -1,6 +1,9 @@
 <div class="d-flex flex-column align-items-center">
   <div mat-dialog-content>
     <div class="d-flex action-button-container">
+      <mat-chip-list>
+        <mat-chip *ngFor="let tag of allTags">{{ tag.name }}</mat-chip>
+      </mat-chip-list>
       <!-- <button mat-raised-button class="w-75" color="accent" (click)="">
         <mat-icon>file_upload</mat-icon>
       </button>
