@@ -1,9 +1,28 @@
 <div class="d-flex flex-column align-items-center">
-  <div mat-dialog-content>
-    <div class="d-flex action-button-container">
-      <mat-chip-list>
-        <mat-chip *ngFor="let tag of allTags">{{ tag.name }}</mat-chip>
+  <div>
+    <mat-form-field class="example-chip-list">
+      <mat-chip-list #chipList>
+        <input placeholder="New fruit..." [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)">
       </mat-chip-list>
+    </mat-form-field>
+    <button mat-mini-fab class="m-2" (click)="createTag()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+
+  <div mat-dialog-content style="width: 100%;">
+    <mat-chip-list class="mat-chip-list-stacked">
+      <mat-chip *ngFor="let tag of allTags" [removable]="removable" (removed)="deleteTag(tag)">
+        {{ tag.name }}
+        <div class="spacer"></div>
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+
+    </mat-chip-list>
+    <div class="d-flex action-button-container">
       <!-- <button mat-raised-button class="w-75" color="accent" (click)="">
         <mat-icon>file_upload</mat-icon>
       </button>

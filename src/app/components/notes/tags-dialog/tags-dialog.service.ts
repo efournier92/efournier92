@@ -13,7 +13,7 @@ export class TagsDialogService {
 
   public openDialog(): MatDialogRef<TagsDialogComponent, any> {
     const dialogRef = this.dialog.open(TagsDialogComponent, {
-      width: '50%',
+      width: '324px',
     });
 
     return dialogRef;
