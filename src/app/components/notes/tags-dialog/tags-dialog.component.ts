@@ -26,6 +26,10 @@ export class TagsDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  createTag(tagName: string): void {
+    this.tagsService.createNewTag(tagName);
+  }
+
   updateTag(tag: Tag) {
     this.tagsService.updateTag(tag);
   }
