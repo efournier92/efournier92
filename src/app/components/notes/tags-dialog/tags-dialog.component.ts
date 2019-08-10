@@ -27,7 +27,8 @@ export class TagsDialogComponent implements OnInit {
   }
 
   createTag(tagName: string): void {
-    this.tagsService.createNewTag(tagName);
+    const newTag = this.tagsService.createNewTag(tagName);
+    this.tagsService.saveNewTag(newTag);
   }
 
   updateTag(tag: Tag) {
