@@ -101,6 +101,7 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 ## Features To Do
 - [ ] Landing Page
   - [X] Typing animation
+  - [ ] E Does
 - [ ] Projects
   - [X] View Project Styling
 - [ ] Notes
@@ -108,7 +109,7 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
   - [X] URL From GitHub option
   - [ ] Upload All Notes
   - [ ] Hidden note feature
-  - [ ] Hunt Bugs
+  - [X] Hunt Bugs
 - [ ] About
   - [ ] Weeks In Life Visualizer
 - [X] Auth
