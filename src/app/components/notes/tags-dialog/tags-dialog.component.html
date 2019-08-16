@@ -1,11 +1,7 @@
 <div class="d-flex flex-column align-items-center">
   <div>
-    <mat-form-field class="example-chip-list">
-      <mat-chip-list #newTagsList>
-        <input placeholder="New Tags" [matChipInputFor]="newTagsList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-          (matChipInputTokenEnd)="add($event)">
-      </mat-chip-list>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="New Tag" [(ngModel)]="newTagName">
     </mat-form-field>
     <button mat-button class="m-2" (click)="createTag()">
       <mat-icon>add</mat-icon>
@@ -16,9 +12,11 @@
   <div mat-dialog-content style="width: 100%;">
     <mat-chip-list class="mat-chip-list-stacked">
       <mat-chip *ngFor="let tag of allTags" [removable]="removable" (removed)="deleteTag(tag)">
-        {{ tag.name }}
+        <div *ngIf="tag.isEditing">{{ tag.name }}</div>
+        <input matInput [(ngModel)]="tag.name">
         <div class="spacer"></div>
-        <mat-icon matChipRemove>cancel</mat-icon>
+        <mat-icon (click)="editTagName(tag)" style="opacity: 0.5">edit</mat-icon>
+        <mat-icon (click)="deleteTag(tag)" style="opacity: 0.5">cancel</mat-icon>
       </mat-chip>
 
     </mat-chip-list>

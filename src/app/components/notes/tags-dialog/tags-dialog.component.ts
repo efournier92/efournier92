@@ -10,6 +10,7 @@ import { Tag } from '../tag';
 })
 export class TagsDialogComponent implements OnInit {
   allTags: Tag[] = new Array<Tag>();
+  newTagName: string;
 
   constructor(
     public dialogRef: MatDialogRef<TagsDialogComponent>,
@@ -26,12 +27,12 @@ export class TagsDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  createTag(tagName: string): void {
-    const newTag = this.tagsService.createNewTag(tagName);
+  createTag(): void {
+    const newTag = this.tagsService.createNewTag(this.newTagName);
     this.tagsService.saveNewTag(newTag);
   }
 
-  updateTag(tag: Tag) {
+  editTagName(tag: Tag) {
     this.tagsService.updateTag(tag);
   }
 
