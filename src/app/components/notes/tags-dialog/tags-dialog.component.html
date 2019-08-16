@@ -3,22 +3,22 @@
     <mat-form-field class="example-full-width">
       <input matInput placeholder="New Tag" [(ngModel)]="newTagName">
     </mat-form-field>
+    <mat-form-field *ngIf="tagToEdit">
+      <input matInput placeholder="Edit Tag" [(ngModel)]="tagToEdit.name">
+    </mat-form-field>
     <button mat-button class="m-2" (click)="createTag()">
       <mat-icon>add</mat-icon>
     </button>
   </div>
 
-
   <div mat-dialog-content style="width: 100%;">
     <mat-chip-list class="mat-chip-list-stacked">
-      <mat-chip *ngFor="let tag of allTags" [removable]="removable" (removed)="deleteTag(tag)">
+      <mat-chip *ngFor="let tag of allTags" (click)="editTag(tag)">
         <div *ngIf="tag.isEditing">{{ tag.name }}</div>
         <input matInput [(ngModel)]="tag.name">
         <div class="spacer"></div>
-        <mat-icon (click)="editTagName(tag)" style="opacity: 0.5">edit</mat-icon>
         <mat-icon (click)="deleteTag(tag)" style="opacity: 0.5">cancel</mat-icon>
       </mat-chip>
-
     </mat-chip-list>
     <div class="d-flex action-button-container">
       <!-- <button mat-raised-button class="w-75" color="accent" (click)="">

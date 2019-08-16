@@ -11,6 +11,7 @@ import { Tag } from '../tag';
 export class TagsDialogComponent implements OnInit {
   allTags: Tag[] = new Array<Tag>();
   newTagName: string;
+  tagToEdit: Tag;
 
   constructor(
     public dialogRef: MatDialogRef<TagsDialogComponent>,
@@ -32,11 +33,11 @@ export class TagsDialogComponent implements OnInit {
     this.tagsService.saveNewTag(newTag);
   }
 
-  editTagName(tag: Tag) {
-    this.tagsService.updateTag(tag);
-  }
-
   deleteTag(tag: Tag) {
     this.tagsService.deleteTag(tag);
+  }
+
+  editTag(tag: Tag) {
+    this.tagToEdit = tag;
   }
 }
