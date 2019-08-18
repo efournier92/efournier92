@@ -115,7 +115,7 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 - [X] Auth
   - [X] Integrate admin authentication
 - [ ] Tags Admin
-  - [ ] List all tags
+  - [X] List all tags
   - [ ] Rename tag
   - [ ] Delete tag
 
