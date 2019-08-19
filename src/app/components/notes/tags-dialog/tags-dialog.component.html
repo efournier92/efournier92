@@ -3,11 +3,16 @@
     <mat-form-field class="example-full-width">
       <input matInput placeholder="New Tag" [(ngModel)]="newTagName">
     </mat-form-field>
-    <mat-form-field *ngIf="tagToEdit">
-      <input matInput placeholder="Edit Tag" [(ngModel)]="tagToEdit.name">
-    </mat-form-field>
     <button mat-button class="m-2" (click)="createTag()">
       <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="tagToEdit">
+    <mat-form-field>
+      <input matInput placeholder="Click a Tag to Edit" [(ngModel)]="tagToEdit.name" [disabled]="tagToEdit.name == ''">
+    </mat-form-field>
+    <button mat-button class="m-2" (click)="createTag()" [disabled]="tagToEdit.name == ''">
+      <mat-icon>save</mat-icon>
     </button>
   </div>
 

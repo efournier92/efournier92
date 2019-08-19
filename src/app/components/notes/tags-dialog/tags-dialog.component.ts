@@ -11,7 +11,7 @@ import { Tag } from '../tag';
 export class TagsDialogComponent implements OnInit {
   allTags: Tag[] = new Array<Tag>();
   newTagName: string;
-  tagToEdit: Tag;
+  tagToEdit: Tag = new Tag('');
 
   constructor(
     public dialogRef: MatDialogRef<TagsDialogComponent>,
