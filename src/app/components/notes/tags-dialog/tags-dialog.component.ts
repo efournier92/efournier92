@@ -31,10 +31,17 @@ export class TagsDialogComponent implements OnInit {
   createTag(): void {
     const newTag = this.tagsService.createNewTag(this.newTagName);
     this.tagsService.saveNewTag(newTag);
+    this.newTagName = '';
+  }
+
+  updateTag(tag: Tag): void {
+    this.tagsService.updateTag(tag);
+    this.tagToEdit = new Tag('');
   }
 
   deleteTag(tag: Tag) {
     this.tagsService.deleteTag(tag);
+    this.tagToEdit = new Tag('');
   }
 
   editTag(tag: Tag) {

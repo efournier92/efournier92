@@ -11,20 +11,17 @@
     <mat-form-field>
       <input matInput placeholder="Click a Tag to Edit" [(ngModel)]="tagToEdit.name" [disabled]="tagToEdit.name == ''">
     </mat-form-field>
-    <button mat-button class="m-2" (click)="createTag()" [disabled]="tagToEdit.name == ''">
+    <button mat-button class="m-2" (click)="updateTag(tagToEdit)" [disabled]="tagToEdit.name == ''">
       <mat-icon>save</mat-icon>
     </button>
   </div>
-
   <div mat-dialog-content style="width: 100%;">
     <mat-chip-list class="mat-chip-list-stacked">
       <mat-chip *ngFor="let tag of allTags" (click)="editTag(tag)">
         <div *ngIf="tag.isEditing">{{ tag.name }}</div>
         <input matInput [(ngModel)]="tag.name">
         <div class="spacer"></div>
-        <mat-icon (click)="deleteTag(tag)" style="opacity: 0.5">cancel</mat-icon>
+        <mat-icon class="half-transparent" (click)="deleteTag(tag)">cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
-    <div class="d-flex action-button-container">
-    </div>
   </div>

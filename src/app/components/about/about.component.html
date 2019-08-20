@@ -8,12 +8,11 @@
             alt="efournier92" class="m-3" width="128px">
         </div>
       </div>
-      <p class="body-font" *ngFor="let aboutMe of aboutMes">
+      <p *ngFor="let aboutMe of aboutMes">
         <markdown>{{ aboutMe }}</markdown>
       </p>
       <div class="mt-4 mb-6">
-        <div class="row d-flex justify-content-center align-items-center mb-4"
-          *ngFor="let maxim of maxims; let i = index">
+        <div class="d-flex justify-content-center align-items-center mb-4" *ngFor="let maxim of maxims; let i = index">
           <div class="maxim-number col-1 d-flex justify-content-end">
             {{ i + 1 }}
           </div>

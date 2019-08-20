@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AboutMes, Maxims } from './AboutMeContent';
+import { AboutMes, Maxims } from './about-me-content'
 import { SessionService } from 'src/app/services/session.service';
 
 @Component({
