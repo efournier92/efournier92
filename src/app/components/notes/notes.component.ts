@@ -81,30 +81,6 @@ export class NotesComponent implements OnInit {
     )
   }
 
-  toggleSidenav() {
-  }
-
-  //       if (!result.params.tagName) {
-  //         this.redirectTo('all')
-  //       } else {
-  //         const selectedTag = this.findSelectedTag(result.params.tagName);
-  //         this.selectedTag = selectedTag ? selectedTag : this.findSelectedTag('all');
-  //       }
-  //       if (!result.params.fileName) {
-  //         this.redirectTo(this.selectedTag.name);
-  //       } else {
-  //         const selectedNote = this.findSelectedNote(result.params.fileName);
-  //         this.selectedNote = selectedNote ? selectedNote : undefined;
-  //         if (!this.selectedNote) {
-  //           this.redirectTo(this.selectedTag.name);
-  //         } else {
-  //           this.changeSelectedNote(this.selectedNote.fileName);
-  //         }
-  //       }
-  //     }
-  //   )
-  // }
-
   findSelectedTag(tagName: string): Tag {
     return this.allTags.find(
       (tag: Tag) => tag.name.toLowerCase() === tagName.toLowerCase(),

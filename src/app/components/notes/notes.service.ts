@@ -38,12 +38,10 @@ export class NotesService {
 
   upgradeToNotes(notes: Note[]) {
     for (const note of notes) {
-      note.path = `notes/${note.fileName}`;
-
       const oldUrl = note.url;
       const newUrl = oldUrl.replace("docs", "notes");
       note.url = newUrl;
-
+      note.path = `notes/${note.fileName}`;
       this.updateNote(note);
     }
   }
@@ -79,12 +77,14 @@ export class NotesService {
     function updateNoteEvent(note: Note): void {
       noteByIdSource.next(note);
     }
+
     noteObj.valueChanges().subscribe(
       (note: Note) => {
         if (note && note.id)
           updateNoteEvent(note);
       }
     )
+
     return noteByIdObservable;
   }
 

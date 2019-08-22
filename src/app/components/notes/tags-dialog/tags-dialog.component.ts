@@ -39,12 +39,12 @@ export class TagsDialogComponent implements OnInit {
     this.tagToEdit = new Tag('');
   }
 
+  editTag(tag: Tag) {
+    this.tagToEdit = tag;
+  }
+
   deleteTag(tag: Tag) {
     this.tagsService.deleteTag(tag);
     this.tagToEdit = new Tag('');
-  }
-
-  editTag(tag: Tag) {
-    this.tagToEdit = tag;
   }
 }

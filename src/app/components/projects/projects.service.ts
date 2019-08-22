@@ -15,7 +15,6 @@ export class ProjectsService {
     this.getProjects().valueChanges().subscribe(
       (projects: Project[]) => {
         this.updateProjectsEvent(projects);
-        // this.updateAllProjects(projects);
       }
     );
   }

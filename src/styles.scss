@@ -24,6 +24,10 @@ body {
   flex: 1 1 auto;
 }
 
+.display-none {
+  display: none;
+}
+
 .invert-color {
   filter: invert(100%);
 }

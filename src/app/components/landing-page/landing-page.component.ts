@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { AnimationsService } from 'src/app/animations.service';
+import { AnimationsService } from 'src/app/services/animations.service';
 import { SessionService } from 'src/app/services/session.service';
 
 @Component({
@@ -33,23 +33,14 @@ export class LandingPageComponent implements OnInit {
   showButtonsAnimation(): void {
     this.animations.awaitNextKeystroke(5000).then(
       () => {
-        const numberOfButtons = this.shownButtons.length;
-
         this.sessionService.justSawLandingAnimation();
-
-        for (let i = 0; i <= numberOfButtons; i++) {
-          // this.showNextButton(i).then;
-        }
       }
     );
   }
 
-  showNextButton(index: number): Promise<void> {
+  async showNextButton(index: number): Promise<void> {
     if (index >= this.shownButtons.length) return;
-    return this.animations.awaitNextKeystroke(5000).then(
-      () => {
-        this.shownButtons[index] = true;
-      }
-    )
+    await this.animations.awaitNextKeystroke(5000);
+    this.shownButtons[index] = true;
   }
 }

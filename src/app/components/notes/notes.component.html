@@ -14,11 +14,7 @@
       <mat-menu #menu="matMenu">
         <button mat-menu-item *ngFor="let tag of allTags" (click)="changeTag(tag)">{{ tag.name }}</button>
       </mat-menu>
-      <!-- <button mat-button class="sidenav-toggle-button" (click)="sidenav.toggle()">
-        <mat-icon>{{ sidenav.opened ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}</mat-icon>
-      </button> -->
     </div>
-
     <mat-list>
       <mat-divider></mat-divider>
       <div class="sidenav-project-select" *ngFor="let note of filteredNotes">
@@ -29,9 +25,6 @@
   </mat-drawer>
   <mat-drawer-content class="overflow-x-hide">
     <div class="note-controls-toolbar d-flex justify-content-end m-2">
-      <!-- <button mat-button class="sidenav-toggle-button" (click)="sidenav.toggle()">
-        <mat-icon>{{ sidenav.opened ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}</mat-icon>
-      </button> -->
       <button mat-button class="mr-1" (click)="sidenav.toggle()">
         <mat-icon>{{ sidenav.opened ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}</mat-icon>
       </button>

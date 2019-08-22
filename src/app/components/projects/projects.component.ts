@@ -17,7 +17,6 @@ export class ProjectsComponent implements OnInit {
   constructor(
     private projectsService: ProjectsService,
     private authService: AuthService,
-    private animationsService: AnimationsService,
   ) { }
 
   ngOnInit() {

@@ -19,5 +19,4 @@ export class AuthComponent implements OnInit {
       (user: User) => this.user = user
     )
   }
-
 }

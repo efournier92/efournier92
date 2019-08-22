@@ -114,8 +114,8 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
   - [ ] Weeks In Life Visualizer
 - [X] Auth
   - [X] Integrate admin authentication
-- [ ] Tags Admin
+- [X] Tags Admin
   - [X] List all tags
-  - [ ] Rename tag
-  - [ ] Delete tag
+  - [X] Rename tag
+  - [X] Delete tag
 
