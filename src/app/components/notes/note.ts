@@ -10,6 +10,7 @@ export class Note {
   path: string = '';
   url: string = '';
   tags: Tag[] = new Array<Tag>();
+  isHidden: boolean;
 }
 
 export interface NoteUpload {

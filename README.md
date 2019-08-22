@@ -108,8 +108,8 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
   - [X] Change from Docs to Notes Paradigm
   - [X] URL From GitHub option
   - [ ] Upload All Notes
-  - [ ] Hidden note feature
-  - [X] Hunt Bugs
+  - [~] Hidden note feature
+  - [ ] Hunt Bugs
 - [ ] About
   - [ ] Weeks In Life Visualizer
 - [X] Auth
