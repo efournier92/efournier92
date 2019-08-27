@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AnimationsService } from 'src/app/animations.service';
+import { AnimationsService } from 'src/app/services/animations.service';
 
 @Component({
   selector: 'app-typewriter',

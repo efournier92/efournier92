@@ -3,7 +3,7 @@ import { ProjectsService } from './projects.service';
 import { Project } from './project';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user';
-import { AnimationsService } from 'src/app/animations.service';
+import { AnimationsService } from 'src/app/services/animations.service';
 
 @Component({
   selector: 'app-projects',
