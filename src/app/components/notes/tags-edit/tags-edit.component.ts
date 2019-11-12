@@ -76,7 +76,6 @@ export class TagsEditComponent implements OnInit {
       let tag = new Tag(tagName);
       if (!this.allTags.find(tag => tag.name === tagName)) {
         tag = this.tagsService.createNewTag(tagName);
-        this.tagsService.saveNewTag(tag);
       } else {
         tag = this.allTags.find(tag => tag.name === tagName);
       }

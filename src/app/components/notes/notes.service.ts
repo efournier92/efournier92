@@ -16,9 +16,9 @@ export class NotesService {
   notes: AngularFireList<Note>;
   allNotes: AngularFireList<Note>;
   allNotesArray: Note[] = new Array<Note>();
+  allTags: Tag[];
   noteCount: number = 0;
   increment: number = 2;
-  allTags: Tag[];
 
   constructor(
     private storage: AngularFireStorage,

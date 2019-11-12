@@ -68,10 +68,5 @@ export class NoteDialogComponent implements OnInit {
   }
 
   onTagsChanged(noteTags: Tag[]) {
-    let tagIds = [];
-    for (const tag of noteTags) {
-      tagIds.push(tag.id);
-    }
-    this.note.tagIds = tagIds;
+    this.note.tags = noteTags
   }
-}
