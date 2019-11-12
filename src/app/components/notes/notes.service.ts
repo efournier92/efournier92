@@ -25,25 +25,9 @@ export class NotesService {
     private db: AngularFireDatabase,
     private tagsService: TagsService,
   ) {
-    this.getAllNotes().valueChanges().subscribe(
-      (notes: Note[]) => {
-        this.updateAllNotesEvent(notes);
-        // this.upgradeToNotes(notes);
-      }
-    );
     this.tagsService.getAllTags().valueChanges().subscribe(
       tags => this.allTags = tags
     )
-  }
-
-  upgradeToNotes(notes: Note[]) {
-    for (const note of notes) {
-      const oldUrl = note.url;
-      const newUrl = oldUrl.replace("docs", "notes");
-      note.url = newUrl;
-      note.path = `notes/${note.fileName}`;
-      this.updateNote(note);
-    }
   }
 
   updateNote(note: Note): void {
@@ -95,10 +79,10 @@ export class NotesService {
     }
     note.id = this.db.createPushId();
     note.path = `notes/${note.fileName}`;
-    for (const tagObj of note.tags) {
+    const noteTags = this.tagsService.getTagsByIds(note.tagIds);
+    for (const tagObj of noteTags) {
       if (!this.allTags.find(tag => tag.name === tagObj.name)) {
-        let newTag = this.tagsService.createNewTag(tagObj.name);
-        this.tagsService.saveNewTag(newTag);
+        this.tagsService.saveNewTag(tagObj);
       }
     }
     if (!file) {

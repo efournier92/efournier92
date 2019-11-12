@@ -8,15 +8,42 @@ import { Tag } from './tag';
 })
 export class TagsService {
   allTags: AngularFireList<Tag>;
+  allTagsArray: Tag[];
 
   constructor(
     private db: AngularFireDatabase,
   ) {
     this.getAllTags().valueChanges().subscribe(
       (tags: Tag[]) => {
-        this.updateAllNotesEvent(tags);
+        this.updateAllTagsEvent(tags);
       }
     );
+  }
+
+  getTagName(tagId: string): any {
+    let tagObj = this.db.object(`users/${tagId}`);
+    tagObj.valueChanges().subscribe(
+      (tag: Tag) => {
+        return tag.name;
+      }
+    )
+  }
+
+  getTagsByIds(ids: string[]): Tag[] {
+    let tags = [];
+    for (const id in ids) {
+      let tag = this.getTagById(id);
+      tags.push(tag);
+    }
+    return tags;
+  }
+
+  getTagById(id: string): Tag {
+    return this.allTagsArray.find(
+      (tag: Tag) => {
+        return tag.id === id;
+      }
+    )
   }
 
   deleteTag(tag: Tag): void {
@@ -26,8 +53,9 @@ export class TagsService {
   private allTagsSource: BehaviorSubject<Tag[]> = new BehaviorSubject([]);
   allTagsObservable: Observable<Tag[]> = this.allTagsSource.asObservable();
 
-  updateAllNotesEvent(note: Tag[]): void {
-    this.allTagsSource.next(note);
+  updateAllTagsEvent(tags: Tag[]): void {
+    this.allTagsSource.next(tags);
+    this.allTagsArray = tags;
   }
 
   getAllTags(): AngularFireList<Tag> {

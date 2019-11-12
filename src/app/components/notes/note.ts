@@ -9,7 +9,7 @@ export class Note {
   date: Date;
   path: string = '';
   url: string = '';
-  tags: Tag[] = new Array<Tag>();
+  tagIds: string[] = new Array<string>();
   isHidden: boolean;
 }
 

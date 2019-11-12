@@ -55,6 +55,7 @@ export class NotesComponent implements OnInit {
       (tags: Tag[]) => {
         if (tags && tags.length === 0) {
           const tag = this.tagsService.createNewTag('All')
+          tags.push(tag);
           this.tagsService.saveNewTag(tag)
         }
         this.allTags = tags;
@@ -113,8 +114,9 @@ export class NotesComponent implements OnInit {
     } else {
       this.filteredNotes = [];
       for (const note of this.allNotes) {
-        if (!note.tags) return;
-        for (const tag of note.tags) {
+        if (!note.tagIds) return;
+        let noteTags = this.tagsService.getTagsByIds(note.tagIds);
+        for (const tag of noteTags) {
           if (tag.name && tagName && tagName.toLowerCase() === tag.name.toLowerCase() && !this.filteredNotes.find(filterNote => filterNote.id === note.id)) {
             this.filteredNotes.push(note);
           }
@@ -134,9 +136,10 @@ export class NotesComponent implements OnInit {
           const fileName: string = note.fileName.toLowerCase();
           const title: string = note.title.toLowerCase();
           const query: string = searchQuery.toLowerCase();
+          const noteTags = this.tagsService.getTagsByIds(note.tagIds);
           if (fileName.includes(query) || title.includes(query))
             isRelevant = true;
-          for (const tag of note.tags) {
+          for (const tag of noteTags) {
             const tagName = tag.name.toLowerCase();
             if (tagName.includes(query))
               isRelevant = true;
@@ -172,5 +175,14 @@ export class NotesComponent implements OnInit {
 
   openTagsDialog(): void {
     this.tagsDialog.openDialog();
+  }
+
+  getTagName(tagId: string): string {
+    const tag = this.allTags.find(
+      (tag: Tag) => {
+        return tag.id === tagId
+      }
+    )
+    return tag.name;
   }
 }

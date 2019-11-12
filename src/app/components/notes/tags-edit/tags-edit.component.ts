@@ -20,13 +20,14 @@ export class TagsEditComponent implements OnInit {
   tagCtrl = new FormControl();
   selectedTags: Tag[] = [];
   allTags: Tag[] = [];
+  noteTags: Tag[] = [];
   @ViewChild('tagInput')
   tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto')
   matAutocomplete: MatAutocomplete;
   filteredTags: Observable<Tag[]>;
   @Input()
-  noteTags: Tag[];
+  noteTagIds: string[];
   @Output()
   onTagsChangedEvent = new EventEmitter<Tag[]>();
 
@@ -36,25 +37,38 @@ export class TagsEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeToTags();
-    const tag = new Tag("All");
-    if (!this.noteTags || this.noteTags.length < 1) {
-      this.selectedTags.push(tag);
-    } else {
-      for (const tag of this.noteTags) {
-        this.selectedTags.push(tag);
-      }
-    }
   }
 
   subscribeToTags(): void {
     this.tagsService.getAllTags().valueChanges().subscribe(
       (tags: Tag[]) => {
         this.allTags = tags;
+        this.noteTags = this.tagsService.getTagsByIds(this.noteTagIds);
+        if (!this.noteTags || this.noteTags.length < 1) {
+          const tag = tags.find(
+            (tag: Tag) => {
+              return tag.name === 'All'
+            }
+          )
+          this.selectedTags.push(tag);
+        } else {
+          for (const tag of this.noteTags) {
+            this.selectedTags.push(tag);
+          }
+        }
       }
     )
   }
 
-  add(event: MatChipInputEvent): void {
+  getTagFromId(id: string): Tag {
+    return this.allTags.find(
+      (tag: Tag) => {
+        return tag.id === id;
+      }
+    )
+  }
+
+  addTag(event: MatChipInputEvent): void {
     const input = event.input;
     const tagName = event.value.trim();
 
@@ -62,11 +76,12 @@ export class TagsEditComponent implements OnInit {
       let tag = new Tag(tagName);
       if (!this.allTags.find(tag => tag.name === tagName)) {
         tag = this.tagsService.createNewTag(tagName);
+        this.tagsService.saveNewTag(tag);
       } else {
         tag = this.allTags.find(tag => tag.name === tagName);
       }
       this.selectedTags.push(tag);
-      this.onTagsChanged(this.selectedTags)
+      this.onTagsChanged(this.selectedTags);
     }
 
     if (input) {
@@ -85,6 +100,7 @@ export class TagsEditComponent implements OnInit {
     this.selectedTags.push(tag);
     this.tagInput.nativeElement.value = '';
     this.tagCtrl.setValue(null);
+    this.onTagsChanged(this.selectedTags);
   }
 
   onTagsChanged(selectedTags): void {

@@ -7,7 +7,7 @@
     </mat-chip>
     <input placeholder="Tags" #tagInput [formControl]="tagCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList"
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-      (matChipInputTokenEnd)="add($event)">
+      (matChipInputTokenEnd)="addTag($event)">
   </mat-chip-list>
   <mat-autocomplete class="w-100" #auto="matAutocomplete" (optionSelected)="selected($event)">
     <mat-option *ngFor="let tag of allTags" [value]="tag">

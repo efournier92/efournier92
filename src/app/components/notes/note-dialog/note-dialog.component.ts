@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NotesService } from '../notes.service';
 import { Note } from '../note';
 import { Tag } from '../tag';
+import { TagsService } from '../tags.service';
 
 export interface DialogData {
   mode: string;
@@ -18,10 +19,12 @@ export class NoteDialogComponent implements OnInit {
   note: Note = new Note();
   uploadFile: File;
   isEditingNote: boolean = false;
+  allTags: Tag[];
 
   constructor(
     public dialogRef: MatDialogRef<NoteDialogComponent>,
     public notesService: NotesService,
+    public tagsService: TagsService,
     @Inject(MAT_DIALOG_DATA) public dialogData: DialogData,
   ) { }
 
@@ -30,9 +33,12 @@ export class NoteDialogComponent implements OnInit {
       this.note = this.dialogData.note;
       this.isEditingNote = true;
     }
+    this.tagsService.getAllTags().valueChanges().subscribe(
+      tags => this.allTags = tags
+    )
   }
 
-  onNoClick(): void {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 
@@ -43,12 +49,13 @@ export class NoteDialogComponent implements OnInit {
   }
 
   uploadNote() {
-    this.note.title = this.note.title;
     this.notesService.uploadNote(this.uploadFile, this.note, this.dialogRef);
+    this.closeDialog;
   }
 
   deleteNote() {
     this.notesService.deleteNote(this.note);
+    this.closeDialog;
   }
 
   parseFilename(filename: string) {
@@ -61,6 +68,10 @@ export class NoteDialogComponent implements OnInit {
   }
 
   onTagsChanged(noteTags: Tag[]) {
-    this.note.tags = noteTags;
+    let tagIds = [];
+    for (const tag of noteTags) {
+      tagIds.push(tag.id);
+    }
+    this.note.tagIds = tagIds;
   }
 }
