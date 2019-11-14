@@ -39,11 +39,10 @@ export class NoteDialogComponent implements OnInit {
   onInputFileChange(file: File) {
     this.note.fileName = file[0].name;
     this.uploadFile = file;
-    this.note.title = this.parseFilename(this.note.fileName);
+    // this.note.title = this.parseFilename(this.note.fileName);
   }
 
   uploadNote() {
-    this.note.title = this.note.title;
     this.notesService.uploadNote(this.uploadFile, this.note, this.dialogRef);
   }
 

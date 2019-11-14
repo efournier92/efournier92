@@ -114,7 +114,8 @@ export class NotesComponent implements OnInit {
       this.filteredNotes = [];
       for (const note of this.allNotes) {
         if (!note.tags) return;
-        for (const tag of note.tags) {
+        note.tags = this.tagsService.populateTags(note.tags);
+        for (let tag of note.tags) {
           if (tag.name && tagName && tagName.toLowerCase() === tag.name.toLowerCase() && !this.filteredNotes.find(filterNote => filterNote.id === note.id)) {
             this.filteredNotes.push(note);
           }
@@ -136,6 +137,7 @@ export class NotesComponent implements OnInit {
           const query: string = searchQuery.toLowerCase();
           if (fileName.includes(query) || title.includes(query))
             isRelevant = true;
+          note.tags = this.tagsService.populateTags(note.tags);
           for (const tag of note.tags) {
             const tagName = tag.name.toLowerCase();
             if (tagName.includes(query))

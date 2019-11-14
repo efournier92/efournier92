@@ -36,20 +36,20 @@ export class TagsEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeToTags();
-    const tag = new Tag("All");
-    if (!this.noteTags || this.noteTags.length < 1) {
-      this.selectedTags.push(tag);
-    } else {
-      for (const tag of this.noteTags) {
-        this.selectedTags.push(tag);
-      }
-    }
   }
 
   subscribeToTags(): void {
     this.tagsService.getAllTags().valueChanges().subscribe(
       (tags: Tag[]) => {
         this.allTags = tags;
+        if (!this.noteTags || this.noteTags.length < 1) {
+          const tag: Tag = this.allTags.find(t => t.name === "All");
+          this.selectedTags.push(tag);
+        } else {
+          for (const tag of this.noteTags) {
+            this.selectedTags.push(tag);
+          }
+        }
       }
     )
   }
