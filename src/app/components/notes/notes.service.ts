@@ -85,6 +85,7 @@ export class NotesService {
         this.tagsService.saveNewTag(tagObj);
       }
     }
+    note.tags = this.tagsService.stripTags(note.tags);
     if (!file) {
       const notesDb: AngularFireList<Object> = this.db.list('notes');
       notesDb.update(note.id, note);

@@ -43,6 +43,7 @@ export class TagsEditComponent implements OnInit {
     this.tagsService.getAllTags().valueChanges().subscribe(
       (tags: Tag[]) => {
         this.allTags = tags;
+<<<<<<< HEAD
         this.noteTags = this.tagsService.getTagsByIds(this.noteTagIds);
         if (!this.noteTags || this.noteTags.length < 1) {
           const tag = tags.find(
@@ -50,12 +51,17 @@ export class TagsEditComponent implements OnInit {
               return tag.name === 'All'
             }
           )
+=======
+        if (!this.noteTags || this.noteTags.length < 1) {
+          const tag: Tag = this.allTags.find(t => t.name === "All");
+>>>>>>> 86108c7
           this.selectedTags.push(tag);
         } else {
           for (const tag of this.noteTags) {
             this.selectedTags.push(tag);
           }
         }
+<<<<<<< HEAD
       }
     )
   }
@@ -64,6 +70,8 @@ export class TagsEditComponent implements OnInit {
     return this.allTags.find(
       (tag: Tag) => {
         return tag.id === id;
+=======
+>>>>>>> 86108c7
       }
     )
   }

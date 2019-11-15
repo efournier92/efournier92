@@ -15,7 +15,12 @@ export class TagsService {
   ) {
     this.getAllTags().valueChanges().subscribe(
       (tags: Tag[]) => {
-        this.updateAllTagsEvent(tags);
+        if (tags || tags.length < 0)
+          this.updateAllTagsEvent(tags);
+        if (!tags.find(tag => tag.name === 'All')) {
+          var newTag = this.createNewTag('All');
+          this.saveNewTag(newTag);
+        }
       }
     );
   }
@@ -55,7 +60,7 @@ export class TagsService {
 
   updateAllTagsEvent(tags: Tag[]): void {
     this.allTagsSource.next(tags);
-    this.allTagsArray = tags;
+    this.allTagsArray = tags
   }
 
   getAllTags(): AngularFireList<Tag> {
@@ -76,5 +81,22 @@ export class TagsService {
 
   updateTag(tag: Tag): void {
     this.allTags.update(tag.id, tag);
+  }
+
+  stripTags(tags: Tag[]): Tag[] {
+    for (const tag of tags) {
+      if (tag.name)
+        delete tag.name;
+      if (tag.date)
+        delete tag.date;
+    }
+    return tags;
+  }
+
+  populateTags(tags: Tag[]): Tag[] {
+    for (let noteTag of tags) {
+      noteTag = this.allTagsArray.find(tag => tag.id === noteTag.id);
+    }
+    return tags;
   }
 }

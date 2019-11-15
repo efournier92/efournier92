@@ -45,7 +45,7 @@ export class NoteDialogComponent implements OnInit {
   onInputFileChange(file: File) {
     this.note.fileName = file[0].name;
     this.uploadFile = file;
-    this.note.title = this.parseFilename(this.note.fileName);
+    // this.note.title = this.parseFilename(this.note.fileName);
   }
 
   uploadNote() {
@@ -70,3 +70,4 @@ export class NoteDialogComponent implements OnInit {
   onTagsChanged(noteTags: Tag[]) {
     this.note.tags = noteTags
   }
+}
