@@ -34,7 +34,9 @@ export class NoteDialogComponent implements OnInit {
       this.isEditingNote = true;
     }
     this.tagsService.getAllTags().valueChanges().subscribe(
-      tags => this.allTags = tags
+      (tags: Tag[]) => {
+        this.allTags = tags;
+      }
     )
   }
 
@@ -49,13 +51,13 @@ export class NoteDialogComponent implements OnInit {
   }
 
   uploadNote() {
+    this.closeDialog();
     this.notesService.uploadNote(this.uploadFile, this.note, this.dialogRef);
-    this.closeDialog;
   }
 
   deleteNote() {
+    this.closeDialog();
     this.notesService.deleteNote(this.note);
-    this.closeDialog;
   }
 
   parseFilename(filename: string) {

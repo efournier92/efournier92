@@ -11,7 +11,7 @@
       <mat-form-field class="w-100">
         <input matInput [(ngModel)]="note.title" [value]="note.title" placeholder="Title" name="note-title">
       </mat-form-field>
-      <app-tags-edit [noteTagIds]="note.tagIds" (onTagsChangedEvent)="onTagsChanged($event)"></app-tags-edit>
+      <app-tags-edit [noteTags]="note.tags" (onTagsChangedEvent)="onTagsChanged($event)"></app-tags-edit>
       <mat-form-field class="w-100">
         <input matInput [matDatepicker]="picker" [(ngModel)]="note.date" [value]="note.date" name="noteDate"
           placeholder="Date">

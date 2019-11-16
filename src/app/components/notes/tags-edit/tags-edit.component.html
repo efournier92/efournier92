@@ -9,7 +9,7 @@
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
       (matChipInputTokenEnd)="addTag($event)">
   </mat-chip-list>
-  <mat-autocomplete class="w-100" #auto="matAutocomplete" (optionSelected)="selected($event)">
+  <mat-autocomplete class="w-100" #auto="matAutocomplete" (optionSelected)="dropdownSelected($event)">
     <mat-option *ngFor="let tag of allTags" [value]="tag">
       {{ tag.name }}
     </mat-option>

@@ -73,14 +73,13 @@ export class NotesService {
   }
 
   uploadNote(file: File, note: Note, dialogRef: MatDialogRef<NoteDialogComponent>): NoteUpload {
-    const existingNote = this.allNotesArray.find(findNote => findNote.fileName === note.fileName);
+    const existingNote = this.allNotesArray.find(searchNote => searchNote.title === note.title);
     if (existingNote) {
       this.deleteNote(existingNote);
     }
     note.id = this.db.createPushId();
     note.path = `notes/${note.fileName}`;
-    const noteTags = this.tagsService.getTagsByIds(note.tagIds);
-    for (const tagObj of noteTags) {
+    for (const tagObj of note.tags) {
       if (!this.allTags.find(tag => tag.name === tagObj.name)) {
         this.tagsService.saveNewTag(tagObj);
       }

@@ -98,7 +98,8 @@ export class NotesComponent implements OnInit {
     this.selectedNote = this.allNotes.find(
       note => note.fileName === fileName,
     )
-    this.redirectTo(this.selectedTag.name, this.selectedNote.fileName)
+    this.selectedNote.tags = this.tagsService.populateTags(this.selectedNote.tags);
+    this.redirectTo(this.selectedTag.name, this.selectedNote.title);
   }
 
   filterNotesByTagName(tagName: string): void {
@@ -114,7 +115,8 @@ export class NotesComponent implements OnInit {
     } else {
       this.filteredNotes = [];
       for (const note of this.allNotes) {
-        if (!note.tags) return;
+        if (!note.tags)
+          return;
         note.tags = this.tagsService.populateTags(note.tags);
         for (let tag of note.tags) {
           if (tag.name && tagName && tagName.toLowerCase() === tag.name.toLowerCase() && !this.filteredNotes.find(filterNote => filterNote.id === note.id)) {

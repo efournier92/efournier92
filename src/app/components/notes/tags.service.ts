@@ -94,9 +94,12 @@ export class TagsService {
   }
 
   populateTags(tags: Tag[]): Tag[] {
-    for (let noteTag of tags) {
-      noteTag = this.allTagsArray.find(tag => tag.id === noteTag.id);
+    let outTags: Tag[] = new Array<Tag>();
+    for (const noteTag of tags) {
+      const fullTag = this.allTagsArray.find(tag => tag.id === noteTag.id);
+      if (fullTag)
+        outTags.push(fullTag);
     }
-    return tags;
+    return outTags;
   }
 }

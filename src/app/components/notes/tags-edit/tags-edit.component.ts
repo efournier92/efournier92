@@ -20,14 +20,13 @@ export class TagsEditComponent implements OnInit {
   tagCtrl = new FormControl();
   selectedTags: Tag[] = [];
   allTags: Tag[] = [];
-  noteTags: Tag[] = [];
   @ViewChild('tagInput')
   tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto')
   matAutocomplete: MatAutocomplete;
   filteredTags: Observable<Tag[]>;
   @Input()
-  noteTagIds: string[];
+  noteTags: Tag[];
   @Output()
   onTagsChangedEvent = new EventEmitter<Tag[]>();
 
@@ -43,35 +42,14 @@ export class TagsEditComponent implements OnInit {
     this.tagsService.getAllTags().valueChanges().subscribe(
       (tags: Tag[]) => {
         this.allTags = tags;
-<<<<<<< HEAD
-        this.noteTags = this.tagsService.getTagsByIds(this.noteTagIds);
-        if (!this.noteTags || this.noteTags.length < 1) {
-          const tag = tags.find(
-            (tag: Tag) => {
-              return tag.name === 'All'
-            }
-          )
-=======
         if (!this.noteTags || this.noteTags.length < 1) {
           const tag: Tag = this.allTags.find(t => t.name === "All");
->>>>>>> 86108c7
           this.selectedTags.push(tag);
         } else {
           for (const tag of this.noteTags) {
             this.selectedTags.push(tag);
           }
         }
-<<<<<<< HEAD
-      }
-    )
-  }
-
-  getTagFromId(id: string): Tag {
-    return this.allTags.find(
-      (tag: Tag) => {
-        return tag.id === id;
-=======
->>>>>>> 86108c7
       }
     )
   }
@@ -102,12 +80,12 @@ export class TagsEditComponent implements OnInit {
     this.selectedTags = this.selectedTags.filter(tag => tag.name !== tagName);
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
+  dropdownSelected(event: MatAutocompleteSelectedEvent): void {
     let tag = this.allTags.find(tag => tag.name === event.option.viewValue);
     this.selectedTags.push(tag);
+    this.onTagsChanged(this.selectedTags);
     this.tagInput.nativeElement.value = '';
     this.tagCtrl.setValue(null);
-    this.onTagsChanged(this.selectedTags);
   }
 
   onTagsChanged(selectedTags): void {

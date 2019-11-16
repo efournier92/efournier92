@@ -33,7 +33,7 @@
         <button mat-mini-fab class="mr-1" (click)="openNoteDialog('new')">
           <mat-icon>file_upload</mat-icon>
         </button>
-        <button mat-mini-fab class="mr-1" (click)="openNoteDialog('edit')" *ngIf="selectedNote && selectedNote.id">
+        <button mat-mini-fab class="mr-1" (click)="openNoteDialog('edit')" *ngIf="selectedNote && selectedNote.title">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-mini-fab (click)="openTagsDialog()">
@@ -42,10 +42,10 @@
       </div>
     </div>
     <div class="ml-md-3 ml-2 ">
-      <mat-chip-list class=" m-1" *ngIf="selectedNote && selectedNote.tagIds">
-        <mat-chip (click)="redirectTo(tag.name)" *ngFor="let tagId of selectedNote.tagIds">
-          <div *ngIf="tagId">
-            {{ getTagName(tag.id) }}
+      <mat-chip-list class="m-1" *ngIf="selectedNote && selectedNote.tags">
+        <mat-chip (click)="redirectTo(tag.name)" *ngFor="let tag of selectedNote.tags">
+          <div *ngIf="tag.name">
+            {{ tag.name }}
           </div>
         </mat-chip>
       </mat-chip-list>
