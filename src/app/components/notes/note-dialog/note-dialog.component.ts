@@ -4,6 +4,7 @@ import { NotesService } from '../notes.service';
 import { Note } from '../note';
 import { Tag } from '../tag';
 import { TagsService } from '../tags.service';
+import { Router } from '@angular/router';
 
 export interface DialogData {
   mode: string;
@@ -25,6 +26,7 @@ export class NoteDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<NoteDialogComponent>,
     public notesService: NotesService,
     public tagsService: TagsService,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public dialogData: DialogData,
   ) { }
 
@@ -58,6 +60,7 @@ export class NoteDialogComponent implements OnInit {
   deleteNote() {
     this.closeDialog();
     this.notesService.deleteNote(this.note);
+    this.router.navigateByUrl(`notes/All`);
   }
 
   parseFilename(filename: string) {
