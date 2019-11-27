@@ -3,6 +3,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete } from '@angular/material';
 import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { TagsService } from '../tags.service';
 import { Tag } from '../tag';
 
@@ -17,7 +18,7 @@ export class TagsEditComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  tagCtrl = new FormControl();
+  tagControl = new FormControl();
   selectedTags: Tag[] = [];
   allTags: Tag[] = [];
   @ViewChild('tagInput')
@@ -36,12 +37,22 @@ export class TagsEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeToTags();
+    this.filteredTags = this.tagControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+    // .pipe(
+    //   startWith(''),
+    //   map(value => this._filter(value))
+    // );
   }
 
   subscribeToTags(): void {
     this.tagsService.getAllTags().valueChanges().subscribe(
       (tags: Tag[]) => {
         this.allTags = tags;
+        // this.filteredTags = this.allTags;
         if (!this.noteTags || this.noteTags.length < 1) {
           const tag: Tag = this.allTags.find(t => t.name === "All");
           this.selectedTags.push(tag);
@@ -73,7 +84,7 @@ export class TagsEditComponent implements OnInit {
       input.value = '';
     }
 
-    this.tagCtrl.setValue(null);
+    this.tagControl.setValue(null);
   }
 
   remove(tagName: string): void {
@@ -85,10 +96,16 @@ export class TagsEditComponent implements OnInit {
     this.selectedTags.push(tag);
     this.onTagsChanged(this.selectedTags);
     this.tagInput.nativeElement.value = '';
-    this.tagCtrl.setValue(null);
+    this.tagControl.setValue(null);
   }
 
-  onTagsChanged(selectedTags): void {
+  onTagsChanged(selectedTags: Tag[]): void {
     this.onTagsChangedEvent.emit(selectedTags);
+  }
+
+  private _filter(value: string): Tag[] {
+    if (!value) return;
+    const filterValue = value.toLowerCase();
+    return this.allTags.filter(tag => tag.name.toLowerCase().includes(filterValue));
   }
 }
