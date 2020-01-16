@@ -5,6 +5,7 @@ import { NotesComponent } from './components/notes/notes.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { ResumeComponent } from './components/resume/resume.component';
 
 const routes: Routes =
   [
@@ -35,6 +36,10 @@ const routes: Routes =
     {
       path: 'auth',
       component: AuthComponent,
+    },
+    {
+      path: 'resume',
+      component: ResumeComponent,
     },
   ]
 

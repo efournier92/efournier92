@@ -1,4 +1,4 @@
-import { FireConfig, FireAuthConfig } from 'src/environments/app-configs.prod';
+// import { FireConfig, FireAuthConfig } from 'src/environments/app-configs.prod';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -47,6 +47,7 @@ import {
   MatToolbarModule,
 } from '@angular/material';
 import { AuthComponent } from './components/auth/auth.component';
+import { ResumeComponent } from './components/resume/resume.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { AuthComponent } from './components/auth/auth.component';
     TagsDialogComponent,
     TagsEditComponent,
     AuthComponent,
+    ResumeComponent,
   ],
   imports: [
     BrowserModule,
