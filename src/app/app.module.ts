@@ -1,4 +1,4 @@
-// import { FireConfig, FireAuthConfig } from 'src/environments/app-configs.prod';
+import { FireConfig, FireAuthConfig } from 'src/environments/app-configs.prod';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
