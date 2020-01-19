@@ -26,6 +26,9 @@ import { NoteDialogComponent } from './components/notes/note-dialog/note-dialog.
 import { TagsDialogComponent } from './components/notes/tags-dialog/tags-dialog.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { AngularResizedEventModule } from 'angular-resize-event';
+import { NvD3Module } from 'ng2-nvd3';
+import 'd3';
+import 'nvd3';
 
 import {
   MatAutocompleteModule,
@@ -48,6 +51,7 @@ import {
 } from '@angular/material';
 import { AuthComponent } from './components/auth/auth.component';
 import { ResumeComponent } from './components/resume/resume.component';
+import { SunburstChartComponent } from './components/resume/sunburst-chart/sunburst-chart.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +70,7 @@ import { ResumeComponent } from './components/resume/resume.component';
     TagsEditComponent,
     AuthComponent,
     ResumeComponent,
+    SunburstChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +87,7 @@ import { ResumeComponent } from './components/resume/resume.component';
     StorageServiceModule,
     MarkdownModule.forRoot({ 'loader': HttpClient }),
     AngularResizedEventModule,
+    NvD3Module,
     MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
