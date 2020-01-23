@@ -2,13 +2,14 @@ export const ChartOptions = {
   chart: {
     type: 'sunburstChart',
     height: 450,
-    color: d3.scale.category20c(),
+    color: d3.scale.category10(),
     duration: 250,
+    showLabels: true,
   }
 };
 
 export const ChartData = [{
-  "name": "flare",
+  "name": "Sleep",
   "children": [
     {
       "name": "analytics",
